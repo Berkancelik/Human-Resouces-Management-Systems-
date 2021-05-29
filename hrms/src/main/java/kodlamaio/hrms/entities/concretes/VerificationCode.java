@@ -1,9 +1,10 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -17,26 +18,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "verification_codes")
-@PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
 
 public class VerificationCode{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue()
 	@Column(name="id")
 	private int id;
 
 	@Column(name = "code")
 	private String code;
 
-	@Column(name = "is_verified")
-	private boolean isVerified;
-
+	@Column(name = "is_confirmed")
+	private boolean isConfirmed;
+	
+	private int userId;
+	
+	@Column(name = "created _at", columnDefinition =  "date default current_date")
+	private LocalDate createdAt = LocalDate.now();
+	
+	
+	///
 	
 
-//	public boolean isVerified() {
-//		return this.isVerified;
-//	}
 
-	// date eklenmeli :)
 
 }
