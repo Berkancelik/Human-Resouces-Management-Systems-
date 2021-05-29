@@ -32,8 +32,10 @@ public class CandidatesController {
 	}
 		
 	@PostMapping("/add")
-	public DataResult<Candidate> add(Candidate jobCandidate){
-		return (DataResult<Candidate>) this.jobCandidateService.add(jobCandidate);
+	public Result add(@RequestBody Candidate candidate) {
+		return this.jobCandidateService.add(candidate);
+		
 	}
+
 
 }
