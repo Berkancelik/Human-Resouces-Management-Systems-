@@ -38,10 +38,10 @@ public class User {
 	@Column(name= "created_at")	
 	private LocalDate createdAt = LocalDate.now();
 	
-	@Column(name = "is_active",columnDefinition = "boolean default true")
+	@Column(name = "is_active")
 	private boolean isActive = true;
 	
-	@Column(name = "is_deleted",columnDefinition = "boolean default false")
+	@Column(name = "is_deleted")
 	private boolean isDeleted = false; 
 
 }

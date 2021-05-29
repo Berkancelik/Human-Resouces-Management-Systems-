@@ -33,7 +33,7 @@ public class VerificationCode{
 	
 	private int userId;
 	
-	@Column(name = "created _at", columnDefinition =  "date default current_date")
+	@Column(name = "created _at")
 	private LocalDate createdAt = LocalDate.now();
 	
 	
