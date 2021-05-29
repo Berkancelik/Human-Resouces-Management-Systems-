@@ -19,12 +19,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name="id")
+@PrimaryKeyJoinColumn(name="user_id")
 
 public class Employee extends User{
-	@Column(name="id")
-	private int id;
-	
+
 	@Column(name="first_name")
 	private String firstName;
 	

@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "candidates")
 @AllArgsConstructor
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
+@PrimaryKeyJoinColumn(name = "user_id")
 
 public class Candidate extends User {
 	
@@ -33,6 +33,9 @@ public class Candidate extends User {
 	
 	@Column(name = "birth_date")
 	private Date dateOfBirth;
+	
+	@Column(name = "is_verified", columnDefinition = "boolean default false")
+	private boolean isVerified = false;
 	
 
 }
