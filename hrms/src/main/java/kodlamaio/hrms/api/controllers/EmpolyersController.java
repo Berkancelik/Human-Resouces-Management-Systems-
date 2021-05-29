@@ -18,6 +18,7 @@ import kodlamaio.hrms.entities.concretes.Employer;
 @RestController
 @RequestMapping("/api/employers")
 public class EmpolyersController {
+	
 	private EmployerService employerService;
 	
 	@Autowired
@@ -32,7 +33,7 @@ public class EmpolyersController {
 	}
 	
 	@PostMapping("/add")
-	public DataResult add(@RequestBody Employer employer) {
+	public Result add(@RequestBody Employer employer) {
 		return this.employerService.add(employer);
 	}
 	
