@@ -36,6 +36,15 @@ public class VerificationCode{
 	@Column(name = "created _at")
 	private LocalDate createdAt = LocalDate.now();
 	
+	public VerificationCode(int userId, String code, boolean isConfirmed, LocalDate createdAt) {
+		super();
+		this.userId = userId;
+		this.code = code;
+		this.isConfirmed = isConfirmed;
+		this.createdAt = createdAt;
+		
+	}
+	
 	
 	///
 	
