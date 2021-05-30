@@ -26,8 +26,8 @@ public class JobAdversitements {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "open_position_count")
-	private int openPosition;
+	@Column(name = "open_title_count")
+	private int openTitleCount;
 	
 	@Column(name = "deadline")
 	private LocalDate deadline;
