@@ -68,15 +68,15 @@ public class AuthManager implements AuthService {
 
 	@Override
 	public Result registerCandidate(Candidate candidate, String confirmPassword) {
-		if(checkIfRealPerson(Long.parseLong(candidate.getIdentityNumber()), candidate.getFirstName(), candidate.getLastName(),
+		if(checkIfRealPerson(Long.parseLong(candidate.getNationalId()), candidate.getFirstName(), candidate.getLastName(),
 				candidate.getDateOfBirth().getYear()) == false) {
 			return new ErrorResult("Tc Kimlik No doğrulanamadı!");
 		}
 		if(!checkIfNullInfoCandidate(candidate, confirmPassword)) {
 			return new ErrorResult("Lütfen boş alanları kontrol ediniz!");
 		}
-		if(checkIfExistTcNo(candidate.getIdentityNumber())){
-			return new ErrorResult(candidate.getIdentityNumber() + " " + "zaten var!");
+		if(checkIfExistTcNo(candidate.getNationalId())){
+			return new ErrorResult(candidate.getNationalId() + " " + "zaten var!");
 		}
 		if(!cheackIfEmailExistt(candidate.getEmail())) {
 			return new ErrorResult(candidate.getEmail()+ " " + "zaten var!");
@@ -137,7 +137,7 @@ public class AuthManager implements AuthService {
 	}
 
 	private boolean checkIfNullInfoCandidate(Candidate candidate, String confirmPassword) {
-		if (candidate.getFirstName() != null && candidate.getLastName() != null && candidate.getIdentityNumber() != null
+		if (candidate.getFirstName() != null && candidate.getLastName() != null && candidate.getNationalId() != null
 				&& candidate.getDateOfBirth() != null && candidate.getPassword() != null && candidate.getEmail() != null
 				&& confirmPassword != null) {
 			return true;

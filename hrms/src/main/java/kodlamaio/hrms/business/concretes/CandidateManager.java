@@ -39,7 +39,7 @@ public class CandidateManager implements CandidateService {
 
 	@Override
 	public DataResult<Candidate> getJobCantitadeByNationalId(String nationalId) {
-		return new SuccessDataResult<Candidate>((Candidate) this.candidateDao.findCandidateByNationalId(nationalId));//check it
+		return new SuccessDataResult<Candidate>(this.candidateDao.findCandidateByNationalId(nationalId));
 	
 	}
 

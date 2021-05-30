@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,7 +21,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "job_adversitements")
 public class JobAdversitements {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Column(name = "id")
 	private int id;
 
@@ -47,15 +52,15 @@ public class JobAdversitements {
 	@Column(name = "salary_max")
 	private int salaryMax;
 	
-	@Column(name = "publishhead_at")
-	private LocalDate publisheadAt;
+	@Column(name = "published_at")
+	private LocalDate publishedAt;
 	
 	@ManyToOne
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
 	
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "city_id")
 	private City city;
 	
 	@ManyToOne

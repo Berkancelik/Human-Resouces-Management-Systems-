@@ -1,7 +1,9 @@
 package kodlamaio.hrms.core.utilities.adapters;
 
-import kodlamaio.hrms.fakeService.MernisServiceFake;
+import org.springframework.stereotype.Service;
 
+import kodlamaio.hrms.fakeService.MernisServiceFake;
+@Service
 public class MernisServiceAdapter implements ValidationService {
 
 	@Override

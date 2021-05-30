@@ -31,9 +31,10 @@ public class VerificationCode{
 	@Column(name = "is_confirmed")
 	private boolean isConfirmed;
 	
+	@Column(name = "user_id")
 	private int userId;
 	
-	@Column(name = "created _at")
+	@Column(name = "created_at")
 	private LocalDate createdAt = LocalDate.now();
 	
 	public VerificationCode(int userId, String code, boolean isConfirmed, LocalDate createdAt) {

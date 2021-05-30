@@ -44,17 +44,21 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 		this.jobAdvertisementsDao.deleteById(id);
 		return new SuccessResult("İş ilanı başarılı şekilde silindi");
 	}
-
+	
 	@Override
 	public Result changeOpentoClose(int id) {
 		if(getById(id) == null) {
-			return new ErrorResult("İş ilanı zaten kapalı!");
+			return new ErrorResult("Böyle bir iş ilanı yok!");
 		}
-		JobAdversitements jobAdversitements = (JobAdversitements) getById(id).getData(); // search
+		if (getById(id).getData().isOpen() == false) {
+			return new SuccessResult("İş ilani zaten kapalı!");
+		
+		}
+		JobAdversitements jobAdversitements = getById(id).getData();
 		jobAdversitements.setOpen(false);
 		update(jobAdversitements);
-		return new SuccessResult("İş ilanı başarılı şekilde kapatıldı");
-		
+		return new SuccessResult("İş ilanı başarılı şekilde kapatıldı!");
+			
 	}
 
 	@Override
@@ -68,7 +72,7 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 	}
 
 	@Override
-	public DataResult<List<JobAdversitements>> findAllOrderByPublishheadAt() {
+	public DataResult<List<JobAdversitements>> findAllOrderByPublishhedAt() {
 		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findAllByOrderByPublishedAtDesc());
 	}
 

@@ -14,7 +14,7 @@ public interface JobAdversitementsService {
 	Result changeOpentoClose(int id);
 	DataResult<List<JobAdversitements>> getAll();
 	DataResult<List<JobAdversitements>> getAllOpenJobAdvertisementsList();
-	DataResult<List<JobAdversitements>> findAllOrderByPublishheadAt();
+	DataResult<List<JobAdversitements>> findAllOrderByPublishhedAt();
 	DataResult<JobAdversitements> getById(int id);
 	DataResult<List<JobAdversitements>> getAllOpenJobAdvertByEmployer(int id);
 

@@ -41,7 +41,7 @@ public class UserManager implements UserService {
 
 	@Override
 	public DataResult<User> getUserByEmail(String email) {
-		return new SuccessDataResult<User>(this.userDao.findUserByEmial(email));
+		return new SuccessDataResult<User>(this.userDao.findUserByEmail(email));
 		
 	}
 
