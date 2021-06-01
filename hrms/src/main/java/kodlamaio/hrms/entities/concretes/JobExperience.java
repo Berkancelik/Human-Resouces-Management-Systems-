@@ -30,7 +30,7 @@ public class JobExperience {
 	private int id;
 	
 	@Column(name = "resume_id")
-	private int resumeId;
+	private Resume resumeId;
 	
 	@Column(name = "company_name")
 
@@ -38,8 +38,9 @@ public class JobExperience {
 
 	@ManyToOne(targetEntity = JobTitle.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "job_title_id", referencedColumnName = "id", nullable = false)
-	private int jobPositionId;		
+	private JobTitle jobTitle;		
 	
+	@NotBlank(message = "Boş geçilemez!")
 	@Column(name = "started_date")
 	private Date startedDate;
 	
