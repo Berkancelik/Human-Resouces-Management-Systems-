@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.EducationService;
+import kodlamaio.hrms.business.abstracts.LanguageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Education;
+import kodlamaio.hrms.entities.concretes.Language;
 import kodlamaio.hrms.entities.concretes.Resume;
 
 @RestController
-@RequestMapping("/api/education")
-public class EducationController {
-	private EducationService educationService;
-	
+@RequestMapping("/api/jobtitles")
+public class LanguagesController {
 	@Autowired
-	public EducationController(EducationService educationService) {
+	private LanguageService languageService;
+	
+	public LanguagesController(LanguageService languageService) {
 		super();
-		this.educationService = educationService;
+		this.languageService = languageService;
 	}
 	
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody Education education){
-		return this.educationService.add(education);
+	public Result add(@Valid @RequestBody Language language){
+		return this.languageService.add(language);
 		
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Education>> getAll(){
-		return this.educationService.getAll();
-	}
+	public DataResult<List<Language>> getAll(){
+		return this.languageService.getAll();
 				
+	}
 
 }

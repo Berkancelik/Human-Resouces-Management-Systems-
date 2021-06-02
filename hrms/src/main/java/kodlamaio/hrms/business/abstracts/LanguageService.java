@@ -4,12 +4,12 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Resume;
+import kodlamaio.hrms.entities.concretes.Language;
 
-public interface ResumeService {
-	Result add (Resume resume);
+public interface LanguageService {
+    Result add (Language language);
 	
-	DataResult<List<Resume>> getAll();
+	DataResult<List<Language>> getAll();
 	
 
 }
