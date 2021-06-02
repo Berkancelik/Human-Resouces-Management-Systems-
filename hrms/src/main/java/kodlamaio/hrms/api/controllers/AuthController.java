@@ -29,7 +29,7 @@ public class AuthController {
 	@PostMapping("/registerCandidate")
 	public Result registerCandidate(@RequestBody Candidate candidate, String confirmPassword) {
 		return authService.registerCandidate(candidate, confirmPassword);
-	}
+	}  
 	
  //
 
