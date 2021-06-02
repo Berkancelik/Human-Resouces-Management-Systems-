@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.time.LocalDate;
+
+import  java.sql.Date;
+
 
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class JobTitle {
 	private boolean isActive = true;
 	
 	@Column(name="created_at")
-	private LocalDate createdDate = LocalDate.now();
+	private Date createdDate;
 	
 	@Column(name = "is_deleted")
 	private boolean isDeleted  = false;

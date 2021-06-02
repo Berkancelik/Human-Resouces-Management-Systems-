@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +32,10 @@ public class JobExperience {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "resume_id")
-	private Resume resumeId;
+	@JsonProperty(access = Access.WRITE_ONLY)
+	@ManyToOne(targetEntity = Resume.class)
+	@JoinColumn(name = "resume_id")
+	private Resume resume;
 	
 	@Column(name = "company_name")
 
@@ -47,7 +52,7 @@ public class JobExperience {
 	@Column(name = "ended_date")
 	private Date endedDate;
 	
-	@Column(name = "created_date")
+	@Column(name = "created_at")
 	private Date createdDate;
 
 }

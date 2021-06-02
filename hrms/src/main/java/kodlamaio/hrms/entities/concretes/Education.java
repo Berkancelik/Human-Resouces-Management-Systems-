@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,10 +45,10 @@ public class Education {
 	private String schoolName;
 	
 	@OneToOne(targetEntity = Graduate.class)
-	@JoinColumn(name = "graudate_id", referencedColumnName = "id",nullable =false )
+	@JoinColumn(name = "graduate_id", referencedColumnName = "id",nullable =false )
 	private Graduate graduate;
 	
-	@Column(name ="schoolDepartment" )
+	@Column(name ="school_department" )
 	@NotBlank(message = "Boş geçilemez!")
 	private String schoolDepartment;
 	

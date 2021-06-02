@@ -68,12 +68,12 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 
 	@Override
 	public DataResult<List<JobAdversitements>> getAllOpenJobAdvertisementsList() {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsList());
+		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findByIsOpenTrue());
 	}
 
 	@Override
 	public DataResult<List<JobAdversitements>> findAllOrderByPublishhedAt() {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findAllByOrderByPublishedAtDesc());
+		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findByIsOpenTrueOrderByCreatedAtDesc());
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 
 	@Override
 	public DataResult<List<JobAdversitements>> getAllOpenJobAdvertByEmployer(int id) {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsByEmployer(id));
+		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findByIsOpenTrueAndEmployerId(id));
 	}
 
 	private boolean CheckIfNullField(JobAdversitements jobAdversitements) {

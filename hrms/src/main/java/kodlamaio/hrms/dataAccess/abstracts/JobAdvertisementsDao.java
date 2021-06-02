@@ -9,13 +9,13 @@ import kodlamaio.hrms.entities.concretes.JobAdversitements;
 
 public interface JobAdvertisementsDao extends JpaRepository<JobAdversitements, Integer> {
 	
-	@Query("From JobAdvertisements where isOpen = true")
-	List<JobAdversitements> getAllOpenJobAdversitementsList();
+//	@Query("From JobAdvertisements where isOpen = true")
+	List<JobAdversitements> findByIsOpenTrue();
 	
-	@Query("From JobAdvertisements where isOpen = true Order By publishedAt Desc")
-	List<JobAdversitements> findAllByOrderByPublishedAtDesc();
+//	@Query("From JobAdvertisements where isOpen = true Order By publishedAt Desc")
+	List<JobAdversitements> findByIsOpenTrueOrderByCreatedAtDesc();
 	
-	@Query("From JobAdvertisements where isOpen = true and employer_id =:id")
-	List<JobAdversitements> getAllOpenJobAdversitementsByEmployer(int id);
+//	@Query("From JobAdvertisements where isOpen = true and employer_id =:id")
+	List<JobAdversitements> findByIsOpenTrueAndEmployerId(int id);
 
 }

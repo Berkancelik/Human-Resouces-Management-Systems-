@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "edu_gradutes")
+@Table(name = "resumes")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Resume {
@@ -32,8 +32,8 @@ public class Resume {
 	private int id;
 	
 	@ManyToOne(targetEntity = Candidate.class)
-	@JoinColumn(name="candidate_id", referencedColumnName = "id", nullable=false)
-	private int candidateId;
+	@JoinColumn(name="candidate_id", referencedColumnName = "user_id", nullable=false)
+	private Candidate candidate;
 	
 	@Column(name ="github_link")
 	private String githubLink;
@@ -50,7 +50,7 @@ public class Resume {
 	@Column(name ="created_date")
 	private Date createdDate;
 	
-	@Column(name ="uptadet_date")	
+	@Column(name ="uptaded_date")	
 	private Date uptadetDate;	
 	
 	@Column(name ="is_active")		

@@ -18,7 +18,7 @@ import kodlamaio.hrms.entities.concretes.Language;
 import kodlamaio.hrms.entities.concretes.Resume;
 
 @RestController
-@RequestMapping("/api/jobtitles")
+@RequestMapping("/api/languages")
 public class LanguagesController {
 	@Autowired
 	private LanguageService languageService;
