@@ -32,7 +32,7 @@ public class EducationManager implements EducationService {
 
 	@Override
 	public DataResult<List<Education>> getAll() {
-		return new SuccessDataResult<List<Education>>();
+		return new SuccessDataResult<List<Education>>(educationDao.findAll(),"Başarılı bir şekilde listelendi");
 	
 	}
 

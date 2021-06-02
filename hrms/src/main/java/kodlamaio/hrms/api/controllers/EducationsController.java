@@ -19,11 +19,11 @@ import kodlamaio.hrms.entities.concretes.Resume;
 
 @RestController
 @RequestMapping("/api/education")
-public class EducationController {
+public class EducationsController {
 	private EducationService educationService;
 	
 	@Autowired
-	public EducationController(EducationService educationService) {
+	public EducationsController(EducationService educationService) {
 		super();
 		this.educationService = educationService;
 	}

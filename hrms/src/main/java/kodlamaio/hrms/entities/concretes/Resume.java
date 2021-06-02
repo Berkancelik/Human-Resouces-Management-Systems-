@@ -38,7 +38,7 @@ public class Resume {
 	@Column(name ="github_link")
 	private String githubLink;
 	
-	@Column(name ="github_link")
+	@Column(name ="linkedin_link")
 	private String linkedinLink;
 	
 	@Column(name ="photo")

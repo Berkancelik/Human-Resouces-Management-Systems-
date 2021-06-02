@@ -17,11 +17,11 @@ import kodlamaio.hrms.entities.concretes.Graduate;
 
 @RestController
 @RequestMapping("/api/graduates")
-public class GraduateController {
+public class GraduatesController {
 	private GraduateService graduateService;
 
 	@Autowired
-	public GraduateController(GraduateService graduateService) {
+	public GraduatesController(GraduateService graduateService) {
 		super();
 		this.graduateService = graduateService;
 

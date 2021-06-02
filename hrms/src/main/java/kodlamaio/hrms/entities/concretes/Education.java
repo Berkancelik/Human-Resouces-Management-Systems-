@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="resume_schools")
+@Table(name="educations")
 public class Education {
 	
 	

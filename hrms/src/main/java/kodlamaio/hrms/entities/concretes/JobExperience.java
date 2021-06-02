@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="resume_work_experiences")
+@Table(name="job_experiences")
 public class JobExperience {
 	
 	@Id

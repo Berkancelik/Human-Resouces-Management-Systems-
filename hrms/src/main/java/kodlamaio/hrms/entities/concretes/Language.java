@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "edu_gradutes")
+@Table(name = "languages")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Language {
