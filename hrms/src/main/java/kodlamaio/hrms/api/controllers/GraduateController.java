@@ -9,32 +9,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.sun.net.httpserver.Authenticator.Result;
-
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
+
+import kodlamaio.hrms.business.abstracts.GraduateService;
 import kodlamaio.hrms.entities.concretes.Graduate;
+
 @RestController
 @RequestMapping("/api/graduates")
 public class GraduateController {
-	private GraduateController graudateService;
+	private GraduateService graduateService;
+
 	@Autowired
-	public GraduateController(GraduateController graduateController) {
+	public GraduateController(GraduateService graduateService) {
 		super();
-		this.graudateService = graudateService;
-		
+		this.graduateService = graduateService;
+
 	}
-	
+
 	@GetMapping("/getall")
-	public DataResult<List<Graduate>>getAll(){
-		return this.graudateService.getAll();
+	public DataResult<List<Graduate>> getAll() {
+		return this.graduateService.getAll();
 	}
-	
+
 	@GetMapping("/add")
-	public Result add(@Valid @RequestBody Graduate graduate){
-		return this.graudateService.add(graduate);
+	public Result add(@Valid @RequestBody Graduate graduate) {
+		return this.graduateService.add(graduate);
+
 	}
-
-
 
 }

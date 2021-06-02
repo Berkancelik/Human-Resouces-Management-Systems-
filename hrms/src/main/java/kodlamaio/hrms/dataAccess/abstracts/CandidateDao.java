@@ -9,3 +9,4 @@ public interface CandidateDao extends JpaRepository<Candidate, Integer> {
 
 
 }
+ 

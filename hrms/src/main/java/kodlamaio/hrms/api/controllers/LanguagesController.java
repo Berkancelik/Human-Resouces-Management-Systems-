@@ -36,7 +36,7 @@ public class LanguagesController {
 	
 	@GetMapping("/getall")
 	public DataResult<List<Language>> getAll(){
-		return this.languageService.getAll();
+		return this.languageService.getAll(); 
 				
 	}
 

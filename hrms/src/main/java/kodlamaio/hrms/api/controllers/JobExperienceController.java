@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 
 @RestController
@@ -38,5 +37,5 @@ public class JobExperienceController {
 		return this.jobExperienceService.getAll();
 	}
 			
-
+ 
 }

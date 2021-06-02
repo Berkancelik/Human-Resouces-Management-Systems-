@@ -16,7 +16,7 @@ import kodlamaio.hrms.entities.concretes.Resume;
 public class ResumeManager implements ResumeService {
 	private  ResumeDao resumeDao;
 	
-	
+	 
 	
 	@Autowired
 	public ResumeManager(ResumeDao resumeDao) {

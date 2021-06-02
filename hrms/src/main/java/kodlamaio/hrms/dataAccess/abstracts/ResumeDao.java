@@ -7,3 +7,4 @@ import kodlamaio.hrms.entities.concretes.Resume;
 public interface ResumeDao extends JpaRepository<Resume, Integer>{
 
 }
+ 

@@ -21,7 +21,7 @@ public class JobExperienceManager implements JobExperienceService {
 	public JobExperienceManager(JobExperienceDao jobExperienceDao) {
 		super();
 		this.jobExperienceDao = jobExperienceDao;
-	}
+	} 
 
 	@Override
 	public Result add(JobExperience jobExperience) {

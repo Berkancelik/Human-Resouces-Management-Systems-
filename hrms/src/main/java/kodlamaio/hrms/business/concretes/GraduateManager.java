@@ -17,7 +17,7 @@ import kodlamaio.hrms.entities.concretes.Graduate;
 @Service
 public class GraduateManager implements GraduateService {
 	private GraduateDao graduateDao;
-	
+	 
 	
 	@Autowired
 	public GraduateManager(GraduateDao graduateDao) {

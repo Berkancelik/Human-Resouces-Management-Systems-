@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.ResumeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Candidate;
-import kodlamaio.hrms.entities.concretes.Graduate;
-import kodlamaio.hrms.entities.concretes.JobTitle;
+
 import kodlamaio.hrms.entities.concretes.Resume;
 
 @RestController
@@ -38,7 +36,7 @@ public class ResumeController {
 	
 	@GetMapping("/getall")
 	public DataResult<List<Resume>> getAll(){
-		return this.resumeService.getAll();
+		return this.resumeService.getAll(); 
 				
 	}
 
