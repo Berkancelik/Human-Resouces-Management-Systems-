@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cities")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})// search
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
 public class City {
 	
 	@Id

@@ -1,36 +1,28 @@
 package kodlamaio.hrms.entities.concretes;
 
-
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name="educations")
-public class Education {
-	
-
+@Data
+@Table(name = "resume_images")
+@NoArgsConstructor
+@AllArgsConstructor
+public class ResumeImage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name= "id")	
@@ -48,20 +40,13 @@ public class Education {
 	@Column(name= "is_deleted")
 	private boolean isDeleted = false;
 	
-	@Column(name = "name")
-	private String schoolName;
+	@Column(name = "url_address")
+	private String urlAddress;
 	
-	@Column(name = "department")
-	private String department;
-	
-	@Column(name = "started_date")
-	private LocalDate startAt;
-	
-	@Column(name = "ended_date", nullable = true)
-	private LocalDate endAt;
+	@OneToOne(optional=false,fetch=FetchType.LAZY)
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidate;
 
-	@ManyToOne()
-	@JoinColumn(name = "jobseeker_id")
-	private Candidate candidate;
+	
 
 }
