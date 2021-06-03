@@ -13,7 +13,7 @@ public interface JobAdvertisementsDao extends JpaRepository<JobAdversitements, I
 	List<JobAdversitements> findByIsOpenTrue();
 	
 //	@Query("From JobAdvertisements where isOpen = true Order By publishedAt Desc")
-	List<JobAdversitements> findByIsOpenTrueOrderByCreatedAtDesc();
+	List<JobAdversitements> findByIsOpenTrueOrderByCreatedDateDesc();
 	
 //	@Query("From JobAdvertisements where isOpen = true and employer_id =:id")
 	List<JobAdversitements> findByIsOpenTrueAndEmployerId(int id);

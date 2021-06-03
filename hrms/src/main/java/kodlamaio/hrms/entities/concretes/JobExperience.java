@@ -23,22 +23,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name="resume_experiences")
-public class JobExperience {
+public class JobExperience extends Base {
 	
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name= "id")	
-	private int id;
-	
-	@JsonIgnore
-	@Column(name= "created_date")
-	private LocalDate createdAt = LocalDate.now();
-	
-	@JsonIgnore
-	@Column(name= "is_active")
-	private boolean isActive = true;
-	
+
 
 	@Column(name= "ended_date")
 	private LocalDate endedDate;

@@ -6,41 +6,33 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "job_titles")
-@AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyIntilazier","handler","jobAdverts"})
-public class JobTitle {
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private int id;
+@JsonIgnoreProperties({"hibernateLazyIntilazier","handler","jobAdversitements"})
+public class JobTitle extends Base {
+
 
 	@Column(name = "title")
 	private String title;
 	
-	@Column(name = "is_active")
-	private boolean isActive = true;
-	
-	@Column(name="created_date")
-	private LocalDate createdDate;
-	
+
 
 	@OneToMany(mappedBy = "jobTitle")
 	private List<JobAdversitements> jobAdversitements;
+	
+	public JobTitle(String title, List<JobAdversitements> jobAdversitements) {
+		super();
+		this.title = title;
+		this.jobAdversitements = jobAdversitements;
+	} 
 	
 	
 

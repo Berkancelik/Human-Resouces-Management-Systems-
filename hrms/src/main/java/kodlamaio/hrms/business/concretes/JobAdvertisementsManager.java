@@ -73,7 +73,7 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 
 	@Override
 	public DataResult<List<JobAdversitements>> findAllOrderByPublishhedAt() {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findByIsOpenTrueOrderByCreatedAtDesc());
+		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findByIsOpenTrueOrderByCreatedDateDesc());
 	}
 
 	@Override

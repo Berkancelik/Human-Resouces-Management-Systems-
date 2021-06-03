@@ -26,28 +26,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Candidate extends User {
 
 
-	@JsonIgnore
 	@Column(name= "first_name")
 	private String firstName;
-	@JsonIgnore
 
 	@Column(name= "last_name")
 	private String lastName;	
 	
-	@JsonIgnore
 
 	@Column(name= "nationality_id")
 	private String nationalId;
-	@JsonIgnore
 
 	@Column(name= "date_of_birth")
 	private LocalDate dateOfBirth;
 	
-	@JsonIgnore
+	
 	@Column(name = "is_verified", columnDefinition = "boolean default false")
 	private boolean isVerified = false;
 
@@ -76,7 +71,7 @@ public class Candidate extends User {
 	private List<LetterOfAcceptance> coverLetters;	
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "candidate", optional=false, fetch=FetchType.LAZY)
+	@OneToOne(mappedBy = "candidate")
 	private ResumeImage image;
 
 }

@@ -146,7 +146,7 @@ public class AuthManager implements AuthService {
 	}
 
 	public void verificationCodeIsGenerated(String code, int id, String email) {
-		VerificationCode verificationCode = new VerificationCode(id, code, false, LocalDate.now());
+		VerificationCode verificationCode = new VerificationCode(code, false, id);
 		this.verificationCodeService.add(verificationCode);
 		System.out.println("Doğrulama kodu bu email adresine gönderildi : " + " " + email);
 	}

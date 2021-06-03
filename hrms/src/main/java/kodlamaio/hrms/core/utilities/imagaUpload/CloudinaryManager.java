@@ -23,9 +23,9 @@ public class CloudinaryManager implements ImageService{
 	public CloudinaryManager() {
 
 		this.cloudinary = new Cloudinary(ObjectUtils.asMap(
-				"cloud_name", "dayx2sam5",
-				"api_key", "699443261618643",
-				"api_secret", "LaC_8aO4_p-vseLXfpOJGuC-sjI"));
+				"cloud_name","dwlfg8ogv",
+				"api_key", "411884968266823",
+				"api_secret","WsZxm67EBxiouvUJ0fuicfRQMcA"));
 	}
 
 	@Override
