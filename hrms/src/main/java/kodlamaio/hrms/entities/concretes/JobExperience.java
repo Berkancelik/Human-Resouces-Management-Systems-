@@ -39,10 +39,7 @@ public class JobExperience {
 	@Column(name= "is_active")
 	private boolean isActive = true;
 	
-	@JsonIgnore
-	@Column(name= "is_deleted")
-	private boolean isDeleted = false;
-	
+
 	@Column(name= "ended_date")
 	private LocalDate endedDate;
 	

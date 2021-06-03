@@ -43,9 +43,7 @@ public class JobAdversitements {
 	@Column(name = "is_open")
 	private boolean isOpen;
 	
-	@Column(name = "is_deleted")
-	private boolean isDeleted;
-	
+
 	@Column(name = "salary_min")
 	private int salaryMin;
 	

@@ -44,10 +44,7 @@ public class Education {
 	@Column(name= "is_active")
 	private boolean isActive = true;
 	
-	@JsonIgnore
-	@Column(name= "is_deleted")
-	private boolean isDeleted = false;
-	
+
 	@Column(name = "name")
 	private String schoolName;
 	

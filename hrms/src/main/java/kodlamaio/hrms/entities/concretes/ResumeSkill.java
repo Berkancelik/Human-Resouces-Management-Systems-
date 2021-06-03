@@ -36,10 +36,7 @@ public class ResumeSkill {
 	@Column(name= "is_active")
 	private boolean isActive = true;
 	
-	@JsonIgnore
-	@Column(name= "is_deleted")
-	private boolean isDeleted = false;
-	
+
 	private String skillName;
 	@ManyToOne
 	@JoinColumn(name = "candidate_id")

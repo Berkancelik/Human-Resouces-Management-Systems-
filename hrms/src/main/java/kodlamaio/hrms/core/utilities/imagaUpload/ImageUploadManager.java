@@ -1,8 +1,13 @@
 package kodlamaio.hrms.core.utilities.imagaUpload;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 import com.cloudinary.Cloudinary;
+
+import java.util.Arrays;
+import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -14,15 +19,16 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 
 @Service
 public class ImageUploadManager implements ImageUploadService{
+	
 
-private Cloudinary cloudinary;
+	private Cloudinary cloudinary;
 	
 	public ImageUploadManager() {
 
-		this.cloudinary = new Cloudinary(ObjectUtils.aspMap(
-				"cloud_name", "doze1qnyd",
-				"api_key", "395654336358536",
-				"api_secret", "gbJxmBetLH2aDznxmwqYJurX9e4"));
+		this.cloudinary = new Cloudinary(ObjectUtils.asMap(
+				"cloud_name", "dwlfg8ogv",
+				"api_key", "api_key\", \"41188496826682",
+				"pi_secret\",\"WsZxm67EBxiouvUJ0fuicfRQMcA"));
 	}
 
 	@Override
@@ -37,8 +43,6 @@ private Cloudinary cloudinary;
 		}
 		return new ErrorDataResult<Map>();
 	}
-
-
 
 
 }

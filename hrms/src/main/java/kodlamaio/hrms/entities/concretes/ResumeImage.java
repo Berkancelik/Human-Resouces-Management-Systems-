@@ -36,10 +36,7 @@ public class ResumeImage {
 	@Column(name= "is_active")
 	private boolean isActive = true;
 	
-	@JsonIgnore
-	@Column(name= "is_deleted")
-	private boolean isDeleted = false;
-	
+
 	@Column(name = "url_address")
 	private String urlAddress;
 	

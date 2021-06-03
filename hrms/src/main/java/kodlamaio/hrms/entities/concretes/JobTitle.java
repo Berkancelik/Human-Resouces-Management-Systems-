@@ -40,9 +40,7 @@ public class JobTitle {
 	@Column(name="created_at")
 	private Date createdDate;
 	
-	@Column(name = "is_deleted")
-	private boolean isDeleted  = false;
-	
+
 	@OneToMany(mappedBy = "jobTitle")
 	private List<JobAdversitements> jobAdversitements;
 	

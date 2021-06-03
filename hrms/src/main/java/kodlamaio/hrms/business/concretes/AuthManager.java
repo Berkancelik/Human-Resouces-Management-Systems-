@@ -130,7 +130,7 @@ public class AuthManager implements AuthService {
 	}
 
 	private boolean checkIfExistTcNo(String nationalId) {
-		if (this.candidateService.getJobCantitadeByNationalId(nationalId).getData() == null) {
+		if (this.candidateService.getCandidateByNationalId(nationalId).getData() == null) {
 			return true;
 		}
 		return false;

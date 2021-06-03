@@ -38,9 +38,7 @@ public class Language {
 	@Column(name= "is_active")
 	private boolean isActive = true;
 	
-	@JsonIgnore
-	@Column(name= "is_deleted")
-	private boolean isDeleted = false;
+
 	
 	@Min(value = 1 )
 	@Max(value = 5)	

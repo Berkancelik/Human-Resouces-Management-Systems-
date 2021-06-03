@@ -1,5 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.business.abstracts.ResumeImageService;
+import kodlamaio.hrms.core.utilities.imagaUpload.ImageUploadService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -28,9 +31,10 @@ public class ResumeImageManager implements ResumeImageService {
 		this.resumeImageService = resumeImageService;
 	}
 
+	
 	@Override
-	public Result add(ResumeImage resumeImage , MultipartFile imageFile) {
-		Map<String,String> uploadImage = this.resumeImageService.uploadImageFile(imageFile).getData();
+	public Result  add(ResumeImage resumeImage,MultipartFile file) {
+		Map<String,String> uploadImage = this.imageUpload(imageFile).getData();
 		resumeImage.setUrlAddress(uploadImage.get("url"));
 		this.resumeImageDao.save(resumeImage);
 		return new SuccessResult("Fotoğraf eklendi!");
@@ -64,6 +68,9 @@ public class ResumeImageManager implements ResumeImageService {
 		return new SuccessDataResult<ResumeImage>(this.resumeImageDao.getByCandidateId(id));
 		
 	}
+
+
+
 	
 
 }

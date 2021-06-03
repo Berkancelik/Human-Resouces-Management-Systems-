@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.ResumeImageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Language;
+import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.ResumeImage;
 
 @RestController
@@ -33,15 +34,13 @@ public class ResumeImageController {
 		this.candidateService = candidateService;
 	}
 
-	@PostMapping("/add")
-	public Result add(@RequestParam(value ="id") int id, @RequestParam(value = "imageFile") MultipartFile imageFile){
-		CandidateService candidate = this.candidateService.getJobCantitadeByNationalId().getData();
+	@PostMapping(value = "/add")
+	public Result add(@RequestParam(value = "id") int id, @RequestParam(value = "imageFile") MultipartFile imageFile){
+		Candidate candidate = this.candidateService.getById(id).getData();
 		ResumeImage resumeImage = new ResumeImage();
-		ResumeImage.setCandidate(candidate);
-		return this.resumeImageService.add(resumeImage);
-		
+		resumeImage.setCandidate(candidate);
+		return this.resumeImageService.add(resumeImage, imageFile);
 	}
-	
 	@PostMapping("/update")
 	public Result update(@Valid @RequestBody ResumeImage resumeImage){
 		return this.resumeImageService.update(resumeImage);
