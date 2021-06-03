@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobExperience;
+import kodlamaio.hrms.entities.concretes.Language;
 
 @RestController
 @RequestMapping("/api/jobExperience")
@@ -32,10 +34,35 @@ public class JobExperienceController {
 		
 	}
 	
+	@PostMapping("/update")
+	public Result update(@Valid @RequestBody JobExperience jobExperience){
+		return this.jobExperienceService.update(jobExperience);
+		
+	}
+	
+	@PostMapping("/delete")
+	public Result delete(@Valid @RequestParam int  id){
+		return this.jobExperienceService.delete(id);
+		
+	}
+	
 	@GetMapping("/getall")
 	public DataResult<List<JobExperience>> getAll(){
 		return this.jobExperienceService.getAll();
 	}
-			
+	
+	@GetMapping("/getAllByCandidateId")
+	public DataResult<List<JobExperience>> getAllByCandidateId(@RequestParam int id){
+		return this.jobExperienceService.getAllByCandidateId(id);
+	}
+	@GetMapping("/getById")
+	public DataResult<JobExperience> getById(@RequestParam int id){
+		return this.jobExperienceService.getById(id);
+	}	
+	@GetMapping("/getAllByCandidateIdOrderByDesc")
+	public DataResult<List<JobExperience>> getAllByCandidateIdOrderByDesc(@RequestParam int id){
+		return this.jobExperienceService.getAllByCandidateIdOrderByDesc(id);
+	}
+	
  
 }

@@ -12,6 +12,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobExperienceDao;
 import kodlamaio.hrms.entities.concretes.JobExperience;
+import kodlamaio.hrms.entities.concretes.Language;
 
 @Service
 public class JobExperienceManager implements JobExperienceService {
@@ -21,17 +22,47 @@ public class JobExperienceManager implements JobExperienceService {
 	public JobExperienceManager(JobExperienceDao jobExperienceDao) {
 		super();
 		this.jobExperienceDao = jobExperienceDao;
-	} 
+	}
 
 	@Override
 	public Result add(JobExperience jobExperience) {
-		jobExperienceDao.save(jobExperience);
-		return new SuccessResult("Başarılı bir şekilde eklendi!");
+		this.jobExperienceDao.save(jobExperience);
+		return new SuccessResult("İş deneyimi eklendi");
+
+	}
+
+	@Override
+	public Result update(JobExperience jobExperience) {
+		this.jobExperienceDao.save(jobExperience);
+		return new SuccessResult("İş deneyimi güncellendi");
+	}
+
+	@Override
+	public Result delete(int id) {
+		this.jobExperienceDao.deleteById(id);
+		return new SuccessResult("İş deneyimi silindi");
+	}
+
+	@Override
+	public DataResult<JobExperience> getById(int id) {
+		return new SuccessDataResult<JobExperience>(this.jobExperienceDao.getById(id));
+		
 	}
 
 	@Override
 	public DataResult<List<JobExperience>> getAll() {
-		return new SuccessDataResult<List<JobExperience>>(jobExperienceDao.findAll(), "Başarıyla Listelendi");
-
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAll());		
 	}
+
+	@Override
+	public DataResult<List<JobExperience>> getAllByCandidateId(int id) {
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllCandidateId(id));
+		
+	}
+	@Override
+	public DataResult<List<JobExperience>> getAllByCandidateIdOrderByDesc(int id) {
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllByCandidateIdOrderByDesc(id));
+	}
+
+
 }
