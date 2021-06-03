@@ -36,13 +36,13 @@ public class EducationsController {
 	
 	@PostMapping("/update")
 	public Result update(@Valid @RequestBody Education education){
-		return this.educationService.add(education);
+		return this.educationService.update(education);
 		
 	}
 	
 	@PostMapping("/delete")
-	public Result delete(@Valid @RequestBody Education education){
-		return this.educationService.add(education);
+	Result delete(@Valid @RequestBody @RequestParam  int id){
+		return this.educationService.delete(id);
 		
 	}
 	
