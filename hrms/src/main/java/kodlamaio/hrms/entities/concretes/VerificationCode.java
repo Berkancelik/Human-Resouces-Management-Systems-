@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +34,14 @@ public class VerificationCode{
 	
 	@Column(name = "user_id")
 	private int userId;
+	
+	@JsonIgnore
+	@Column(name= "is_active")
+	private boolean isActive = true;
+	
+	@JsonIgnore
+	@Column(name= "is_deleted")
+	private boolean isDeleted = false;
 	
 	@Column(name = "created_at")
 	private LocalDate createdAt = LocalDate.now();
