@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.business.abstracts.ResumeImageService;
-import kodlamaio.hrms.core.utilities.imagaUpload.ImageUploadService;
+import kodlamaio.hrms.core.utilities.imagaUpload.ImageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -22,19 +22,19 @@ import kodlamaio.hrms.entities.concretes.ResumeImage;
 public class ResumeImageManager implements ResumeImageService {
 	
 	private ResumeImageDao resumeImageDao;
-	private ResumeImageService resumeImageService;
+	private ImageService imageService;
 	
 	@Autowired
-	public ResumeImageManager(ResumeImageDao resumeImageDao,ResumeImageService resumeImageService) {
+	public ResumeImageManager(ResumeImageDao resumeImageDao,ImageService imageService) {
 		super();
 		this.resumeImageDao = resumeImageDao;
-		this.resumeImageService = resumeImageService;
+		this.imageService = imageService;
 	}
 
 	
 	@Override
-	public Result  add(ResumeImage resumeImage,MultipartFile file) {
-		Map<String,String> uploadImage = this.imageUpload(imageFile).getData();
+	public Result  add(ResumeImage resumeImage,MultipartFile imageFile) {
+		Map<String,String> uploadImage = this.imageService.uploadImageFile(imageFile).getData();
 		resumeImage.setUrlAddress(uploadImage.get("url"));
 		this.resumeImageDao.save(resumeImage);
 		return new SuccessResult("Fotoğraf eklendi!");
