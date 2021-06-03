@@ -8,6 +8,6 @@ import kodlamaio.hrms.entities.concretes.ResumeSkill;
 
 public interface ResumeSkillDao extends JpaRepository<ResumeSkill, Integer>{
 	ResumeSkill getById(int id);
-	List<ResumeSkill> getAllByCandidateId(int id);
+	List<ResumeSkill> getAllByCandidate_Id(int id);
 
 }

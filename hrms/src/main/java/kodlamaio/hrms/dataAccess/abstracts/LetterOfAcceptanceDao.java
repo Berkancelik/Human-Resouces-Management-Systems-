@@ -7,6 +7,5 @@ import kodlamaio.hrms.entities.concretes.LetterOfAcceptance;
 
 public interface LetterOfAcceptanceDao extends JpaRepository<LetterOfAcceptance, Integer> {
 
-	LetterOfAcceptance getById(int id);	
 
 }

@@ -24,11 +24,7 @@ public class LetterOfAcceptancesController {
 	@Autowired
 	private LetterOfAcceptanceService letterOfAcceptanceService;
 	
-	public LetterOfAcceptancesController(LetterOfAcceptance letterOfAcceptance) {
-		super();
-		this.letterOfAcceptanceService = letterOfAcceptanceService;
-	}
-	
+
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody LetterOfAcceptance letterOfAcceptance){
 		return this.letterOfAcceptanceService.add(letterOfAcceptance);

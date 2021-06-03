@@ -30,16 +30,14 @@ public class LetterOfAcceptance {
 	private String content;
 	
 	@JsonIgnore
-	@Column(name= "created_at")
-	private LocalDate createdAt = LocalDate.now();
+	@Column(name= "created_date")
+	private LocalDate createdDate = LocalDate.now();
 	
 	@JsonIgnore
 	@Column(name= "is_active")
 	private boolean isActive = true;
 	
-	@JsonIgnore
-	@Column(name= "is_deleted")
-	private boolean isDeleted = false;
+
 	
 	@ManyToOne()
 	@JoinColumn(name = "candidate_id")

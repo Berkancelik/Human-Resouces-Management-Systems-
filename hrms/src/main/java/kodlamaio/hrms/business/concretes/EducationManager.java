@@ -49,20 +49,20 @@ public class EducationManager implements EducationService {
 	}
 
 	@Override
-	public DataResult<List<Education>> getById(int id) {
-		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidateIdOrderByEndDesc(id));
+	public DataResult<Education> getById(int id) {
+		return new SuccessDataResult<Education>(this.educationDao.getById(id));
 
 	}
 
 	@Override
 	public DataResult<List<Education>> getAllByCandidateIdOrderByEndDesc(int id) {
-		return new SuccessDataResult<List<Education>>(this.educationDao.getallByCandidateId(id));
+		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidate_idOrderByEndedDateDesc(id));
 		
 	}
 
 	@Override
 	public DataResult<List<Education>> getAllByCandidateId(int id) {
-		return new SuccessDataResult<List<Education>>(this.educationDao.getallByCandidateId(id));
+		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidate_Id(id));
 		
 	}
 

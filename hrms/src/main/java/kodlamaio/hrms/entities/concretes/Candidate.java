@@ -30,27 +30,30 @@ import lombok.NoArgsConstructor;
 public class Candidate extends User {
 
 
-
+	@JsonIgnore
 	@Column(name= "first_name")
 	private String firstName;
-	
+	@JsonIgnore
+
 	@Column(name= "last_name")
-	private String lastName;
+	private String lastName;	
 	
-	
-	
-	@Column(name= "national_id")
+	@JsonIgnore
+
+	@Column(name= "nationality_id")
 	private String nationalId;
-	
+	@JsonIgnore
+
 	@Column(name= "date_of_birth")
 	private LocalDate dateOfBirth;
 	
+	@JsonIgnore
 	@Column(name = "is_verified", columnDefinition = "boolean default false")
 	private boolean isVerified = false;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
-	private List<Education> schools;
+	private List<Education> educations;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")

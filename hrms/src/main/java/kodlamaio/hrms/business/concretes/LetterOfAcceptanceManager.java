@@ -45,7 +45,7 @@ public class LetterOfAcceptanceManager implements LetterOfAcceptanceService {
 
 	@Override
 	public DataResult<LetterOfAcceptance> getById(int id) {
-		return new SuccessDataResult<LetterOfAcceptance>(this.letterOfAcceptanceDao.getById(id));
+		return new SuccessDataResult<LetterOfAcceptance>(this.letterOfAcceptanceDao.findById(id).get());
 		
 	}
 

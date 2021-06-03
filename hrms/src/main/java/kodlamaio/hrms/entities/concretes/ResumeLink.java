@@ -29,8 +29,8 @@ public class ResumeLink {
 	private int id;
 	
 	@JsonIgnore
-	@Column(name= "created_at")
-	private LocalDate createdAt = LocalDate.now();
+	@Column(name= "created_date")
+	private LocalDate createdDate = LocalDate.now();
 	
 	@JsonIgnore
 	@Column(name= "is_active")
@@ -40,6 +40,7 @@ public class ResumeLink {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "url_address")
 	private String url;
 	
 	@ManyToOne()

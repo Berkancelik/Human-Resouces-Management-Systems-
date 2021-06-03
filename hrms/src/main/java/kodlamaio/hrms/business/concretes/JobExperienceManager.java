@@ -56,12 +56,12 @@ public class JobExperienceManager implements JobExperienceService {
 
 	@Override
 	public DataResult<List<JobExperience>> getAllByCandidateId(int id) {
-		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllCandidateId(id));
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getByCandidate_Id(id));
 		
 	}
 	@Override
 	public DataResult<List<JobExperience>> getAllByCandidateIdOrderByDesc(int id) {
-		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllByCandidateIdOrderByDesc(id));
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllByCandidate_IdOrderByEndedDateDesc(id));
 	}
 
 

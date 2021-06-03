@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -11,13 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="educations")
+@Table(name="resume_educations")
 public class Education {
 	
 
@@ -37,28 +32,28 @@ public class Education {
 	private int id;
 	
 	@JsonIgnore
-	@Column(name= "created_at")
-	private LocalDate createdAt = LocalDate.now();
+	@Column(name= "created_date")
+	private LocalDate createdDate = LocalDate.now();
 	
 	@JsonIgnore
 	@Column(name= "is_active")
 	private boolean isActive = true;
 	
 
-	@Column(name = "name")
+	@Column(name = "school_name")
 	private String schoolName;
 	
 	@Column(name = "department")
 	private String department;
 	
 	@Column(name = "started_date")
-	private LocalDate startAt;
+	private LocalDate startedDate;
 	
 	@Column(name = "ended_date", nullable = true)
-	private LocalDate endAt;
+	private LocalDate endedDate;
 
 	@ManyToOne()
-	@JoinColumn(name = "jobseeker_id")
+	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
 
 }

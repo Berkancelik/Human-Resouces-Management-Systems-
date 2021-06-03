@@ -1,7 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,8 +37,8 @@ public class User {
 	@Column(name= "password")
 	private String password;
 	
-	@Column(name= "created_at")	
-	private Date createdAt;
+	@Column(name= "created_date")	
+	private LocalDate createdDate;
 	
 	@Column(name = "is_active")
 	private boolean isActive = true;

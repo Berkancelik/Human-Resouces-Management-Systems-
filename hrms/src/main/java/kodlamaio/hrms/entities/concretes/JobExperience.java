@@ -32,7 +32,7 @@ public class JobExperience {
 	private int id;
 	
 	@JsonIgnore
-	@Column(name= "created_at")
+	@Column(name= "created_date")
 	private LocalDate createdAt = LocalDate.now();
 	
 	@JsonIgnore

@@ -46,6 +46,11 @@ public class EducationsController {
 		
 	}
 	
+	@GetMapping("/getbyid")
+	public DataResult<Education> getById(@RequestParam int id){
+		return this.educationService.getById(id);
+	}
+	
 	@GetMapping("/getall")
 	public DataResult<List<Education>> getAll(){
 		return this.educationService.getAll();
@@ -58,7 +63,7 @@ public class EducationsController {
 	
 	@GetMapping("/getAllByCandidateId")
 	public DataResult<List<Education>> getAllByCandidateId(@RequestParam int id){
-		return this.educationService.getById(id);
+		return this.educationService.getAllByCandidateId(id);
 	}
 				
 

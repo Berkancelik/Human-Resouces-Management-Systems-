@@ -1,9 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 
-import  java.sql.Date;
-
-
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -37,8 +35,8 @@ public class JobTitle {
 	@Column(name = "is_active")
 	private boolean isActive = true;
 	
-	@Column(name="created_at")
-	private Date createdDate;
+	@Column(name="created_date")
+	private LocalDate createdDate;
 	
 
 	@OneToMany(mappedBy = "jobTitle")
