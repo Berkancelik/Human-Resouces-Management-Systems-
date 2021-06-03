@@ -23,15 +23,15 @@ public class LanguageManager implements LanguageService {
 	}
 
 	@Override
-	public Result add(Language Language) {
-		this.languageDao.save(Language);
+	public Result add(Language language) {
+		this.languageDao.save(language);
 		return new SuccessResult("Yabancı dil eklendi");
 
 	}
 
 	@Override
-	public Result update(Language Language) {
-		this.languageDao.save(Language);
+	public Result update(Language language) {
+		this.languageDao.save(language);
 		return new SuccessResult("Yabancı dil güncellendi");
 	}
 
