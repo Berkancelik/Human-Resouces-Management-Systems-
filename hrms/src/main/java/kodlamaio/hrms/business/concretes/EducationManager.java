@@ -25,15 +25,47 @@ public class EducationManager implements EducationService {
 
 	@Override
 	public Result add(Education education) {
-		educationDao.save(education);
-		return new SuccessResult("Başarılı bir şekilde eklendi!");
-	
+		this.educationDao.save(education);
+		return new SuccessResult("Programlama yeteneği başarıyla eklendi!");
+		
+	}
+
+	@Override
+	public Result update(Education education) {
+		this.educationDao.save(education);
+		return new SuccessResult("Programlama yeteneği başarıyla güncellendi!");
+	}
+
+	@Override
+	public Result delete(int id) {
+		this.educationDao.deleteById(id);
+		return new SuccessResult("Programlama yeteneği başarıyla güncellendi!");
 	}
 
 	@Override
 	public DataResult<List<Education>> getAll() {
-		return new SuccessDataResult<List<Education>>(educationDao.findAll(),"Başarılı bir şekilde listelendi");
+		return new SuccessDataResult<List<Education>>(this.educationDao.findAll());
 	
 	}
+
+	@Override
+	public DataResult<List<Education>> getById(int id) {
+		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidateIdOrderByEndDesc(id));
+
+	}
+
+	@Override
+	public DataResult<List<Education>> getAllByCandidateIdOrderByEndDesc(int id) {
+		return new SuccessDataResult<List<Education>>(this.educationDao.getallByCandidateId(id));
+		
+	}
+
+	@Override
+	public DataResult<List<Education>> getAllByCandidateId(int id) {
+		return new SuccessDataResult<List<Education>>(this.educationDao.getallByCandidateId(id));
+		
+	}
+
+
 
 }

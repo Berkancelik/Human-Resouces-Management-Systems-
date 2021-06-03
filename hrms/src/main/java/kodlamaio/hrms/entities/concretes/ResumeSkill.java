@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name="resume_skills")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Resume_skill {
+public class ResumeSkill {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

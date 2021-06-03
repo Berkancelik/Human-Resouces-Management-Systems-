@@ -18,7 +18,7 @@ import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.concretes.Resume;
 
 @RestController
-@RequestMapping("/api/education")
+@RequestMapping("/api/educations")
 public class EducationsController {
 	private EducationService educationService;
 	
@@ -30,6 +30,16 @@ public class EducationsController {
 	
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody Education education){
+		return this.educationService.add(education);
+		
+	}
+	@PostMapping("/update")
+	public Result update(@Valid @RequestBody Education education){
+		return this.educationService.add(education);
+		
+	}
+	@PostMapping("/delete")
+	public Result delete(@Valid @RequestBody Education education){
 		return this.educationService.add(education);
 		
 	}

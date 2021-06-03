@@ -8,9 +8,16 @@ import java.util.List;
 import kodlamaio.hrms.entities.concretes.Education;
 
 public interface EducationService {
-	Result add (Education education);
-	
+	Result add (Education education);	
+	Result update(Education education);
+	Result delete(int id);
 	DataResult<List<Education>> getAll();
+	DataResult<List<Education>> getById(int id);
+	DataResult<List<Education>> getAllByCandidateIdOrderByEndDesc(int id);
+	DataResult<List<Education>> getAllByCandidateId(int id);
+
+	
+
 	
 
 }
