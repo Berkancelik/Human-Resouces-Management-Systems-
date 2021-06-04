@@ -26,6 +26,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResumeImage   {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name= "id")
+	private int id;
+	
 
 	
 	@JsonIgnore
@@ -41,7 +46,7 @@ public class ResumeImage   {
 	@Column(name = "url_address")
 	private String urlAddress;
 	
-	@OneToOne(optional=false,fetch=FetchType.LAZY)
+	@OneToOne()
     @JoinColumn(name = "candidate_id", referencedColumnName = "user_id")
     private Candidate candidate;
 

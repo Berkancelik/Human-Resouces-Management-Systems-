@@ -78,7 +78,7 @@ public class Candidate extends User {
 	private List<LetterOfAcceptance> coverLetters;	
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "candidate",optional = false, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "candidate")
 	private ResumeImage image;
 
 }
