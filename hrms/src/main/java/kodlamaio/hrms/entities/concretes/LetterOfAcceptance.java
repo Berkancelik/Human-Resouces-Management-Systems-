@@ -20,14 +20,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LetterOfAcceptance extends Base {
 
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "content")
 	private String content;
 	
 
 	
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
 	@JsonIgnore
 	private Candidate candidate;
 	

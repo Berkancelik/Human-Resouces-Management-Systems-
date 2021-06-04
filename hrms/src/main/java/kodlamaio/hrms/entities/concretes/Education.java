@@ -23,19 +23,15 @@ public class Education extends Base {
 	
 
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "school_name")
 	private String schoolName;
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "department")
 	private String department;
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "started_date")
 	private Date startedDate;
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "ended_date", nullable = true)
 	private Date endedDate;
 	

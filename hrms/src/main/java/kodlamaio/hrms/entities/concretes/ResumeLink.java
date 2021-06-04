@@ -20,11 +20,9 @@ import lombok.NoArgsConstructor;
 public class ResumeLink extends Base {
 
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "name")
 	private String name;
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "url_address")
 	private String url;
 	

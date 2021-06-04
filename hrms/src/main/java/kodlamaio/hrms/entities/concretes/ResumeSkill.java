@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ResumeSkill extends Base {
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "skill_name")
 	private String skillName;
 	

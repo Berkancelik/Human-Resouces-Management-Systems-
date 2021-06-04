@@ -11,7 +11,7 @@ public interface EducationService {
 	Result delete(int id);
 	DataResult<List<Education>> getAll();
 	DataResult<Education> getById(int id);
-	DataResult<List<Education>> getAllByCandidateIdOrderByEndDesc(int id);
+	DataResult<List<Education>> getAllByJobseekerIdOrderByEndedDateDesc(int id);
 	DataResult<List<Education>> getAllByCandidateId(int id);
 
 	

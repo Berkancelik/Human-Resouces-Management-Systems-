@@ -39,7 +39,7 @@ public class EducationManager implements EducationService {
 	@Override
 	public Result delete(int id) {
 		this.educationDao.deleteById(id);
-		return new SuccessResult("Programlama yeteneği başarıyla güncellendi!");
+		return new SuccessResult("Programlama yeteneği başarıyla silindi!");
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class EducationManager implements EducationService {
 	}
 
 	@Override
-	public DataResult<List<Education>> getAllByCandidateIdOrderByEndDesc(int id) {
+	public DataResult<List<Education>> getAllByJobseekerIdOrderByEndedDateDesc(int id) {
 		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidate_idOrderByEndedDateDesc(id));
 		
 	}

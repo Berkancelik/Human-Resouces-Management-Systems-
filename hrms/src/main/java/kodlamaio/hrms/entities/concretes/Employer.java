@@ -23,15 +23,12 @@ import lombok.NoArgsConstructor;
 
 public class Employer extends User {
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "company_name")
 	private String companyName;
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "web_address")
 	private String webAddress;
 	
-	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	

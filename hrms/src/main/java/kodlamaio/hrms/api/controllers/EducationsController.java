@@ -29,21 +29,18 @@ public class EducationsController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody Education education){
-		return this.educationService.add(education);
-		
+	public Result add(@RequestBody Education schoolForCV){
+		return this.educationService.add(schoolForCV);
 	}
 	
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody Education education){
-		return this.educationService.update(education);
-		
+	public Result update(@RequestBody Education schoolForCV){
+		return this.educationService.update(schoolForCV);
 	}
 	
 	@PostMapping("/delete")
-	Result delete(@Valid @RequestBody @RequestParam  int id){
+	public Result delete(@RequestParam int id){
 		return this.educationService.delete(id);
-		
 	}
 	
 	@GetMapping("/getbyid")
@@ -56,9 +53,9 @@ public class EducationsController {
 		return this.educationService.getAll();
 	}
 	
-	@GetMapping("/getAllByCandidateIdOrderByEndDesc")
-	public DataResult<List<Education>> getAllByCandidateIdOrderByEndDesc(@RequestParam int id){
-		return this.educationService.getAllByCandidateIdOrderByEndDesc(id);
+	@GetMapping("/getAllByCandidateIdOrderByEndDescd")
+	public DataResult<List<Education>> getAllByJobseekerIdOrderByEndedDateDesc(@RequestParam int id){
+		return this.educationService.getAllByJobseekerIdOrderByEndedDateDesc(id);
 	}
 	
 	@GetMapping("/getAllByCandidateId")
