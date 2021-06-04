@@ -26,6 +26,7 @@ public class LetterOfAcceptance extends Base {
 
 	
 	@ManyToOne()
+	@JoinColumn(name = "candidate_id")
 	@JsonIgnore
 	private Candidate candidate;
 	
@@ -33,6 +34,8 @@ public class LetterOfAcceptance extends Base {
 		super();
 		this.content = content;
 		this.candidate.setId(candidate_id);
+		
+		
 	}
 
 }
