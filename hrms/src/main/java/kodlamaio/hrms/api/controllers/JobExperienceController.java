@@ -29,19 +29,19 @@ public class JobExperienceController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody JobExperience jobExperience){
+	public Result add( @RequestBody JobExperience jobExperience){
 		return this.jobExperienceService.add(jobExperience);
 		
 	}
 	
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody JobExperience jobExperience){
+	public Result update( @RequestBody JobExperience jobExperience){
 		return this.jobExperienceService.update(jobExperience);
 		
 	}
 	
 	@PostMapping("/delete")
-	public Result delete(@Valid @RequestParam int  id){
+	public Result delete( @RequestParam int  id){
 		return this.jobExperienceService.delete(id);
 		
 	}

@@ -1,6 +1,5 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,12 +22,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name="resume_experiences")
-public class JobExperience extends Base {
+public class JobExperience   {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name= "id")
+	private int id;
+	
+	@JsonIgnore
+	@Column(name= "created_date", columnDefinition = "Date defult CURRENT_DATE")
+	private LocalDate createdDate = LocalDate.now();
+
+	
+	@JsonIgnore
+	@Column(name= "is_active")
+	private boolean isActive = true;
 	
 	
 
-
-	@Column(name= "ended_date")
+	@Column(name = "ended_date", nullable = true)
 	private LocalDate endedDate;
 	
 	@Column(name= "started_date")

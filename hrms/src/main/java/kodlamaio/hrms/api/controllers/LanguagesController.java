@@ -29,19 +29,19 @@ public class LanguagesController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody Language language){
+	public Result add( @RequestBody Language language){
 		return this.languageService.add(language);
 		
 	}
 	
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody Language language){
+	public Result update( @RequestBody Language language){
 		return this.languageService.update(language);
 		
 	}
 	
 	@PostMapping("/delete")
-	public Result delete(@Valid @RequestParam int  id){
+	public Result delete( @RequestParam int  id){
 		return this.languageService.delete(id);
 		
 	}

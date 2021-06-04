@@ -1,22 +1,18 @@
 package kodlamaio.hrms.business.concretes;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import kodlamaio.hrms.business.abstracts.ResumeImageService;
 import kodlamaio.hrms.core.utilities.imagaUpload.ImageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.ResumeImageDao;
-import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.ResumeImage;
 @Service
 public class ResumeImageManager implements ResumeImageService {

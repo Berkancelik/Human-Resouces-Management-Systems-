@@ -32,19 +32,19 @@ public class ResumeSkillsController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody ResumeSkill resumeSkill){
+	public Result add( @RequestBody ResumeSkill resumeSkill){
 		return this.resumeSkillService.add(resumeSkill);
 		
 	}
 	
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody ResumeSkill resumeSkill){
+	public Result update( @RequestBody ResumeSkill resumeSkill){
 		return this.resumeSkillService.update(resumeSkill);
 		
 	}
 	
 	@PostMapping("/delete")
-	public Result delete(@Valid @RequestParam int  id){
+	public Result delete( @RequestParam int  id){
 		return this.resumeSkillService.delete(id);
 		
 	}

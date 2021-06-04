@@ -29,19 +29,19 @@ public class ResumeLinksController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody ResumeLink resumeLink){
+	public Result add( @RequestBody ResumeLink resumeLink){
 		return this.resumeLinkService.add(resumeLink);
 		
 	}
 	
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody ResumeLink resumeLink){
+	public Result update( @RequestBody ResumeLink resumeLink){
 		return this.resumeLinkService.update(resumeLink);
 		
 	}
 	
 	@PostMapping("/delete")
-	public Result delete(@Valid @RequestParam int  id){
+	public Result delete(@RequestParam int  id){
 		return this.resumeLinkService.delete(id);
 		
 	}

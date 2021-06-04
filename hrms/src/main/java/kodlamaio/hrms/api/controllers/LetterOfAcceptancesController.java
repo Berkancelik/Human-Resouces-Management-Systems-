@@ -26,19 +26,19 @@ public class LetterOfAcceptancesController {
 	
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody LetterOfAcceptance letterOfAcceptance){
+	public Result add( @RequestBody LetterOfAcceptance letterOfAcceptance){
 		return this.letterOfAcceptanceService.add(letterOfAcceptance);
 		
 	}
 	
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody LetterOfAcceptance letterOfAcceptance){
+	public Result update( @RequestBody LetterOfAcceptance letterOfAcceptance){
 		return this.letterOfAcceptanceService.update(letterOfAcceptance);
 		
 	}
 	
 	@PostMapping("/delete")
-	public Result delete(@Valid @RequestParam int  id){
+	public Result delete( @RequestParam int  id){
 		return this.letterOfAcceptanceService.delete(id);
 		
 	}

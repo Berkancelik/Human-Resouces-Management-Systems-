@@ -42,13 +42,13 @@ public class ResumeImageController {
 		return this.resumeImageService.add(resumeImage, imageFile);
 	}
 	@PostMapping("/update")
-	public Result update(@Valid @RequestBody ResumeImage resumeImage){
+	public Result update( @RequestBody ResumeImage resumeImage){
 		return this.resumeImageService.update(resumeImage);
 		
 	}
 	
 	@PostMapping("/delete")
-	public Result delete(@Valid @RequestParam int  id){
+	public Result delete( @RequestParam int  id){
 		return this.resumeImageService.delete(id);
 		
 	}
