@@ -34,7 +34,7 @@ public class VerificationCode  {
 	private LocalDate createdDate = LocalDate.now();
 
 	
-	@JsonIgnore
+	@JsonIgnore 
 	@Column(name= "is_active")
 	private boolean isActive = true;
 	
