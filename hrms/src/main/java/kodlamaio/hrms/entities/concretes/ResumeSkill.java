@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ResumeSkill extends Base {
 	
-	
+	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "skill_name")
 	private String skillName;
 	

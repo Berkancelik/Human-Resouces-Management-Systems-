@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,17 +23,19 @@ public class Education extends Base {
 	
 
 	
-
+	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "school_name")
 	private String schoolName;
 	
-	
+	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "department")
 	private String department;
 	
+	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "started_date")
 	private Date startedDate;
 	
+	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "ended_date", nullable = true)
 	private Date endedDate;
 	

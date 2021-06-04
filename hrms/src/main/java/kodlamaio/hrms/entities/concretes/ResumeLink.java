@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,10 +20,11 @@ import lombok.NoArgsConstructor;
 public class ResumeLink extends Base {
 
 	
-
+	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "name")
 	private String name;
 	
+	@NotBlank(message="Boş Geçilemez!")
 	@Column(name = "url_address")
 	private String url;
 	

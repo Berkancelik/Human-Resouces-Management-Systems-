@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,12 +22,13 @@ import lombok.NoArgsConstructor;
 public class Language  extends Base  {
 
 	
+	@NotBlank(message="Boş Geçilemez!")
 	@Min(value = 1 )
 	@Max(value = 5)	
 	@Column(name="level")
 	private int level;
 	
-	
+	@NotBlank(message="Boş Geçilemez!")
 	@Column(name="language_name")
 	private String languageName;
 	

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,6 +37,7 @@ public class JobExperience extends Base {
 	
 	@Column(name= "company_name")
 	private String compnayName;
+	
 	
 	@Column(name= "position")
 	private String position;

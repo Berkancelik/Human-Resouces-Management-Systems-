@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 public class User extends Base {
  
-	
+	@Email
 	@Column(name= "email_address")
 	private String email;
 	
