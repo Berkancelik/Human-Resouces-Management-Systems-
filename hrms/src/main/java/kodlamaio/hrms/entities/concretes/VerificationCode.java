@@ -30,7 +30,7 @@ public class VerificationCode  {
 	private int id;
 	
 	@JsonIgnore
-	@Column(name= "created_date", columnDefinition = "Date defult CURRENT_DATE")
+	@Column(name= "created_date", columnDefinition = "Date default CURRENT_DATE")
 	private LocalDate createdDate = LocalDate.now();
 
 	
