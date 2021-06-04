@@ -65,7 +65,7 @@ public class ResumeImageManager implements ResumeImageService {
 
 	@Override
 	public DataResult<ResumeImage>getByCandidateId(int id) {
-		return new SuccessDataResult<ResumeImage>(this.resumeImageDao.getByCandidate_Id(id));
+		return new SuccessDataResult<ResumeImage>(this.resumeImageDao.getByCandidate_id(id));
 		
 	}
 

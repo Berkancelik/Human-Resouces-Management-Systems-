@@ -13,10 +13,10 @@ public interface JobAdversitementsService {
 	Result delete(int id);
 	Result changeOpentoClose(int id);
 	DataResult<List<JobAdversitements>> getAll();
-	DataResult<List<JobAdversitements>> getAllOpenJobAdvertisementsList();
-	DataResult<List<JobAdversitements>> findAllOrderByPublishhedAt();
+	DataResult<List<JobAdversitements>> getAllOpenJobAdversitementsList();
+	DataResult<List<JobAdversitements>> findAllByOrderByPublishedAtDesc();
 	DataResult<JobAdversitements> getById(int id);
-	DataResult<List<JobAdversitements>> getAllOpenJobAdvertByEmployer(int id);
+	DataResult<List<JobAdversitements>> getAllOpenJobAdversitementsByEmployer(int id);
 
 	
 

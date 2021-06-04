@@ -62,7 +62,7 @@ public class EducationManager implements EducationService {
 
 	@Override
 	public DataResult<List<Education>> getAllByCandidateId(int id) {
-		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidate_Id(id));
+		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidate_id(id));
 		
 	}
 

@@ -28,7 +28,7 @@ public class ResumeImageController {
 	private CandidateService candidateService;
 	
 	@Autowired
-	public ResumeImageController(ResumeImageService resumeImageService) {
+	public ResumeImageController(ResumeImageService resumeImageService,CandidateService candidateService) {
 		super();
 		this.resumeImageService = resumeImageService;
 		this.candidateService = candidateService;

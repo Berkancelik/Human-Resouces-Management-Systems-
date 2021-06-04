@@ -54,8 +54,10 @@ public class ResumeLinkManager implements ResumeLinkService {
 
 	@Override
 	public DataResult<List<ResumeLink>> getAllByCandidateId(int id) {
-		return new SuccessDataResult<List<ResumeLink>>(this.resumeLinkDao.getAllByCandidate_Id(id));
-		
+		return new SuccessDataResult<List<ResumeLink>>(this.resumeLinkDao.getAllByCandidate_id(id));
+
 	}
+
+	
 
 }

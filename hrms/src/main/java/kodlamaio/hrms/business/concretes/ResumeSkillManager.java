@@ -55,7 +55,7 @@ public class ResumeSkillManager implements ResumeSkillService {
 
 	@Override
 	public DataResult<List<ResumeSkill>> getAllByCandidateId(int id) {
-		return new SuccessDataResult<List<ResumeSkill>>(this.resumeSkillDao.getAllByCandidate_Id(id));
+		return new SuccessDataResult<List<ResumeSkill>>(this.resumeSkillDao.getAllByCandidate_id(id));
 		
 	}
 

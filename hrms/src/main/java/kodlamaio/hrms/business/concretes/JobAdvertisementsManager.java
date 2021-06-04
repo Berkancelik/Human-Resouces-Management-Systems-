@@ -11,15 +11,15 @@ import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementsDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobAdversitementsDao;
 import kodlamaio.hrms.entities.concretes.JobAdversitements;
 
 @Service
 public class JobAdvertisementsManager implements JobAdversitementsService {
-	private JobAdvertisementsDao jobAdvertisementsDao;
+	private JobAdversitementsDao jobAdvertisementsDao;
 
 	@Autowired
-	public JobAdvertisementsManager(JobAdvertisementsDao jobAdvertisementsDao) {
+	public JobAdvertisementsManager(JobAdversitementsDao jobAdvertisementsDao) {
 		super();
 		this.jobAdvertisementsDao = jobAdvertisementsDao;
 	}
@@ -67,13 +67,13 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 	}
 
 	@Override
-	public DataResult<List<JobAdversitements>> getAllOpenJobAdvertisementsList() {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findByIsOpenTrue());
+	public DataResult<List<JobAdversitements>> getAllOpenJobAdversitementsList() {
+		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsList());
 	}
 
 	@Override
-	public DataResult<List<JobAdversitements>> findAllOrderByPublishhedAt() {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findByIsOpenTrueOrderByCreatedDateDesc());
+	public DataResult<List<JobAdversitements>> findAllByOrderByPublishedAtDesc() {
+		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findAllByOrderByPublishedAtDesc());
 	}
 
 	@Override
@@ -82,8 +82,8 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 	}
 
 	@Override
-	public DataResult<List<JobAdversitements>> getAllOpenJobAdvertByEmployer(int id) {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findByIsOpenTrueAndEmployerId(id));
+	public DataResult<List<JobAdversitements>> getAllOpenJobAdversitementsByEmployer(int id) {
+		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsByEmployer(id));
 	}
 
 	private boolean CheckIfNullField(JobAdversitements jobAdversitements) {
@@ -92,5 +92,7 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 		}
 		return false;
 	}
+
+
 
 }

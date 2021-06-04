@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobTitleService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobTitleDao;
 import kodlamaio.hrms.entities.concretes.JobTitle;
 
@@ -26,6 +29,24 @@ public class JobTitleManager implements JobTitleService {
 	@Override
 	public DataResult<List<JobTitle>> getAll() {
 		return new SuccessDataResult<List<JobTitle>>(this.jobTitleDao.findAll(),"Tüm iş pozisyonları listelendi.");
+
+	}
+
+
+	@Override
+	public Result add(JobTitle jobTitle) {
+		if(getJobByTitle(jobTitle.getJobTitle()).getData() != null){
+			return new ErrorResult( jobTitle.getJobTitle() + "zaten var");
+		}
+		this.jobTitleDao.save(jobTitle);
+	    return new SuccessResult("İş Pozisyonu baaşarılı bir şekilde eklendi!.");
+	}
+	
+
+
+	@Override
+	public DataResult<JobTitle> getJobByTitle(String title) {
+		return new SuccessDataResult<JobTitle>(this.jobTitleDao.findByJobTitle(title));
 
 	}
 

@@ -41,13 +41,13 @@ public class JobAdversitementsController {
 
 	
 	@GetMapping("/findAllByOrderByPublishedAt")
-	public DataResult<List<JobAdversitements>> findAllByOrderByPublishedAt(){
-		return this.jobAdversitementsService.findAllOrderByPublishhedAt();
+	public DataResult<List<JobAdversitements>> findAllByOrderByPublishedAtDesc(){
+		return this.jobAdversitementsService.findAllByOrderByPublishedAtDesc();
 	}
 	
 	@GetMapping("/getAllOpenJobAdvertByEmployer")
-	public DataResult<List<JobAdversitements>> getAllOpenJobAdvertByEmployer(int id){
-		return this.jobAdversitementsService.getAllOpenJobAdvertByEmployer(id);
+	public DataResult<List<JobAdversitements>> getAllOpenJobAdversitementsByEmployer(int id){
+		return this.jobAdversitementsService.getAllOpenJobAdversitementsByEmployer(id);
 	}
 	
 	@PostMapping("/changeOpenToClose")
@@ -55,8 +55,8 @@ public class JobAdversitementsController {
 		return this.jobAdversitementsService.changeOpentoClose(id);
 	}
 	
-//	@GetMapping("/getAllOpenJobAdvertList")
-//	public DataResult<List<JobAdversitements>> getAllOpenJobAdvertList(){
-//		return this.jobAdversitementsService.getAllOpenJobAdvertisementsList();
-//	}
+	@GetMapping("/getAllOpenJobAdvertsitementsList")
+	public DataResult<List<JobAdversitements>> getAllOpenJobAdvertsitementsList(){
+		return this.jobAdversitementsService.getAllOpenJobAdversitementsList();
+	}
 }

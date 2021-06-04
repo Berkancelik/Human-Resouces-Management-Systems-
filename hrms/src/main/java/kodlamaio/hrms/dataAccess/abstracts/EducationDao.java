@@ -9,7 +9,7 @@ import kodlamaio.hrms.entities.concretes.Education;
 public interface EducationDao extends JpaRepository<Education, Integer> {
 	Education getById(int id);
 	List<Education> getAllByCandidate_idOrderByEndedDateDesc(int id);
-	List<Education> getAllByCandidate_Id(int id);
+	List<Education> getAllByCandidate_id(int id);
 
 }
  

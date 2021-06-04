@@ -21,7 +21,7 @@ public class JobTitle extends Base {
 
 
 	@Column(name = "title")
-	private String title;
+	private String jobTitle;
 	
 
 
@@ -30,7 +30,7 @@ public class JobTitle extends Base {
 	
 	public JobTitle(String title, List<JobAdversitements> jobAdversitements) {
 		super();
-		this.title = title;
+		this.jobTitle = title;
 		this.jobAdversitements = jobAdversitements;
 	} 
 	
