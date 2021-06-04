@@ -25,13 +25,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "resume_images")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false) 
-@PrimaryKeyJoinColumn(name="user_id")
 public class ResumeImage   {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name= "id")
-	private int id;
+
 	
 	@JsonIgnore
 	@Column(name= "created_date", columnDefinition = "Date defult CURRENT_DATE")
