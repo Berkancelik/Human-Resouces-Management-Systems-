@@ -16,10 +16,8 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
-import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
-import kodlamaio.hrms.entities.concretes.ResumeImage;
-import kodlamaio.hrms.entities.concretes.ResumeLink;
+
 import kodlamaio.hrms.entities.dtos.CandidateResumeDto;
 
 @Service
@@ -60,6 +58,7 @@ public class CandidateManager implements CandidateService {
 		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAll());
 		
 	}
+	
 	
 	
 

@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,8 +41,7 @@ public class Education   {
 	
 	@JsonIgnore
 	@Column(name= "is_active")
-	private boolean isActive = true;
-	
+	private boolean isActive = true;	
 
 	
 	@Column(name = "school_name")
