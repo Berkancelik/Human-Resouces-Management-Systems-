@@ -49,7 +49,7 @@ CREATE TABLE public.employers_activation_by_employees
     PRIMARY KEY (id)
 );
 
-CREATE TABLE public.job_adversitements
+CREATE TABLE public.job_advertisements
 (
     id integer NOT NULL,
     created_date date,
@@ -205,19 +205,19 @@ ALTER TABLE public.employers_activation_by_employees
     NOT VALID;
 
 
-ALTER TABLE public.job_adversitements
+ALTER TABLE public.job_advertisements
     ADD FOREIGN KEY (job_title_id)
     REFERENCES public.job_titles (id)
     NOT VALID;
 
 
-ALTER TABLE public.job_adversitements
+ALTER TABLE public.job_advertisements
     ADD FOREIGN KEY (employer_id)
     REFERENCES public.employers (user_id)
     NOT VALID;
 
 
-ALTER TABLE public.job_adversitements
+ALTER TABLE public.job_advertisements
     ADD FOREIGN KEY (city_id)
     REFERENCES public.cities (id)
     NOT VALID;
