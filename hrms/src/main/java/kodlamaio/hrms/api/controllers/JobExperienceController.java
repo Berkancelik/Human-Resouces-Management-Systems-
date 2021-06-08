@@ -2,7 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobExperience;
-import kodlamaio.hrms.entities.concretes.Language;
 
 @RestController
 @RequestMapping("/api/jobExperience")
@@ -42,8 +40,7 @@ public class JobExperienceController {
 	
 	@PostMapping("/delete")
 	public Result delete( @RequestParam int  id){
-		return this.jobExperienceService.delete(id);
-		
+		return this.jobExperienceService.delete(id);		
 	}
 	
 	@GetMapping("/getall")
