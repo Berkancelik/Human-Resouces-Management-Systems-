@@ -38,7 +38,7 @@ public class CandidateManager implements CandidateService {
 		super();
 		this.candidateDao = candidateDao;
 		this.educationService = educationService;
-		this.jobExperienceService = jobExperienceService;
+		this.jobExperienceService = jobExperienceService; 
 		this.languageService = languageService;
 		this.resumeImageService = resumeImageService;
 		this.resumeSkillService = resumeSkillService;
