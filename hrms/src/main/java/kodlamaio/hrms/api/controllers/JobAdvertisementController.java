@@ -5,6 +5,7 @@ import java.util.List;
 import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,39 +15,40 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.JobAdversitementsService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.JobAdversitements;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @RestController
-@RequestMapping("/api/jobadvertisements")
-public class JobAdversitementsController {
+@RequestMapping("/api/jobAdvertisements")
+@CrossOrigin
+public class JobAdvertisementController {
 	private JobAdversitementsService jobAdversitementsService;
 	
 	@Autowired
-	public JobAdversitementsController(JobAdversitementsService jobAdversitementsService) {
+	public JobAdvertisementController(JobAdversitementsService jobAdversitementsService) {
 		super();
 		this.jobAdversitementsService = jobAdversitementsService;
 		
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody JobAdversitements jobAdversitements) {
+	public Result add(@RequestBody JobAdvertisement jobAdversitements) {
 		return this.jobAdversitementsService.add(jobAdversitements);
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<JobAdversitements>> getAll(){
+	public DataResult<List<JobAdvertisement>> getAll(){
 		return this.jobAdversitementsService.getAll();
 	}
 	
 
 	
 	@GetMapping("/findAllByOrderByPublishedAt")
-	public DataResult<List<JobAdversitements>> findAllByOrderByPublishedAtDesc(){
+	public DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAtDesc(){
 		return this.jobAdversitementsService.findAllByOrderByPublishedAtDesc();
 	}
 	
 	@GetMapping("/getAllOpenJobAdvertByEmployer")
-	public DataResult<List<JobAdversitements>> getAllOpenJobAdversitementsByEmployer(int id){
+	public DataResult<List<JobAdvertisement>> getAllOpenJobAdversitementsByEmployer(int id){
 		return this.jobAdversitementsService.getAllOpenJobAdversitementsByEmployer(id);
 	}
 	
@@ -56,7 +58,7 @@ public class JobAdversitementsController {
 	}
 	
 	@GetMapping("/getAllOpenJobAdvertsitementsList")
-	public DataResult<List<JobAdversitements>> getAllOpenJobAdvertsitementsList(){
+	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertsitementsList(){
 		return this.jobAdversitementsService.getAllOpenJobAdversitementsList();
 	}
 }

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
+
 
 public class Employer extends User {
 	
@@ -48,6 +51,6 @@ public class Employer extends User {
 	private boolean isVerified = false;
 	
 	@OneToMany(mappedBy = "employer")
-	private List<JobAdversitements> jobAdversitements;
+	private List<JobAdvertisement> jobAdvertisements;
 
 }

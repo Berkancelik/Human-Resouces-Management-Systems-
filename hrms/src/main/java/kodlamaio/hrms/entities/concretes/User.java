@@ -17,6 +17,7 @@ import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
 @NoArgsConstructor
+@AllArgsConstructor
 
 
 public class User   {
@@ -49,11 +51,7 @@ public class User   {
 	@Column(name= "password")
 	private String password;
 	
-	public User(String email, String password) {
-		super();
-		this.email = email;
-		this.password = password;
-	}
+
 	
 
 

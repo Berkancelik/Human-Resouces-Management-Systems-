@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false) 
 @PrimaryKeyJoinColumn(name="user_id")
+@AllArgsConstructor
 public class LetterOfAcceptance  {
 	
 	@Id
@@ -44,11 +46,7 @@ public class LetterOfAcceptance  {
 	@Column(name = "content")
 	private String content;
 	
-	public LetterOfAcceptance(String content, int candidateId) {
-		super();
-		this.content = content;
-		this.candidate.setId(candidateId);
-	}
+	
 
 	@ManyToOne()
 	@JoinColumn(name = "candidate_id")

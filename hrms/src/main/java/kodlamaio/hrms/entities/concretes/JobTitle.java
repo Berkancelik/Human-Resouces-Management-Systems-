@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,8 +23,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "job_titles")
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyIntilazier","handler","jobAdversitements"})
-
+@JsonIgnoreProperties({"hibernateLazyIntilazier","handler","jobAdvertisements"})
+@AllArgsConstructor
 public class JobTitle   {
 	
 	@Id
@@ -46,14 +48,9 @@ public class JobTitle   {
 
 
 	@OneToMany(mappedBy = "jobTitle")
-	private List<JobAdversitements> jobAdversitements;
+	private List<JobAdvertisement> jobAdvertisements;
 	
-	public JobTitle(String title, List<JobAdversitements> jobAdversitements) {
-		super();
-		this.jobTitle = title;
-		this.jobAdversitements = jobAdversitements;
-	} 
-	
+
 	
 
 

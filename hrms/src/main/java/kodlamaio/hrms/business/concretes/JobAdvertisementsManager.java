@@ -11,21 +11,21 @@ import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.JobAdversitementsDao;
-import kodlamaio.hrms.entities.concretes.JobAdversitements;
+import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @Service
 public class JobAdvertisementsManager implements JobAdversitementsService {
-	private JobAdversitementsDao jobAdvertisementsDao;
+	private JobAdvertisementDao jobAdvertisementsDao;
 
 	@Autowired
-	public JobAdvertisementsManager(JobAdversitementsDao jobAdvertisementsDao) {
+	public JobAdvertisementsManager(JobAdvertisementDao jobAdvertisementsDao) {
 		super();
 		this.jobAdvertisementsDao = jobAdvertisementsDao;
 	}
 
 	@Override
-	public Result add(JobAdversitements jobAdversitements) {
+	public Result add(JobAdvertisement jobAdversitements) {
 		if (!CheckIfNullField(jobAdversitements)) {
 			return new ErrorResult("Lütfen boş alanları kontrol ediniz!");
 		}
@@ -34,7 +34,7 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 	}
 
 	@Override
-	public Result update(JobAdversitements jobAdversitements) {
+	public Result update(JobAdvertisement jobAdversitements) {
 		this.jobAdvertisementsDao.save(jobAdversitements);
 		return new SuccessResult("İş ilanı başarılı şekilde güncellendi");
 	}
@@ -54,7 +54,7 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 			return new SuccessResult("İş ilani zaten kapalı!");
 		
 		}
-		JobAdversitements jobAdversitements = getById(id).getData();
+		JobAdvertisement jobAdversitements = getById(id).getData();
 		jobAdversitements.setOpen(false);
 		update(jobAdversitements);
 		return new SuccessResult("İş ilanı başarılı şekilde kapatıldı!");
@@ -62,31 +62,31 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 	}
 
 	@Override
-	public DataResult<List<JobAdversitements>> getAll() {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findAll());
+	public DataResult<List<JobAdvertisement>> getAll() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementsDao.findAll());
 	}
 
 	@Override
-	public DataResult<List<JobAdversitements>> getAllOpenJobAdversitementsList() {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsList());
+	public DataResult<List<JobAdvertisement>> getAllOpenJobAdversitementsList() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsList());
 	}
 
 	@Override
-	public DataResult<List<JobAdversitements>> findAllByOrderByPublishedAtDesc() {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.findAllByOrderByPublishedAtDesc());
+	public DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAtDesc() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementsDao.findAllByOrderByPublishedAtDesc());
 	}
 
 	@Override
-	public DataResult<JobAdversitements>getById(int id) {
-		return new SuccessDataResult<JobAdversitements>(this.jobAdvertisementsDao.getOne(id));
+	public DataResult<JobAdvertisement>getById(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementsDao.getOne(id));
 	}
 
 	@Override
-	public DataResult<List<JobAdversitements>> getAllOpenJobAdversitementsByEmployer(int id) {
-		return new SuccessDataResult<List<JobAdversitements>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsByEmployer(id));
+	public DataResult<List<JobAdvertisement>> getAllOpenJobAdversitementsByEmployer(int id) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsByEmployer(id));
 	}
 
-	private boolean CheckIfNullField(JobAdversitements jobAdversitements) {
+	private boolean CheckIfNullField(JobAdvertisement jobAdversitements) {
 		if (jobAdversitements.getJobTitle() != null && jobAdversitements.getDescription() != null && jobAdversitements.getCity() != null && jobAdversitements.getOpenTitleCount() != 0) {
 			return true;
 		}
