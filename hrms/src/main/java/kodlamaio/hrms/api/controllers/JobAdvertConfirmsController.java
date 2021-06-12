@@ -14,11 +14,11 @@ import kodlamaio.hrms.entities.concretes.JobAdvertConfirm;
 @RestController
 @RequestMapping("api/jobadvertconfirm")
 @CrossOrigin
-public class JobAdvertConfirmController {
+public class JobAdvertConfirmsController {
 
 	private JobAdvertConfirmService jobAdvertConfirmService;
 	
-	public JobAdvertConfirmController(JobAdvertConfirmService jobAdvertConfirmService) {
+	public JobAdvertConfirmsController(JobAdvertConfirmService jobAdvertConfirmService) {
 		this.jobAdvertConfirmService = jobAdvertConfirmService;
 	}
 	

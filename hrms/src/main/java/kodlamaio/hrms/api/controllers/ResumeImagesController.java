@@ -22,13 +22,13 @@ import kodlamaio.hrms.entities.concretes.ResumeImage;
 
 @RestController
 @RequestMapping("/api/images")
-public class ResumeImageController {
+public class ResumeImagesController {
 	
 	private ResumeImageService resumeImageService;
 	private CandidateService candidateService;
 	
 	@Autowired
-	public ResumeImageController(ResumeImageService resumeImageService,CandidateService candidateService) {
+	public ResumeImagesController(ResumeImageService resumeImageService,CandidateService candidateService) {
 		super();
 		this.resumeImageService = resumeImageService;
 		this.candidateService = candidateService;

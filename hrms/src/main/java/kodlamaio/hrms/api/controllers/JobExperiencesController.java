@@ -18,10 +18,10 @@ import kodlamaio.hrms.entities.concretes.JobExperience;
 
 @RestController
 @RequestMapping("/api/jobExperience")
-public class JobExperienceController {
+public class JobExperiencesController {
 	private JobExperienceService jobExperienceService;
 	@Autowired
-	public JobExperienceController(JobExperienceService jobExperienceService) {
+	public JobExperiencesController(JobExperienceService jobExperienceService) {
 		super();
 		this.jobExperienceService = jobExperienceService;
 	}

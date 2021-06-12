@@ -13,11 +13,11 @@ import kodlamaio.hrms.entities.concretes.Employer;
 
 @RestController
 @RequestMapping("/api/verify")
-public class AuthController {
+public class AuthsController {
 	private AuthService authService;
 	
 	@Autowired
-	public AuthController(AuthService authService) {
+	public AuthsController(AuthService authService) {
 		this.authService = authService;
 	}
 	
