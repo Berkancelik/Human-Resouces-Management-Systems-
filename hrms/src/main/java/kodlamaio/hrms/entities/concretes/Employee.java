@@ -31,9 +31,8 @@ public class Employee extends User{
 	@Column(name="last_name")
 	private String lastName;
 	
-	@OneToMany(mappedBy ="jobAdvertisement")
-	@JsonIgnore
-	private List<JobAdvertConfirm>  jobAdvertConfirms;
-	
+	@OneToMany(mappedBy = "employee")
+    @JsonIgnore()
+    private List<JobAdvertConfirm> JobAdvertConfirms;
 
 }
