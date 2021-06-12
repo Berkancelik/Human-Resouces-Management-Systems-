@@ -76,6 +76,10 @@ public class JobAdvertisement  {
 	@OneToOne(mappedBy ="jobAdvertisement")
 	private JobAdvertConfirm jobAdvertConfirm;
 	
+	 @ManyToOne()
+	 @JoinColumn(name = "job_working_type_id")
+	 private WorkingType workingType;
+	
 	
 
 }

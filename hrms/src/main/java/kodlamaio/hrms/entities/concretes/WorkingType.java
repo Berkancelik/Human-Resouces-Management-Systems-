@@ -31,8 +31,8 @@ public class WorkingType {
 	@Column(name = "type_name")	
 	private String typeName;	
 	
-	@OneToMany(mappedBy = "workingtype")
-	@JsonIgnore
+	@OneToMany(mappedBy = "workingType")
+	@JsonIgnore()
 	private List<JobAdvertisement> jobAdvertisements;
 
 	
