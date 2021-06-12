@@ -13,6 +13,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 
 @Service
 public class JobAdvertisementsManager implements JobAdversitementsService {
@@ -92,6 +93,7 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 		}
 		return false;
 	}
+	
 
 
 
