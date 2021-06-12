@@ -37,7 +37,7 @@ public class JobAdvertConfirmManager implements JobAdvertConfirmService{
 	@Override
 	public DataResult<JobAdvertConfirm> getByJobadvertId(int jobAdvertId) {
 		return new SuccessDataResult<JobAdvertConfirm>
-		(this.jobAdvertConfirmDao.getByJobAdvertId(jobAdvertId));		
+		(this.jobAdvertConfirmDao.getByJobAdvertisement_id(jobAdvertId));		
 	}
 
 	@Override

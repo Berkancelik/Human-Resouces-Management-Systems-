@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +23,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertConfirms"})
+
 public class JobAdvertConfirm {
 	
 	@Id
@@ -30,13 +35,15 @@ public class JobAdvertConfirm {
 	@Column(name = "is_confirmed")
 	private boolean isConfirmed;
 	
-	@Column(name = "condirmed_date")
+	@Column(name = "confirmed_date")
 	private LocalDate confirmedDate;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name ="job_advertisement_id")
 	private JobAdvertisement jobAdvertisement;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "employee_id")
 	private Employee employee;

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import kodlamaio.hrms.entities.concretes.JobAdvertConfirm;
 
 public interface JobAdvertConfirmDao extends JpaRepository<JobAdvertConfirm, Integer>{
-	JobAdvertConfirm getByJobAdvertId(int jobAdvertId);
+	JobAdvertConfirm getByJobAdvertisement_id(int jobAdvertId);
 
 }
