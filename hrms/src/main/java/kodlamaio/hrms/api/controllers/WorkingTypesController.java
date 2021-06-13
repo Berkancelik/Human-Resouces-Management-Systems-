@@ -1,4 +1,4 @@
-package kodlamaio.hrms.business.abstracts;
+package kodlamaio.hrms.api.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kodlamaio.hrms.business.abstracts.WorkingTypeService;
 import kodlamaio.hrms.entities.concretes.WorkingType;
 
 @RestController
-@RequestMapping("/api/")
 @CrossOrigin
+@RequestMapping("/api/workingTypes")
 
 public class WorkingTypesController {
 	private WorkingTypeService workingTypeService;
