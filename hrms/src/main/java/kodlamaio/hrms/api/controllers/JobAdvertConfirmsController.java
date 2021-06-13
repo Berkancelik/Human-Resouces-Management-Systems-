@@ -6,13 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertConfirmService;
 import kodlamaio.hrms.entities.concretes.JobAdvertConfirm;
 
 @RestController
-@RequestMapping("api/jobadvertconfirm")
+@RequestMapping("api/jobadvertconfirms")
 @CrossOrigin
 public class JobAdvertConfirmsController {
 
@@ -36,5 +37,6 @@ public class JobAdvertConfirmsController {
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(this.jobAdvertConfirmService.getAll());
 	}
-
+	
+	
 }

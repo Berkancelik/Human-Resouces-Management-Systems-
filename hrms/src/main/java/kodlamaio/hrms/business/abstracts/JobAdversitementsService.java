@@ -17,6 +17,7 @@ public interface JobAdversitementsService {
 	DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAtDesc();
 	DataResult<JobAdvertisement> getById(int id);
 	DataResult<List<JobAdvertisement>> getAllOpenJobAdversitementsByEmployer(int id);
+	DataResult<List<JobAdvertisement>> getAllByIsConfirmed(boolean isConfirmed );
 
 	
 

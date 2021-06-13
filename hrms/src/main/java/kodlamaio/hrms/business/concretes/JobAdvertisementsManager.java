@@ -94,6 +94,11 @@ public class JobAdvertisementsManager implements JobAdversitementsService {
 		return false;
 	}
 	
+	  @Override
+	    public DataResult<List<JobAdvertisement>> getAllByIsConfirmed(boolean isConfirmed) {
+	        return new SuccessDataResult<>(this.jobAdvertisementsDao.getAllByJobAdvertConfirm_IsConfirmed(isConfirmed));
+	    }
+	
 
 
 
