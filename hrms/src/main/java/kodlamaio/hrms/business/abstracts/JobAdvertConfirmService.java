@@ -10,5 +10,4 @@ public interface JobAdvertConfirmService {
 	Result add(JobAdvertConfirm jobAdvertConfirm);
 	DataResult<JobAdvertConfirm> getByJobadvertId(int jobAdvertId);
 	DataResult<List<JobAdvertConfirm>> getAll();
-
 }
