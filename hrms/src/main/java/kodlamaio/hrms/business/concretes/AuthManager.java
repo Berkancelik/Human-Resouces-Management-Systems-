@@ -84,7 +84,7 @@ public class AuthManager implements AuthService {
 		candidateService.add(candidate);
 		String code = verificationService.sendCode();
 		verificationCodeIsGenerated(code, candidate.getId(), candidate.getEmail());
-		return new SuccessResult("Kaut başarıyla tamamlandı!");
+		return new SuccessResult("Kayıt başarıyla tamamlandı!");
 		
 	}
 

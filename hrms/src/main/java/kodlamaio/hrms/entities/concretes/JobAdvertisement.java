@@ -61,9 +61,7 @@ public class JobAdvertisement  {
 	@Column(name = "published_at")
 	private LocalDate publishedAt;
 	
-	@Column(name = "is_remote")
-	private Boolean isRemote;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
@@ -81,7 +79,7 @@ public class JobAdvertisement  {
 	
 	 @ManyToOne()
 	 @JoinColumn(name = "job_working_type_id")
-	 private WorkingType workingType;
+	 private WorkPlace workingType;
 	 
 	
 

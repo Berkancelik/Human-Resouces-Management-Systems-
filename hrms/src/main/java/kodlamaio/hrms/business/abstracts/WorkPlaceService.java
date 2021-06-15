@@ -4,9 +4,8 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.WorkingType;
+import kodlamaio.hrms.entities.concretes.WorkPlace;
 
-public interface WorkingTypeService {
-	Result add(WorkingType workingType);
-	DataResult<List<WorkingType>> getAll();
+public interface WorkPlaceService {
+	DataResult<List<WorkPlace>> getAll();
 }
