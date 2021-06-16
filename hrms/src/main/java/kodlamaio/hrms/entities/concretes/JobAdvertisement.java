@@ -21,66 +21,68 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "job_advertisements")
-public class JobAdvertisement {
+public class JobAdvertisement  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name= "id")
 	private int id;
 	
-	
-	@Column(name = "confirmed")
-    private boolean confirmed;
-
 	@JsonIgnore
-	@Column(name = "created_date", columnDefinition = "Date defult CURRENT_DATE")
+	@Column(name= "created_date", columnDefinition = "Date defult CURRENT_DATE")
 	private LocalDate createdDate = LocalDate.now();
 
+	
 	@JsonIgnore
-	@Column(name = "is_active")
+	@Column(name= "is_active")
 	private boolean isActive = true;
+	
 
+	
 	@Column(name = "description")
 	private String description;
-
+	
 	@Column(name = "open_title_count")
 	private int openTitleCount;
-
+	
 	@Column(name = "deadline")
-	private LocalDate deadline;
+	private LocalDate deadline;	
 
+	
 	@Column(name = "is_open")
 	private boolean isOpen;
+	
 
 	@Column(name = "salary_min")
 	private int salaryMin;
-
+	
 	@Column(name = "salary_max")
 	private int salaryMax;
-
+	
 	@Column(name = "published_at")
 	private LocalDate publishedAt;
-
+	
+	@Column(name = "is_remote")
+	private Boolean isRemote;
+	
 	@ManyToOne
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "job_title_id")
 	private JobTitle jobTitle;
-
-	@OneToOne(mappedBy = "jobAdvertisement")
+	
+	@OneToOne(mappedBy ="jobAdvertisement")
 	private JobAdvertConfirm jobAdvertConfirm;
-
-	@ManyToOne()
-	@JoinColumn(name = "workplace_id")
-	private WorkPlace workPlace;
-
-	@ManyToOne()
-	@JoinColumn(name = "work_time_id")
-	private WorkTime workTime;
+	
+	 @ManyToOne()
+	 @JoinColumn(name = "job_working_type_id")
+	 private WorkingType workingType;
+	 
+	
 
 }

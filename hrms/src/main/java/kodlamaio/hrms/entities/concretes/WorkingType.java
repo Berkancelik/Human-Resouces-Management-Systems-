@@ -20,18 +20,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "workplace")
-public class WorkPlace {
+@Table(name = "working_types")
+public class WorkingType {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "name")	
-	private String name;	
+	@Column(name = "type_name")	
+	private String typeName;	
 	
-	@OneToMany(mappedBy = "workPlace") 
+	@OneToMany(mappedBy = "workingType")
 	@JsonIgnore()
 	private List<JobAdvertisement> jobAdvertisements;
 
