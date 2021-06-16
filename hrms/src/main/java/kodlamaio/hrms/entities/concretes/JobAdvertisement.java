@@ -27,8 +27,9 @@ public class JobAdvertisement {
 	@Column(name = "id")
 	private int id;
 	
+	
+	@Column(name = "confirmed")
     private boolean confirmed;
-
 
 	@JsonIgnore
 	@Column(name = "created_date", columnDefinition = "Date defult CURRENT_DATE")

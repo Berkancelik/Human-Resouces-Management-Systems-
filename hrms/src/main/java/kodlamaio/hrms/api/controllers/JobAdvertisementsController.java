@@ -20,7 +20,7 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @RestController
-@RequestMapping("/api/jobAdvertisements")
+@RequestMapping("/api/jobadvertisements")
 @CrossOrigin
 public class JobAdvertisementsController {
 	private JobAdversitementsService jobAdversitementsService;
