@@ -33,7 +33,6 @@ public class WorkType {
 	
 	@OneToMany(mappedBy = "workType")
 	@JsonIgnore()
-	private List<JobAdvertisement> jobAdvertisements;
-	
+	private List<JobAdvertisement> jobAdvertisements;	
 	
 }
