@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.WorkingTypeService;
-import kodlamaio.hrms.entities.concretes.WorkingType;
+import kodlamaio.hrms.business.abstracts.WorkTypeService;
+import kodlamaio.hrms.entities.concretes.WorkType;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/workingTypes")
 
-public class WorkingTypesController {
-	private WorkingTypeService workingTypeService;
+public class WorkTypesController {
+	private WorkTypeService workingTypeService;
 	
-	public WorkingTypesController(WorkingTypeService workingTypeService) {
+	public WorkTypesController(WorkTypeService workingTypeService) {
 		this.workingTypeService = workingTypeService;
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> add(@RequestBody WorkingType workingType){
+	public ResponseEntity<?> add(@RequestBody WorkType workingType){
 		return ResponseEntity.ok(this.workingTypeService.add(workingType));
 	}
 	

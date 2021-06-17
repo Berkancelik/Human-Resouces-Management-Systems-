@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "working_types")
-public class WorkingType {
+public class WorkType {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
