@@ -30,7 +30,7 @@ public class WorkHour {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="work_hours")
+	@Column(name="work_hour")
 	private String workHour;
 	
 	@OneToMany(mappedBy="workHour")

@@ -83,7 +83,7 @@ public class JobAdvertisement  {
 	private JobAdvertConfirm jobAdvertConfirm;
 	
 	 @ManyToOne()
-	 @JoinColumn(name = "job_working_type_id")
+	 @JoinColumn(name = "job_work_type_id")
 	 private WorkType workType;
 
 	

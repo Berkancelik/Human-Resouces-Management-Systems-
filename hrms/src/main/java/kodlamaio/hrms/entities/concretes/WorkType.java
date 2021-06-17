@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "working_types")
+@Table(name = "work_types")
 public class WorkType {
 	
 	@Id
@@ -29,13 +29,11 @@ public class WorkType {
 	private int id;
 	
 	@Column(name = "type_name")	
-	private String typeName;	
+	private String workType;	
 	
 	@OneToMany(mappedBy = "workType")
 	@JsonIgnore()
 	private List<JobAdvertisement> jobAdvertisements;
-
 	
 	
-
 }
