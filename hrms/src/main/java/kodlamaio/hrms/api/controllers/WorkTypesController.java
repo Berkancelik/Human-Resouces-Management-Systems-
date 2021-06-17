@@ -19,7 +19,7 @@ import kodlamaio.hrms.entities.concretes.WorkType;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/workingtypes")
+@RequestMapping("/api/worktypes")
 
 public class WorkTypesController {
 	private WorkTypeService workTypeService;
