@@ -50,6 +50,7 @@ public class Employer extends User {
 	@Column(name = "is_verified")
 	private boolean isVerified = false;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisements;
 

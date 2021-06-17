@@ -14,17 +14,14 @@ public interface JobAdvertisementService {
 	
 	DataResult<JobAdvertisement> getById(int id);	
 	DataResult<List<JobAdvertisement>> getAll();
-	DataResult<List<JobAdvertisement>> getAllOpenJobAdvertList();
+	DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementList();
 	DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAt();
-	DataResult<List<JobAdvertisement>> getAllOpenJobAdvertByEmployer(int id);
-	
-	DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee();
+	DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementByEmployer(int id);	
 	DataResult<List<JobAdvertisement>> getAllByEmployerId(int employerId);
-	Result changeIsActiveByEmployee(int jobAdverttisementId);
-	
-	Result changeIsOpenByEmployer(int jobAdverttisementId);
-	
+	Result changeIsActiveByEmployee(int jobAdverttisementId);	
+	Result changeIsOpenByEmployer(int jobAdverttisementId);	
 	DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee_False();
+	DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee();
 	
 
 	

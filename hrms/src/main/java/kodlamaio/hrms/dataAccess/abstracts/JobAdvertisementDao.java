@@ -10,7 +10,7 @@ import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
 
 	@Query("From JobAdvertisement where isOpen = true")
-	List<JobAdvertisement> getAllOpenJobAdvertList();
+	List<JobAdvertisement> getAllOpenJobAdvertisementList();
 
 	@Query("From JobAdvertisement where isOpen = true Order By publishedAt Desc")
 	List<JobAdvertisement> findAllByOrderByPublishedAtDesc();

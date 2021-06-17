@@ -7,6 +7,8 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.WorkType;
 
 public interface WorkTypeService {
-	Result add(WorkType workingType);
+
+	Result add(WorkType workType);
+	
 	DataResult<List<WorkType>> getAll();
 }

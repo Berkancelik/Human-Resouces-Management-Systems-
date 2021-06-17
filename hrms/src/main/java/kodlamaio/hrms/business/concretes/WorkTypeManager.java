@@ -15,25 +15,23 @@ import kodlamaio.hrms.entities.concretes.WorkType;
 
 @Service
 public class WorkTypeManager implements WorkTypeService {
-	private WorkTypeDao workingTypeDao;
-	
+
+	private WorkTypeDao worktypeDao;
+
 	@Autowired
-	public WorkTypeManager(WorkTypeDao workingTypeDao) {
+	public WorkTypeManager(WorkTypeDao workTypeDao) {
 		super();
-		this.workingTypeDao = workingTypeDao;
+		this.worktypeDao = workTypeDao;
 	}
 
 	@Override
-	public Result add(WorkType workingType) {
-		this.workingTypeDao.save(workingType);
-		return new SuccessResult();
-		
+	public Result add(WorkType workType) {
+		this.worktypeDao.save(workType);
+		return new SuccessResult("Çalışma tipi eklendi!");
 	}
 
 	@Override
 	public DataResult<List<WorkType>> getAll() {
-		return new SuccessDataResult<List<WorkType>>(this.workingTypeDao.findAll());
-		
+		return new SuccessDataResult<List<WorkType>>(this.worktypeDao.findAll());
 	}
-
 }

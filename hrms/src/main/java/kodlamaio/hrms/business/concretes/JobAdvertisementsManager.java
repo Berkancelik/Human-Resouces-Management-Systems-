@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.hrms.business.abstracts.JobAdversitementsService;
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -45,104 +44,98 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 		this.workHourDao = workHourDao;
 		this.jobAdvertConfirmDao = jobAdvertConfirmDao;
 	}
-	
 
 	@Override
 	public Result add(JobAdvertisementDto jobAdvertisementDto) {
 		JobAdvertisement jobAdvertisement = new JobAdvertisement();
 		jobAdvertisement.setCity(this.cityDao.getById(jobAdvertisementDto.getCityId()));
 		jobAdvertisement.setJobTitle(this.jobTitleDao.getById(jobAdvertisementDto.getJobTitleId()));
-		jobAdvertisement.setWorkHour(this.workHourDao.getById(jobAdvertisementDto.getWorkHourId()));
-		jobAdvertisement.setWorkType(this.workTypeDao.getById(jobAdvertisementDto.getWorkTypeId()));
-		jobAdvertisement.setDescription(jobAdvertisementDto.getDescription());
-		jobAdvertisement.setSalaryMax(jobAdvertisementDto.getMaxSalary());
 		jobAdvertisement.setSalaryMin(jobAdvertisementDto.getMinSalary());
 		jobAdvertisement.setOpenTitleCount(jobAdvertisementDto.getOpenTitleCount());
 		jobAdvertisement.setEmployer(this.employerDao.getById(jobAdvertisementDto.getEmployerId()));
 		jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadLine());
-	
-		
+		jobAdvertisement.setWorkHour(this.workHourDao.getById(jobAdvertisementDto.getWorkHourId()));
+		jobAdvertisement.setWorkType(this.workTypeDao.getById(jobAdvertisementDto.getWorkTypeId()));
+		jobAdvertisement.setDescription(jobAdvertisementDto.getDescription());
+		jobAdvertisement.setSalaryMax(jobAdvertisementDto.getMaxSalary());
 		this.jobAdvertisementDao.save(jobAdvertisement);
-		
-		//JobAdvertConfirmation jobAdvertConfirmation = new JobAdvertConfirmation();
-		return new SuccessResult("başarı ile eklendi");
-	
+		return new SuccessResult("başarı şekilde eklendi");
+
 	}
 
 	@Override
 	public Result update(JobAdvertisement jobAdvertisement) {
-		// TODO Auto-generated method stub
-		return null;
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("İş ilanı başarılı şekilde güncellendi");
 	}
 
 	@Override
 	public Result delete(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		this.jobAdvertisementDao.deleteById(id);
+		return new SuccessResult("İş ilanı başarılı şekilde silindi");
 	}
 
 	@Override
 	public DataResult<JobAdvertisement> getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getOne(id));
+
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll());
+
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertList() {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementList() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllOpenJobAdvertisementList());
+
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAt() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAllByOrderByPublishedAtDesc());
+
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertByEmployer(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementByEmployer(int id) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllOpenJobAdvertisementByEmployer(id));
+
 	}
 
+	
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveByEmployee()); 
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllByEmployerId(int employerId) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByEmployerId(employerId),
+				"İşveren id ile getirildi");
 	}
 
 	@Override
 	public Result changeIsActiveByEmployee(int jobAdverttisementId) {
-		// TODO Auto-generated method stub
-		return null;
+		JobAdvertisement jobAdvertisementIsActiveEmployee= this.jobAdvertisementDao.getById(jobAdverttisementId);
+		jobAdvertisementIsActiveEmployee.setActive(!jobAdvertisementIsActiveEmployee.isActive());
+		this.jobAdvertisementDao.save(jobAdvertisementIsActiveEmployee);
+		return new SuccessResult("İş ilanının admin tarafından aktifliği değiştirildi");
 	}
 
 	@Override
 	public Result changeIsOpenByEmployer(int jobAdverttisementId) {
-		// TODO Auto-generated method stub
-		return null;
+		JobAdvertisement jobAdvertToChangeIsOpen =this.jobAdvertisementDao.getById(jobAdverttisementId);
+		jobAdvertToChangeIsOpen.setOpen(!jobAdvertToChangeIsOpen.isOpen());
+		this.jobAdvertisementDao.save(jobAdvertToChangeIsOpen);
+		return new SuccessResult("İş ilanı iş veren taraqfından aktif edildi");
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee_False() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveByEmployee_False()) ;
 	}
-
-
-
-
 
 }
