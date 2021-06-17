@@ -10,15 +10,15 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.WorkingTypeDao;
+import kodlamaio.hrms.dataAccess.abstracts.WorkTypeDao;
 import kodlamaio.hrms.entities.concretes.WorkType;
 
 @Service
 public class WorkTypeManager implements WorkTypeService {
-	private WorkingTypeDao workingTypeDao;
+	private WorkTypeDao workingTypeDao;
 	
 	@Autowired
-	public WorkTypeManager(WorkingTypeDao workingTypeDao) {
+	public WorkTypeManager(WorkTypeDao workingTypeDao) {
 		super();
 		this.workingTypeDao = workingTypeDao;
 	}

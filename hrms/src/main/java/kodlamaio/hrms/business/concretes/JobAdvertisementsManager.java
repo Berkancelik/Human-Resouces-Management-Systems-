@@ -6,99 +6,142 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobAdversitementsService;
+import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.CityDao;
+import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobAdvertConfirmDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobTitleDao;
+import kodlamaio.hrms.dataAccess.abstracts.WorkHourDao;
+import kodlamaio.hrms.dataAccess.abstracts.WorkTypeDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 
 @Service
-public class JobAdvertisementsManager implements JobAdversitementsService {
-	private JobAdvertisementDao jobAdvertisementsDao;
+public class JobAdvertisementsManager implements JobAdvertisementService {
+	private JobAdvertisementDao jobAdvertisementDao;
+	private CityDao cityDao;
+	private EmployerDao employerDao;
+	private JobTitleDao jobTitleDao;
+	private WorkTypeDao workTypeDao;
+	private WorkHourDao workHourDao;
+	private JobAdvertConfirmDao jobAdvertConfirmDao;
 
 	@Autowired
-	public JobAdvertisementsManager(JobAdvertisementDao jobAdvertisementsDao) {
+	public JobAdvertisementsManager(JobAdvertisementDao jobAdvertisementDao, CityDao cityDao, EmployerDao employerDao,
+			JobTitleDao jobTitleDao, WorkTypeDao workTypeDao, WorkHourDao workHourDao,
+			JobAdvertConfirmDao jobAdvertConfirmDao) {
 		super();
-		this.jobAdvertisementsDao = jobAdvertisementsDao;
+		this.jobAdvertisementDao = jobAdvertisementDao;
+		this.cityDao = cityDao;
+		this.employerDao = employerDao;
+		this.jobTitleDao = jobTitleDao;
+		this.workTypeDao = workTypeDao;
+		this.workHourDao = workHourDao;
+		this.jobAdvertConfirmDao = jobAdvertConfirmDao;
+	}
+	
+
+	@Override
+	public Result add(JobAdvertisementDto jobAdvertisementDto) {
+		JobAdvertisement jobAdvertisement = new JobAdvertisement();
+		jobAdvertisement.setCity(this.cityDao.getById(jobAdvertisementDto.getCityId()));
+		jobAdvertisement.setJobTitle(this.jobTitleDao.getById(jobAdvertisementDto.getJobTitleId()));
+		jobAdvertisement.setWorkHour(this.workHourDao.getById(jobAdvertisementDto.getWorkHourId()));
+		jobAdvertisement.setWorkType(this.workTypeDao.getById(jobAdvertisementDto.getWorkTypeId()));
+		jobAdvertisement.setDescription(jobAdvertisementDto.getDescription());
+		jobAdvertisement.setSalaryMax(jobAdvertisementDto.getMaxSalary());
+		jobAdvertisement.setSalaryMin(jobAdvertisementDto.getMinSalary());
+		jobAdvertisement.setOpenTitleCount(jobAdvertisementDto.getOpenTitleCount());
+		jobAdvertisement.setEmployer(this.employerDao.getById(jobAdvertisementDto.getEmployerId()));
+		jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadLine());
+	
+		
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		
+		//JobAdvertConfirmation jobAdvertConfirmation = new JobAdvertConfirmation();
+		return new SuccessResult("başarı ile eklendi");
+	
 	}
 
 	@Override
-	public Result add(JobAdvertisement jobAdversitements) {
-		if (!CheckIfNullField(jobAdversitements)) {
-			return new ErrorResult("Lütfen boş alanları kontrol ediniz!");
-		}
-		this.jobAdvertisementsDao.save(jobAdversitements);
-		return new SuccessResult("İş ilanı başarılı şekilde eklendi!");
-	}
-
-	@Override
-	public Result update(JobAdvertisement jobAdversitements) {
-		this.jobAdvertisementsDao.save(jobAdversitements);
-		return new SuccessResult("İş ilanı başarılı şekilde güncellendi");
+	public Result update(JobAdvertisement jobAdvertisement) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Result delete(int id) {
-		this.jobAdvertisementsDao.deleteById(id);
-		return new SuccessResult("İş ilanı başarılı şekilde silindi");
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
 	@Override
-	public Result changeOpentoClose(int id) {
-		if(getById(id) == null) {
-			return new ErrorResult("Böyle bir iş ilanı yok!");
-		}
-		if (getById(id).getData().isOpen() == false) {
-			return new SuccessResult("İş ilani zaten kapalı!");
-		
-		}
-		JobAdvertisement jobAdversitements = getById(id).getData();
-		jobAdversitements.setOpen(false);
-		update(jobAdversitements);
-		return new SuccessResult("İş ilanı başarılı şekilde kapatıldı!");
-			
+	public DataResult<JobAdvertisement> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementsDao.findAll());
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllOpenJobAdversitementsList() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsList());
+	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAtDesc() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementsDao.findAllByOrderByPublishedAtDesc());
+	public DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAt() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public DataResult<JobAdvertisement>getById(int id) {
-		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementsDao.getOne(id));
+	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertByEmployer(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllOpenJobAdversitementsByEmployer(int id) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementsDao.getAllOpenJobAdversitementsByEmployer(id));
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	private boolean CheckIfNullField(JobAdvertisement jobAdversitements) {
-		if (jobAdversitements.getJobTitle() != null && jobAdversitements.getDescription() != null && jobAdversitements.getCity() != null && jobAdversitements.getOpenTitleCount() != 0) {
-			return true;
-		}
-		return false;
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllByEmployerId(int employerId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	  @Override
-	    public DataResult<List<JobAdvertisement>> getAllByIsConfirmed(boolean isConfirmed) {
-	        return new SuccessDataResult<>(this.jobAdvertisementsDao.getAllByJobAdvertConfirm_IsConfirmed(isConfirmed));
-	    }
-	
+
+	@Override
+	public Result changeIsActiveByEmployee(int jobAdverttisementId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result changeIsOpenByEmployer(int jobAdverttisementId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee_False() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 

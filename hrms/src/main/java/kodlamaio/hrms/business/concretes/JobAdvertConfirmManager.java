@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.hrms.business.abstracts.JobAdversitementsService;
 import kodlamaio.hrms.business.abstracts.JobAdvertConfirmService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -13,8 +12,6 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertConfirmDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertConfirm;
-import kodlamaio.hrms.entities.concretes.JobAdvertisement;
-import net.bytebuddy.asm.Advice.This;
 
 @Service
 public class JobAdvertConfirmManager implements JobAdvertConfirmService{

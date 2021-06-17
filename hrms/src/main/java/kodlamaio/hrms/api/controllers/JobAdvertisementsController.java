@@ -2,12 +2,14 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import kodlamaio.hrms.business.abstracts.JobAdversitementsService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 
 @RestController
 @RequestMapping("/api/jobadvertisements")
@@ -26,45 +29,64 @@ public class JobAdvertisementsController {
 	private JobAdversitementsService jobAdversitementsService;
 
 	@Autowired
-	public JobAdvertisementsController(JobAdversitementsService jobAdversitementsService) {
+	public JobAdvertsController(JobAdvertService jobAdversitementsService) {
 		super();
 		this.jobAdversitementsService = jobAdversitementsService;
-
 	}
 
+	
 	@PostMapping("/add")
-	public Result add(@RequestBody JobAdvertisement jobAdversitements) {
-		return this.jobAdversitementsService.add(jobAdversitements);
+	
+	public ResponseEntity<?> add(@Valid @RequestBody JobAdvertisementDto jobAdvert){
+		return ResponseEntity.ok(this.jobAdversitementsService.add(jobAdvert));
 	}
-
+	
+	
+	@PostMapping("/update")
+	public ResponseEntity<?> update(@Valid @RequestBody JobAdvertisement jobAdvertisement){
+		return ResponseEntity.ok(this.jobAdversitementsService.update(jobAdvertisement));
+	}
+	
+	@PostMapping("/delete")
+	public Result delete(@PathVariable("id") int id){
+		return this.jobAdversitementsService.delete(id);
+	}
+	
+	@GetMapping("/getbyid")
+	public DataResult<JobAdvertisement> getById(@PathVariable("id") int id){
+		return this.jobAdversitementsService.getById(id);
+	}
+	
 	@GetMapping("/getAll")
-	public DataResult<List<JobAdvertisement>> getAll() {
+	public DataResult<List<JobAdvertisement>> getAll(){		
 		return this.jobAdversitementsService.getAll();
 	}
+	
+	@GetMapping("/getAllActiveAndOpenJobAdverts")
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee(){
+		return this.jobAdversitementsService.getAllByIsActiveByEmployee();
+	}
+	
+	@GetMapping("/getAllOpenJobAdvertsAndIsActiveFalse")
+	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee_False(){
+		return this.jobAdversitementsService.getAllByIsActiveByEmployee_False();
+	}
+	
+	@GetMapping("/getAllByEmployerId")
+	public DataResult<List<JobAdvertisement>> getAllByEmployerId(@RequestParam int id){
+		return this.jobAdversitementsService.getAllByEmployerId(id);
+	}
+	
 
-	@GetMapping("/findAllByOrderByPublishedAt")
-	public DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAtDesc() {
-		return this.jobAdversitementsService.findAllByOrderByPublishedAtDesc();
+	@PostMapping("/changeactivestatus")
+	public Result changeIsActiveByEmployee(@RequestParam int id) {
+		return this.jobAdversitementsService.changeIsActiveByEmployee(id);
 	}
 
-	@GetMapping("/getAllOpenJobAdvertByEmployer")
-	public DataResult<List<JobAdvertisement>> getAllOpenJobAdversitementsByEmployer(int id) {
-		return this.jobAdversitementsService.getAllOpenJobAdversitementsByEmployer(id);
+	@PostMapping("/changeopenstatus")
+	public Result changeIsOpenByEmployer(@RequestParam int id) {
+		return this.jobAdversitementsService.changeIsOpenByEmployer(id);
 	}
-
-	@PostMapping("/changeOpenToClose")
-	public Result changeOpenToClose(int id) {
-		return this.jobAdversitementsService.changeOpentoClose(id);
-	}
-
-	@GetMapping("/getAllOpenJobAdvertsitementsList")
-	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertsitementsList() {
-		return this.jobAdversitementsService.getAllOpenJobAdversitementsList();
-	}
-
-	@GetMapping("/getallbyisconfirmed")
-	public ResponseEntity<?> getAllByIsConfirmed(@RequestParam boolean isConfirmed) {
-		return ResponseEntity.ok(this.jobAdversitementsService.getAllByIsConfirmed(isConfirmed));
-	}
+	
 
 }
