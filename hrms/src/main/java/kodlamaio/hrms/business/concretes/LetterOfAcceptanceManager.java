@@ -12,7 +12,6 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.LetterOfAcceptanceDao;
 import kodlamaio.hrms.entities.concretes.LetterOfAcceptance;
-import kodlamaio.hrms.entities.concretes.ResumeLink;
 @Service
 public class LetterOfAcceptanceManager implements LetterOfAcceptanceService {
 	
