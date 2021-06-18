@@ -32,11 +32,6 @@ public class City  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name= "id")
 	private int id;
-	
-	@JsonIgnore
-	@Column(name= "created_date")
-	private Date createdDate;
-	
 
 	@Column(name = "name")
 	private String name;
