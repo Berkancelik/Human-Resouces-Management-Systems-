@@ -7,28 +7,41 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.ResumeSkillService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.ResumeSkillDao;
 import kodlamaio.hrms.entities.concretes.ResumeSkill;
+import kodlamaio.hrms.entities.dtos.ResumeSkillForCandidateDto;
 @Service
 public class ResumeSkillManager implements ResumeSkillService {
 	private ResumeSkillDao resumeSkillDao;
+	private CandidateDao candidateDao;
 	
 	@Autowired
-	public ResumeSkillManager(ResumeSkillDao resumeSkillDao) {
+	public ResumeSkillManager(ResumeSkillDao resumeSkillDao, CandidateDao candidateDao) {
 		super();
 		this.resumeSkillDao = resumeSkillDao;
+		this.candidateDao = candidateDao;
 	}
 
 	@Override
-	public Result add(ResumeSkill resumeSkill) {
-		this.resumeSkillDao.save(resumeSkill);
-		return new SuccessResult("Yetenek eklendi!");
+	public Result add(ResumeSkillForCandidateDto resumeSkillForCandidateDto) {
+		 if(!this.candidateDao.existsById(resumeSkillForCandidateDto.getCandidateId())){
+	            return new ErrorResult("Böyle bir kullanıcı yok");
+	        }else if(resumeSkillForCandidateDto.getSkillName().length()<=2){
+	            return new ErrorResult("Yetenek adı 2 karekterden kısa olamaz");
+	        }
 
-	}
+	        ResumeSkill resumeSkill=new ResumeSkill();
+	        resumeSkill.setCandidate(this.candidateDao.getById(resumeSkillForCandidateDto.getCandidateId()));
+	        resumeSkill.setSkillName(resumeSkillForCandidateDto.getSkillName());
 
+	        this.resumeSkillDao.save(resumeSkill);
+	        return new SuccessResult("Eklendi");
+	    }
 	@Override
 	public Result update(ResumeSkill resumeSkill) {
 		this.resumeSkillDao.save(resumeSkill);
@@ -37,9 +50,12 @@ public class ResumeSkillManager implements ResumeSkillService {
 
 	@Override
 	public Result delete(int id) {
-		this.resumeSkillDao.deleteById(id);
-		return new SuccessResult("Yetenek silindi!");
-	}
+	     if(!this.resumeSkillDao.existsById(id)){
+	            return new ErrorResult("Böyle bir yetenek yok");
+	        }
+	        this.resumeSkillDao.deleteById(id);
+	        return new SuccessResult("Silindi");
+	    }
 
 	@Override
 	public DataResult<ResumeSkill> getById(int id) {
