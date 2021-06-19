@@ -51,10 +51,10 @@ public class Education   {
 	private String department;
 	
 	@Column(name = "started_date")
-	private Date startedDate;
+	private LocalDate startedDate;
 	
 	@Column(name = "ended_date", nullable = true)
-	private Date endedDate;
+	private LocalDate endedDate;
 	
 	
 	@ManyToOne()

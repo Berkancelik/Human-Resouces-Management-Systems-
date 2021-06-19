@@ -37,8 +37,7 @@ public class EmpolyersController {
 	@PostMapping("/add")
 	public Result add(@RequestBody Employer employer) {
 		return this.employerService.add(employer);
-	}
-	
+	}	
 	
 
 }

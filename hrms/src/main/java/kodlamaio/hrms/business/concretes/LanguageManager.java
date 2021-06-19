@@ -14,7 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.LanguageDao;
 import kodlamaio.hrms.entities.concretes.Language;
-import kodlamaio.hrms.entities.dtos.LanguageCandidateAddDto;
+import kodlamaio.hrms.entities.dtos.LanguageForCandidateAddDto;
 @Service
 public class LanguageManager implements LanguageService {
 	private LanguageDao languageDao;
@@ -28,7 +28,7 @@ public class LanguageManager implements LanguageService {
 	}
 
 	  @Override
-	    public Result add(LanguageCandidateAddDto languageCandidateAddDto) {
+	    public Result add(LanguageForCandidateAddDto languageCandidateAddDto) {
 
 	        if(!this.candidateDao.existsById(languageCandidateAddDto.getCandidteId())){
 	            return new ErrorResult("Böyle bir kullanıcı yok!");

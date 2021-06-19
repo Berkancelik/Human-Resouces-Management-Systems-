@@ -16,6 +16,7 @@ import kodlamaio.hrms.business.abstracts.EducationService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Education;
+import kodlamaio.hrms.entities.dtos.EducationForCandidateAddDto;
 
 @RestController
 @RequestMapping("/api/educations")
@@ -30,8 +31,8 @@ public class EducationsController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Education schoolForCV){
-		return this.educationService.add(schoolForCV);
+	public Result add(@RequestBody EducationForCandidateAddDto educationForCandidateAddDto){
+		return this.educationService.add(educationForCandidateAddDto);
 	}
 	
 	@PostMapping("/update")
