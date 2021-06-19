@@ -16,6 +16,7 @@ import kodlamaio.hrms.business.abstracts.LanguageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Language;
+import kodlamaio.hrms.entities.dtos.LanguageCandidateAddDto;
 
 @RestController
 @RequestMapping("/api/languages")
@@ -29,8 +30,8 @@ public class LanguagesController {
 	}
 	
 	@PostMapping("/add")
-	public Result add( @RequestBody Language language){
-		return this.languageService.add(language);
+	public Result add( @RequestBody LanguageCandidateAddDto languageCandidateAddDto){
+		return this.languageService.add(languageCandidateAddDto);
 		
 	}
 	

@@ -50,7 +50,7 @@ public class Language     {
 	@Min(value = 1 )
 	@Max(value = 5)	
 	@Column(name="level")
-	private int level;
+	private String level;
 	
 	@Column(name="language_name")
 	private String languageName;
