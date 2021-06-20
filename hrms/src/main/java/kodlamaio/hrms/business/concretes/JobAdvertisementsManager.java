@@ -1,5 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import kodlamaio.hrms.dataAccess.abstracts.WorkHourDao;
 import kodlamaio.hrms.dataAccess.abstracts.WorkTypeDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import org.springframework.data.domain.Sort;
 
 @Service
 public class JobAdvertisementsManager implements JobAdvertisementService {
@@ -48,94 +50,67 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 	@Override
 	public Result add(JobAdvertisementDto jobAdvertisementDto) {
 		JobAdvertisement jobAdvertisement = new JobAdvertisement();
-		jobAdvertisement.setCity(this.cityDao.getById(jobAdvertisementDto.getCityId()));
-		jobAdvertisement.setJobTitle(this.jobTitleDao.getById(jobAdvertisementDto.getJobTitleId()));
-		jobAdvertisement.setSalaryMin(jobAdvertisementDto.getMinSalary());
-		jobAdvertisement.setOpenTitleCount(jobAdvertisementDto.getOpenTitleCount());
-		jobAdvertisement.setEmployer(this.employerDao.getById(jobAdvertisementDto.getEmployerId()));
-		jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadLine());
-		jobAdvertisement.setWorkHour(this.workHourDao.getById(jobAdvertisementDto.getWorkHourId()));
-		jobAdvertisement.setWorkType(this.workTypeDao.getById(jobAdvertisementDto.getWorkTypeId()));
+		jobAdvertisement.setId(0);
 		jobAdvertisement.setDescription(jobAdvertisementDto.getDescription());
+		jobAdvertisement.setSalaryMin(jobAdvertisementDto.getMinSalary());
 		jobAdvertisement.setSalaryMax(jobAdvertisementDto.getMaxSalary());
+		jobAdvertisement.setOpenTitleCount(jobAdvertisementDto.getOpenTitleCount());
+		jobAdvertisement.setPublishedAt(LocalDate.now());
+		jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadLine());
+		jobAdvertisement.setActive(true);
+		jobAdvertisement.setConfirm(false);
+		jobAdvertisement.setEmployer(this.employerDao.getById(jobAdvertisementDto.getEmployerId()));
+		jobAdvertisement.setJobTitle(this.jobTitleDao.getById(jobAdvertisementDto.getJobTitleId()));
+		jobAdvertisement.setCity(this.cityDao.getById(jobAdvertisementDto.getCityId()));
+		jobAdvertisement.setWorkType(this.workTypeDao.getById(jobAdvertisementDto.getWorkTypeId()));
+		jobAdvertisement.setWorkHour(this.workHourDao.getById(jobAdvertisementDto.getWorkHourId()));
 		this.jobAdvertisementDao.save(jobAdvertisement);
-		return new SuccessResult("başarı şekilde eklendi");
+		return new SuccessResult("İş ilani başarı şekilde eklendi");
 
 	}
 
 	@Override
-	public Result update(JobAdvertisement jobAdvertisement) {
-		this.jobAdvertisementDao.save(jobAdvertisement);
-		return new SuccessResult("İş ilanı başarılı şekilde güncellendi");
+	public DataResult<List<JobAdvertisement>> sortByReleaseDate() {
+		Sort sort = Sort.by(Sort.Direction.ASC, "releaseDate");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort),"Yayın tarihine göre artan olarak listelendi");
 	}
 
 	@Override
-	public Result delete(int id) {
-		this.jobAdvertisementDao.deleteById(id);
-		return new SuccessResult("İş ilanı başarılı şekilde silindi");
+	public DataResult<List<JobAdvertisement>> getByCompanyName(String companyName) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_CompanyName(companyName),"Şirket adına göre iş ilanları listelendi");
 	}
 
 	@Override
-	public DataResult<JobAdvertisement> getById(int id) {
-		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getOne(id));
+	public Result updateIsActive(boolean isActive, int userId, int id) {
+		this.jobAdvertisementDao.updateIsActive(isActive, userId, id);
+		return new SuccessResult("İş ilanı aktiflik durumu güncellendi");
+	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getByIsConfirm(boolean isConfirm) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByIsConfirm(isConfirm));
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive) {
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.getByIsConfirmAndIsActive(isConfirm, isActive));
+	}
+
+	@Override
+	public Result updateIsConfirm(boolean isConfirm, int id) {
+		this.jobAdvertisementDao.updateIsConfirm(isConfirm, id);
+		return new SuccessResult("İş ilanı onaylandı");
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> getByJobAdvertisementId(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll());
-
-	}
-
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementList() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllOpenJobAdvertisementList());
-
-	}
-
-	@Override
-	public DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAt() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAllByOrderByPublishedAtDesc());
-
-	}
-
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementByEmployer(int id) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllOpenJobAdvertisementByEmployer(id));
-
-	}
-
-	
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveByEmployee()); 
-	}
-
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllByEmployerId(int employerId) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByEmployerId(employerId),
-				"İşveren id ile getirildi");
-	}
-
-	@Override
-	public Result changeIsActiveByEmployee(int jobAdverttisementId) {
-		JobAdvertisement jobAdvertisementIsActiveEmployee= this.jobAdvertisementDao.getById(jobAdverttisementId);
-		jobAdvertisementIsActiveEmployee.setActive(!jobAdvertisementIsActiveEmployee.isActive());
-		this.jobAdvertisementDao.save(jobAdvertisementIsActiveEmployee);
-		return new SuccessResult("İş ilanının admin tarafından aktifliği değiştirildi");
-	}
-
-	@Override
-	public Result changeIsOpenByEmployer(int jobAdverttisementId) {
-		JobAdvertisement jobAdvertToChangeIsOpen =this.jobAdvertisementDao.getById(jobAdverttisementId);
-		jobAdvertToChangeIsOpen.setOpen(!jobAdvertToChangeIsOpen.isOpen());
-		this.jobAdvertisementDao.save(jobAdvertToChangeIsOpen);
-		return new SuccessResult("İş ilanı iş veren taraqfından aktif edildi");
-	}
-
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee_False() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllByIsActiveByEmployee_False()) ;
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(), "İş ilanları listelendi");
 	}
 
 }

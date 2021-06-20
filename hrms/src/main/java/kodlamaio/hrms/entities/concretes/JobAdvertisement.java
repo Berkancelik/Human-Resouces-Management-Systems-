@@ -34,8 +34,7 @@ public class JobAdvertisement  {
 	
 	@JsonIgnore
 	@Column(name= "is_active")
-	private boolean isActive = true;
-	
+	private boolean isActive = true;	
 
 	
 	@Column(name = "description")
@@ -46,7 +45,10 @@ public class JobAdvertisement  {
 	
 	@Column(name = "deadline")
 	private LocalDate deadline;	
+	
 
+	@Column(name = "is_confirm")
+	private boolean isConfirm;
 	
 	@Column(name = "is_open")
 	private boolean isOpen;

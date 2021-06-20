@@ -2,31 +2,31 @@ package kodlamaio.hrms.dataAccess.abstracts;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
 
-	@Query("From JobAdvertisement where isOpen = true")
-	List<JobAdvertisement> getAllOpenJobAdvertisementList();
+	List<JobAdvertisement> getByEmployer_CompanyName(String companyName);
 
-	@Query("From JobAdvertisement where isOpen = true Order By publishedAt Desc")
-	List<JobAdvertisement> findAllByOrderByPublishedAtDesc();
+	List<JobAdvertisement> getByIsConfirm(boolean isConfirm);
 
-	@Query("From JobAdvertisement where isOpen = true and employer_id =:id")
-	List<JobAdvertisement> getAllOpenJobAdvertisementByEmployer(int id);
+	List<JobAdvertisement> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive);
 
-	@Query("From JobAdvertisement where is_active=true AND is_open=true Order By published_at DESC")
-	List<JobAdvertisement> getAllByIsActiveByEmployee();
+	JobAdvertisement getByJobAdvertisementId(int id);
 
-	@Query("From JobAdvertisement where is_active=false And is_open=true Order By published_at DESC")
-	List<JobAdvertisement> getAllByIsActiveByEmployee_False();
+	@Modifying
+	@Transactional
+	@Query("update JobAdvertisement u set u.isConfirm=:isConfirm where u.id=:id ")
+	void updateIsConfirm(boolean isConfirm, int id);
 
-	JobAdvertisement getById(int id);
-
-	List<JobAdvertisement> getAllByEmployerId(int employerId);
-
-	JobAdvertisement findById(int id);
+	@Modifying
+	@Transactional
+	@Query("update JobAdvertisement u set u.isActive=:isActive where u.employer.userId=:userId and u.id=:id ")
+	void updateIsActive(boolean isActive, int userId, int id);
 }

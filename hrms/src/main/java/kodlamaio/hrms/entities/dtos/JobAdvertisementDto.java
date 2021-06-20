@@ -15,8 +15,6 @@ public class JobAdvertisementDto {
 
 	private LocalDate deadLine;
 
-	private boolean isActive;
-
 	private int workTypeId;
 
 	private int workHourId;

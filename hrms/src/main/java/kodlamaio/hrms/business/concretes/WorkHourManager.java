@@ -28,7 +28,7 @@ public class WorkHourManager implements WorkHourService {
 	@Override
 	public Result add(WorkHour workHour) {
 		this.workHourDao.save(workHour);
-		return new SuccessResult("job Seeker Added");
+		return new SuccessResult("Çalışma zamanu eklendi!");
 	}
 
 	@Override

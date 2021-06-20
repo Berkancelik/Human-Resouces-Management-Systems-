@@ -7,22 +7,26 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 
-public interface JobAdvertisementService {
-	Result add(JobAdvertisementDto JobAdvertisement);
-	Result update(JobAdvertisement jobAdvertisement);
-	Result delete(int id);
+public interface JobAdvertisementService {	
+
+	Result add(JobAdvertisementDto jobAdvertisementDto);
+
+	Result updateIsConfirm(boolean isConfirm, int id);
+
+	Result updateIsActive(boolean isActive, int userId, int id);
 	
-	DataResult<JobAdvertisement> getById(int id);	
 	DataResult<List<JobAdvertisement>> getAll();
-	DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementList();
-	DataResult<List<JobAdvertisement>> findAllByOrderByPublishedAt();
-	DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementByEmployer(int id);	
-	DataResult<List<JobAdvertisement>> getAllByEmployerId(int employerId);
-	Result changeIsActiveByEmployee(int jobAdverttisementId);	
-	Result changeIsOpenByEmployer(int jobAdverttisementId);	
-	DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee_False();
-	DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee();
+
+	DataResult<List<JobAdvertisement>> getByIsConfirm(boolean isConfirm);
+
+	DataResult<List<JobAdvertisement>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive);
+
+	DataResult<List<JobAdvertisement>> sortByReleaseDate();
+
+	DataResult<List<JobAdvertisement>> getByCompanyName(String companyName);
 	
+	DataResult<JobAdvertisement> getByJobAdvertisementId(int id);
+
 
 	
 

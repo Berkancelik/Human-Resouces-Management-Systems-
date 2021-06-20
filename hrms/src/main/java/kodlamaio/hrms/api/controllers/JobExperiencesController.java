@@ -1,7 +1,6 @@
 package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,7 @@ import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.dtos.JobExperienceForCandidateDto;
 
 @RestController
-@RequestMapping()
+@RequestMapping
 public class JobExperiencesController {
 	private JobExperienceService jobExperienceService;
 

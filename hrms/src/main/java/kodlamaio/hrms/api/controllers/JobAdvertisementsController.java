@@ -34,58 +34,50 @@ public class JobAdvertisementsController {
 	}
 
 	
-	@PostMapping("/add")
-	
-	public ResponseEntity<?> add(@Valid @RequestBody JobAdvertisementDto jobAdvert){
-		return ResponseEntity.ok(this.jobAdvertisementService.add(jobAdvert));
-	}
-	
-	
-	@PostMapping("/update")
-	public ResponseEntity<?> update(@Valid @RequestBody JobAdvertisement jobAdvertisement){
-		return ResponseEntity.ok(this.jobAdvertisementService.update(jobAdvertisement));
-	}
-	
-	@PostMapping("/delete")
-	public Result delete(@PathVariable("id") int id){
-		return this.jobAdvertisementService.delete(id);
-	}
-	
-	@GetMapping("/getbyid")
-	public DataResult<JobAdvertisement> getById(@PathVariable("id") int id){
-		return this.jobAdvertisementService.getById(id);
-	}
-	
-	@GetMapping("/getAll")
-	public DataResult<List<JobAdvertisement>> getAll(){		
+	@GetMapping("/getall")
+	public DataResult<List<JobAdvertisement>> getAll() {
 		return this.jobAdvertisementService.getAll();
 	}
-	
-	@GetMapping("/getAllActiveAndOpenJobAdverts")
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee(){
-		return this.jobAdvertisementService.getAllByIsActiveByEmployee();
-	}
-	
-	@GetMapping("/getAllOpenJobAdvertsAndIsActiveFalse")
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveByEmployee_False(){
-		return this.jobAdvertisementService.getAllByIsActiveByEmployee_False();
-	}
-	
-	@GetMapping("/getAllByEmployerId")
-	public DataResult<List<JobAdvertisement>> getAllByEmployerId(@RequestParam int id){
-		return this.jobAdvertisementService.getAllByEmployerId(id);
-	}
-	
 
-	@PostMapping("/changeactivestatus")
-	public Result changeIsActiveByEmployee(@RequestParam int id) {
-		return this.jobAdvertisementService.changeIsActiveByEmployee(id);
+	@GetMapping("/getbyisconfirm")
+	public DataResult<List<JobAdvertisement>> getByIsActive(@RequestParam boolean isConfirm) {
+		return this.jobAdvertisementService.getByIsConfirm(isConfirm);
 	}
 
-	@PostMapping("/changeopenstatus")
-	public Result changeIsOpenByEmployer(@RequestParam int id) {
-		return this.jobAdvertisementService.changeIsOpenByEmployer(id);
+	@GetMapping("/getbyisconfirmandisactive")
+	public DataResult<List<JobAdvertisement>> getByIsConfirmAndIsActive(@RequestParam boolean isConfirm,
+			@RequestParam boolean isActive) {
+		return this.jobAdvertisementService.getByIsConfirmAndIsActive(isConfirm, isActive);
 	}
-	
+
+	@GetMapping("/sortbyreleasedate")
+	public DataResult<List<JobAdvertisement>> sortByReleaseDate() {
+		return this.jobAdvertisementService.sortByReleaseDate();
+	}
+
+	@GetMapping("/getbycompanyname")
+	public DataResult<List<JobAdvertisement>> getByCompanyName(@RequestParam String companyName) {
+		return this.jobAdvertisementService.getByCompanyName(companyName);
+	}
+
+	@PostMapping("/add")
+	public Result add(@Valid @RequestBody JobAdvertisementDto jobAdvertisementDto) {
+		return this.jobAdvertisementService.add(jobAdvertisementDto);
+	}
+
+	@PostMapping("/updateisactive")
+	public Result updateIsActive(@RequestParam boolean isActive, @RequestParam int userId, @RequestParam int id) {
+		return this.jobAdvertisementService.updateIsActive(isActive, userId, id);
+	}
+
+	@PostMapping("/updateisconfirm")
+	public Result updateIsConfirm(@RequestParam boolean isConfirm, @RequestParam int id) {
+		return this.jobAdvertisementService.updateIsConfirm(isConfirm, id);
+	}
+
+	@GetMapping("/getbyadvertisementid")
+	public DataResult<JobAdvertisement> getByJobAdvertisementId(@RequestParam int id) {
+		return this.jobAdvertisementService.getByJobAdvertisementId(id);
+	}
 
 }
