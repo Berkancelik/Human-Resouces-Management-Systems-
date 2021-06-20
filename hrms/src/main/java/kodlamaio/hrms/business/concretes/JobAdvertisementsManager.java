@@ -14,7 +14,6 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CityDao;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
-import kodlamaio.hrms.dataAccess.abstracts.JobAdvertConfirmDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobTitleDao;
 import kodlamaio.hrms.dataAccess.abstracts.WorkHourDao;
@@ -31,12 +30,11 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 	private JobTitleDao jobTitleDao;
 	private WorkTypeDao workTypeDao;
 	private WorkHourDao workHourDao;
-	private JobAdvertConfirmDao jobAdvertConfirmDao;
 
 	@Autowired
 	public JobAdvertisementsManager(JobAdvertisementDao jobAdvertisementDao, CityDao cityDao, EmployerDao employerDao,
-			JobTitleDao jobTitleDao, WorkTypeDao workTypeDao, WorkHourDao workHourDao,
-			JobAdvertConfirmDao jobAdvertConfirmDao) {
+			JobTitleDao jobTitleDao, WorkTypeDao workTypeDao, WorkHourDao workHourDao
+			 ) {
 		super();
 		this.jobAdvertisementDao = jobAdvertisementDao;
 		this.cityDao = cityDao;
@@ -44,7 +42,6 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 		this.jobTitleDao = jobTitleDao;
 		this.workTypeDao = workTypeDao;
 		this.workHourDao = workHourDao;
-		this.jobAdvertConfirmDao = jobAdvertConfirmDao;
 	}
 
 	@Override
@@ -82,7 +79,7 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 
 	@Override
 	public Result updateIsActive(boolean isActive, int userId, int id) {
-		this.jobAdvertisementDao.updateIsActive(isActive, userId, id);
+		this.jobAdvertisementDao.updateIsActive(isActive,  id);
 		return new SuccessResult("İş ilanı aktiflik durumu güncellendi");
 	}
 
@@ -104,8 +101,8 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 	}
 
 	@Override
-	public DataResult<JobAdvertisement> getByJobAdvertisementId(int id) {
-		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
+	public DataResult<JobAdvertisement> getById(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getById(id));
 	}
 
 	@Override

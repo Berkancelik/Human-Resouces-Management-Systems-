@@ -75,9 +75,9 @@ public class JobAdvertisementsController {
 		return this.jobAdvertisementService.updateIsConfirm(isConfirm, id);
 	}
 
-	@GetMapping("/getbyadvertisementid")
-	public DataResult<JobAdvertisement> getByJobAdvertisementId(@RequestParam int id) {
-		return this.jobAdvertisementService.getByJobAdvertisementId(id);
+	@GetMapping("/getbyid")
+	public DataResult<JobAdvertisement> getById(@RequestParam int id) {
+		return this.jobAdvertisementService.getById(id);
 	}
 
 }

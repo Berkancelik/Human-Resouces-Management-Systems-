@@ -7,8 +7,8 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.ResumeLink;
 
 public interface ResumeLinkService {
-	Result add(ResumeLink eesumeLink);
-	Result update(ResumeLink eesumeLink);
+	Result add(ResumeLink resumeLink);
+	Result update(ResumeLink resumeLink);
 	Result delete(int id);
 	DataResult<ResumeLink> getById(int id);	
 	DataResult<List<ResumeLink>> getAllByCandidateId(int id);
