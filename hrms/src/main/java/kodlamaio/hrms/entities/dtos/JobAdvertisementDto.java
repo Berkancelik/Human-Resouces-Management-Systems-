@@ -27,8 +27,8 @@ public class JobAdvertisementDto {
 
 	private int cityId;
 
-	private int minSalary;
+	private int salaryMin;
 
-	private int maxSalary;
+	private int salaryMax;
 
 }
