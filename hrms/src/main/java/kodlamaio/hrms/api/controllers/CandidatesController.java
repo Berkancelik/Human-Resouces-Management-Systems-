@@ -2,7 +2,10 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,9 +28,9 @@ public class CandidatesController {
 	private CandidateService candidateService;
 	
 	@Autowired
-	public CandidatesController(CandidateService jobCandidateService) {
+	public CandidatesController(CandidateService candidateService) {
 		super();
-		this.candidateService = jobCandidateService;
+		this.candidateService = candidateService;
 	}
 	
 	@GetMapping("/getall")
@@ -35,11 +38,12 @@ public class CandidatesController {
 		return this.candidateService.getAll();
 	}
 		
+
 	@PostMapping("/add")
-	public Result add(@RequestBody Candidate candidate) {
-		return this.candidateService.add(candidate);
-		
+	public ResponseEntity<?> add(@Valid @RequestBody Candidate candidate) {
+		return ResponseEntity.ok(this.candidateService.add(candidate));
 	}
+
 	
 	@GetMapping("/getJobseekerCVById")
 	public DataResult<CandidateResumeDto> getCandidateCVById(@RequestParam int id){

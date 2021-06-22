@@ -6,8 +6,10 @@ import kodlamaio.hrms.fakeService.MernisServiceFake;
 @Service
 public class MernisServiceAdapter implements ValidationService {
 
+
+
 	@Override
-	public boolean validateByMernis(long nationalId, String firstname, String lastName, int yearOfBirth) {
+	public boolean validateByMernis(String nationalId, String firstname, String lastName, int yearOfBirth) {
 		MernisServiceFake client = new MernisServiceFake();
 
 		boolean result = true;

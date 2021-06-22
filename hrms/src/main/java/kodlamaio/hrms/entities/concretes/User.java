@@ -42,7 +42,7 @@ public class User   {
 	@Column(name= "is_active")
 	private boolean isActive = true;
  
-	
+	@Email(message = "Email formatı geçersiz")
 	@Column(name= "email_address")
 	private String email;
 	
