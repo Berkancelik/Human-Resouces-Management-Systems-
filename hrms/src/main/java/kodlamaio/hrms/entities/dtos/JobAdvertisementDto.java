@@ -13,7 +13,7 @@ public class JobAdvertisementDto {
 
 	private int openTitleCount;
 
-	private LocalDate deadLine;
+	private LocalDate deadline;
 
 	private int workTypeId;
 

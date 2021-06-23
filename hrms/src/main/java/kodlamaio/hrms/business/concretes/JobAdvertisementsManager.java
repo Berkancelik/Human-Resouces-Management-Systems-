@@ -53,7 +53,8 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 		jobAdvertisement.setSalaryMax(jobAdvertisementDto.getSalaryMax());
 		jobAdvertisement.setOpenTitleCount(jobAdvertisementDto.getOpenTitleCount());
 		jobAdvertisement.setPublishedAt(LocalDate.now());
-		jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadLine());
+
+		jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadline());	
 		jobAdvertisement.setActive(true);
 		jobAdvertisement.setConfirm(false);
 		jobAdvertisement.setEmployer(this.employerDao.getById(jobAdvertisementDto.getEmployerId()));
