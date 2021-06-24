@@ -21,12 +21,12 @@ import kodlamaio.hrms.entities.concretes.Employer;
 @RestController
 @RequestMapping("/api/employers")
 @CrossOrigin
-public class EmpolyersController {
+public class EmployersController {
 	
 	private EmployerService employerService;
 	
 	@Autowired
-	public EmpolyersController(EmployerService employerService) {
+	public EmployersController(EmployerService employerService) {
 		super();
 		this.employerService = employerService;
 	}
