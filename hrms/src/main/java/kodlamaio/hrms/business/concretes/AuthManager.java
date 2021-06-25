@@ -15,6 +15,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.verification.VerificationService;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.User;
 import kodlamaio.hrms.entities.concretes.VerificationCode;
 
 @Service
@@ -173,6 +174,11 @@ public class AuthManager implements AuthService {
 		this.verificationCodeService.add(verificationCode);
 		System.out.println("Doğrulama kodu bu email adresine gönderildi : " + " " + email);
 	}
+	
+    @Override
+    public Result login(User user) {
+        return new SuccessResult("Kullanıcı girişi başarılı.");
+    }
 
 
 }
