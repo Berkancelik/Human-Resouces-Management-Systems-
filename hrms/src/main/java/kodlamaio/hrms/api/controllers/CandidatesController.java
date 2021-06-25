@@ -45,7 +45,7 @@ public class CandidatesController {
 	}
 
 	
-	@GetMapping("/getJobseekerCVById")
+	@GetMapping("/getcandidatecvbyid")
 	public DataResult<CandidateResumeDto> getCandidateCVById(@RequestParam int id){
 		return this.candidateService.getCandidateCVById(id);
 	}
