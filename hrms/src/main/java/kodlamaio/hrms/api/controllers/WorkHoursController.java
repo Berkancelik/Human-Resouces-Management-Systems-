@@ -36,7 +36,7 @@ public class WorkHoursController {
 	}
 	
 	@GetMapping("getall")
-	public DataResult<List<WorkHour>> getAll(){
-		return this.workHourService.getAll();
+	public ResponseEntity<?>  getAll(){
+		return ResponseEntity.ok(this.workHourService.getAll());
 	}
 }

@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id")
 @EqualsAndHashCode(callSuper = false)
+
 public class Candidate extends User {
 
 	
@@ -79,16 +80,7 @@ public class Candidate extends User {
 	@JsonIgnore
 	@OneToOne(mappedBy = "candidate")
 	private ResumeImage image;
-	
-    @OneToMany(mappedBy = "candidate")
-    @JsonIgnore()
-    private List<CandidateJobAdvertisementFavorite> candidateJobAdvertisementFavorites;
-    
-	@JsonIgnore
-	@OneToMany(mappedBy = "candidate")
-	private  List<Country>countries;
-	
- 
+  
 	
 
 

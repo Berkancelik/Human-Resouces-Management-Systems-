@@ -32,6 +32,7 @@ public class AuthsController {
 		return ResponseEntity.ok(authService.registerCandidate(candidate, confirmPassword));
 	}  
 	
+	
 
 
 }

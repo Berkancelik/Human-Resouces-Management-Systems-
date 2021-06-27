@@ -36,7 +36,7 @@ public class WorkTypesController {
 	}
 	
 	@GetMapping("getall")
-	public DataResult<List<WorkType>> getAll(){
-		return this.workTypeService.getAll();
+	public ResponseEntity<?> getAll(){
+		return ResponseEntity.ok(this.workTypeService.getAll());
 	}
 }

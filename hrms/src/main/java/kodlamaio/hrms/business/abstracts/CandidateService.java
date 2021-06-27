@@ -16,5 +16,8 @@ public interface CandidateService {
 	DataResult<List<Candidate>> getAll();
 	DataResult<Candidate> getCandidateByNationalId(String nationalId);
 	DataResult<CandidateResumeDto> getCandidateCVById(int id);
+	Result likeJobAdvertisement(int candidateId, int jobAdvertisementId);
+	boolean existsCandidateByEmail(String email);	
+	DataResult<List<Candidate>> getAllByFavouriteJobAdvertisementsId(int id);
 	
 }
