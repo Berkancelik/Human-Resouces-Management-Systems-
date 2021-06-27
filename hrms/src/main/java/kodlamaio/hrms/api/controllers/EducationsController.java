@@ -1,19 +1,31 @@
 package kodlamaio.hrms.api.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.EducationService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.dtos.EducationForCandidateAddDto;
@@ -23,47 +35,55 @@ import kodlamaio.hrms.entities.dtos.EducationForCandidateAddDto;
 @CrossOrigin
 public class EducationsController {
 	private EducationService educationService;
-	
+
 	@Autowired
 	public EducationsController(EducationService educationService) {
 		super();
 		this.educationService = educationService;
 	}
-	
+
 	@PostMapping("/add")
-	public Result add(@RequestBody EducationForCandidateAddDto educationForCandidateAddDto){
-		return this.educationService.add(educationForCandidateAddDto);
+	public ResponseEntity<?> add(@Valid @RequestBody EducationForCandidateAddDto educationForCandidateAddDto) {
+		return ResponseEntity.ok(this.educationService.add(educationForCandidateAddDto));
 	}
-	
-	@PostMapping("/update")
-	public Result update(@RequestBody Education schoolForCV){
-		return this.educationService.update(schoolForCV);
+
+	@PutMapping("/update")
+	public ResponseEntity<?> update(@Valid @RequestBody Education education) {
+		return ResponseEntity.ok(this.educationService.update(education));
 	}
-	
-	@PostMapping("/delete")
-	public Result delete(@RequestParam int id){
-		return this.educationService.delete(id);
+
+	@DeleteMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam(name = "id") int id) {
+		return ResponseEntity.ok(this.educationService.delete(id));
 	}
-	
 	@GetMapping("/getbyid")
-	public DataResult<Education> getById(@RequestParam int id){
-		return this.educationService.getById(id);
+	public  ResponseEntity<?>getById(@RequestParam int id) {
+		return ResponseEntity.ok(this.educationService.getById(id));
 	}
-	
+
 	@GetMapping("/getall")
-	public DataResult<List<Education>> getAll(){
-		return this.educationService.getAll();
+	public ResponseEntity<?> getAll() {
+		return ResponseEntity.ok(this.educationService.getAll());
 	}
-	
+
 	@GetMapping("/getAllByCandidateIdOrderByEndDescd")
-	public DataResult<List<Education>> getAllByJobseekerIdOrderByEndedDateDesc(@RequestParam int id){
-		return this.educationService.getAllByJobseekerIdOrderByEndedDateDesc(id);
+	public ResponseEntity<?> getAllByJobseekerIdOrderByEndedDateDesc(@RequestParam int id) {
+		return ResponseEntity.ok(this.educationService.getAllByJobseekerIdOrderByEndedDateDesc(id));
+	}
+
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?>  getAllByCandidateId(@RequestParam int id) {
+		return ResponseEntity.ok(this.educationService.getAllByCandidateId(id));
 	}
 	
-	@GetMapping("/getAllByCandidateId")
-	public DataResult<List<Education>> getAllByCandidateId(@RequestParam int id){
-		return this.educationService.getAllByCandidateId(id);
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions) {
+		Map<String, String> validationErrors = new HashMap<String, String>();
+		for (FieldError fieldError: exceptions.getBindingResult().getFieldErrors()) {
+			validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
+		}
+		return new ErrorDataResult<Object>("Validation Errors", validationErrors);
 	}
-				
 
 }

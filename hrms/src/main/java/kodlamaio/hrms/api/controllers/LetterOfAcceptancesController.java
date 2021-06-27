@@ -1,21 +1,30 @@
 package kodlamaio.hrms.api.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.LetterOfAcceptanceService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.entities.concretes.LetterOfAcceptance;
 
 @RestController
@@ -28,32 +37,41 @@ public class LetterOfAcceptancesController {
 	
 
 	@PostMapping("/add")
-	public Result add( @RequestBody LetterOfAcceptance letterOfAcceptance){
-		return this.letterOfAcceptanceService.add(letterOfAcceptance);
+	public ResponseEntity<?> add(@Valid @RequestBody LetterOfAcceptance letterOfAcceptance) {
+		return ResponseEntity.ok(this.letterOfAcceptanceService.add(letterOfAcceptance));
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<?>update(@Valid @RequestBody LetterOfAcceptance letterOfAcceptance){
+		return ResponseEntity.ok(this.letterOfAcceptanceService.update(letterOfAcceptance));
 		
 	}
 	
-	@PostMapping("/update")
-	public Result update( @RequestBody LetterOfAcceptance letterOfAcceptance){
-		return this.letterOfAcceptanceService.update(letterOfAcceptance);
-		
+	@DeleteMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam int id) {
+		return ResponseEntity.ok(this.letterOfAcceptanceService.delete(id));
 	}
-	
-	@PostMapping("/delete")
-	public Result delete( @RequestParam int  id){
-		return this.letterOfAcceptanceService.delete(id);
-		
-	}
+
 	
 	@GetMapping("/getall")
-	public DataResult<List<LetterOfAcceptance>> getAll(){
-		return this.letterOfAcceptanceService.getAll();
+	public ResponseEntity<?> getAll(){
+		return ResponseEntity.ok(this.letterOfAcceptanceService.getAll());
 	}
 	
 
 	@GetMapping("/getById")
-	public DataResult<LetterOfAcceptance> getById(@RequestParam int id){
-		return this.letterOfAcceptanceService.getById(id);
+	public ResponseEntity<?>getById(@RequestParam int id){
+		return ResponseEntity.ok(this.letterOfAcceptanceService.getById(id));
+	}
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions) {
+		Map<String, String> validationErrors = new HashMap<String, String>();
+		for (FieldError fieldError: exceptions.getBindingResult().getFieldErrors()) {
+			validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
+		}
+		return new ErrorDataResult<Object>("Validation Errors", validationErrors);
 	}
 
 }

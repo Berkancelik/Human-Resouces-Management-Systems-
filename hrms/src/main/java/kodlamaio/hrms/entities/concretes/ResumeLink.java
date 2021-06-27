@@ -42,11 +42,11 @@ public class ResumeLink   {
 	@Column(name= "is_active")
 	private boolean isActive = true;
 
-	@Column(name = "name")
-	private String name;
+	@Column(name = "github")
+	private String github;
 
-	@Column(name = "url_address")
-	private String url;
+	@Column(name = "linkedin")
+	private String linkedin;
 
 	@ManyToOne()
 	@JoinColumn(name = "candidate_id")

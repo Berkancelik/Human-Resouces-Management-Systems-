@@ -8,9 +8,11 @@ import kodlamaio.hrms.entities.concretes.JobTitle;
 
 public interface JobTitleService {
 	DataResult<List<JobTitle>> getAll();
-	Result add(JobTitle jobPosition);
-	DataResult<JobTitle> getJobByTitle(String title);
+	DataResult<JobTitle>getById(int id);	
+	Result add(JobTitle jobTitle);
+	Result delete(int id);
+	Result update(JobTitle jobTitle);
 	
-	
+	boolean existsJobTitleByJobTitle(String jobTitle);
 
 }

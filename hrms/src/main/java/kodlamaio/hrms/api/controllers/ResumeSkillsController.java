@@ -1,17 +1,30 @@
 package kodlamaio.hrms.api.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.ResumeSkillService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.ResumeSkill;
 import kodlamaio.hrms.entities.dtos.ResumeSkillForCandidateDto;
@@ -21,8 +34,7 @@ import kodlamaio.hrms.entities.dtos.ResumeSkillForCandidateDto;
 @CrossOrigin
 public class ResumeSkillsController {
 	private ResumeSkillService resumeSkillService;
-	
-	
+
 	@Autowired
 	public ResumeSkillsController(ResumeSkillService resumeSkillService) {
 		super();
@@ -30,36 +42,43 @@ public class ResumeSkillsController {
 	}
 
 	@PostMapping("/add")
-	public Result add( @RequestBody ResumeSkillForCandidateDto resumeSkillForCandidateDto){
-		return this.resumeSkillService.add(resumeSkillForCandidateDto);
-		
-	}
-	
-	@PostMapping("/update")
-	public Result update( @RequestBody ResumeSkill resumeSkill){
-		return this.resumeSkillService.update(resumeSkill);
-		
-	}
-	
-	@PostMapping("/delete")
-	public Result delete( @RequestParam int  id){
-		return this.resumeSkillService.delete(id);
-		
-	}
-	
-	@GetMapping("/getall")
-	public DataResult<List<ResumeSkill>> getAll(){
-		return this.resumeSkillService.getAll();
-	}
-	
-	@GetMapping("/getAllByCandidateId")
-	public DataResult<List<ResumeSkill>> getAllByCandidateId(@RequestParam int id){
-		return this.resumeSkillService.getAllByCandidateId(id);
-	}
-	@GetMapping("/getById")
-	public DataResult<ResumeSkill> getById(@RequestParam int id){
-		return this.resumeSkillService.getById(id);
+	public ResponseEntity<?> add(@Valid @RequestBody ResumeSkillForCandidateDto resumeSkillForCandidateDto) {
+		return ResponseEntity.ok(this.resumeSkillService.add(resumeSkillForCandidateDto));
 	}
 
+	@PutMapping("/update")
+	public ResponseEntity<?> update(@Valid @RequestBody ResumeSkill resumeSkill) {
+		return ResponseEntity.ok(this.resumeSkillService.update(resumeSkill));
+	}
+
+	@DeleteMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam(name = "id") int id) {
+		return ResponseEntity.ok(this.resumeSkillService.delete(id));
+	}
+
+	@GetMapping("/getall")
+	public ResponseEntity<?> getAll() {
+		return ResponseEntity.ok(this.resumeSkillService.getAll());
+	}
+
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?> getAllByCandidateId(@RequestParam int id) {
+		return ResponseEntity.ok(this.resumeSkillService.getAllByCandidateId(id));
+	}
+
+	@GetMapping("/getById")
+	public ResponseEntity<?> getById(@RequestParam int id) {
+		return ResponseEntity.ok(this.resumeSkillService.getById(id));
+	}
+
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions) {
+		Map<String, String> validationErrors = new HashMap<String, String>();
+		for (FieldError fieldError : exceptions.getBindingResult().getFieldErrors()) {
+			validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
+		}
+		return new ErrorDataResult<Object>("Doğrulama Hataları");
+	}
 
 }

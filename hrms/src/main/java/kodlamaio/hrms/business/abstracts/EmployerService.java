@@ -7,7 +7,13 @@ import kodlamaio.hrms.entities.concretes.Employer;
 
 public interface EmployerService {
 	DataResult<List<Employer>> getAll();
+	DataResult<Employer> getById(int id);
+	
 	Result add(Employer employer);
+	Result delete(int id);
+	Result update(Employer employer);
+	
+	boolean existsEmployerByEmail(String email);
 
 
 }
