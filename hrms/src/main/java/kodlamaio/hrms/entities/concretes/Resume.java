@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
-import java.util.List;
 
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name ="resumes")
+@Table(name = "resumes")
 public class Resume {
 
 	@Id
@@ -32,42 +32,35 @@ public class Resume {
 	private int id;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "candidate")
+	@OneToMany(mappedBy = "resume")
 	private List<Education> educations;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "candidate")
-	private List<ResumeSkill> programingSkills;
+	@OneToMany(mappedBy = "resume")
+	private List<ResumeSkill> resumeSkills;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "candidate")
+	@OneToMany(mappedBy = "resume")
 	private List<ResumeLink> links;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "candidate")
+	@OneToMany(mappedBy = "resume")
 	private List<Language> languages;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "candidate")
-	private List<JobExperience> experiences;
+	@OneToMany(mappedBy = "resume")
+	private List<JobExperience> jobExperiences;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "candidate")
-	private List<LetterOfAcceptance> coverLetters;
+	@OneToOne(mappedBy = "resume")
+	private LetterOfAcceptance letterOfAcceptance;
 
-	@JsonIgnore
-	@OneToOne(mappedBy = "candidate")
-	private ResumeImage image;
-
-	@OneToMany(mappedBy = "candidate")
-	@JsonIgnore()
-	private List<CandidateJobAdvertisementFavorite> candidateJobAdvertisementFavorite;
+	
 	
 	@JoinColumn(name = "candidate_id", referencedColumnName = "user_id")
 	@ManyToOne()
 	private Candidate candidate;
 
-	
 	public Resume(int id) {
 		super();
 		this.id = id;

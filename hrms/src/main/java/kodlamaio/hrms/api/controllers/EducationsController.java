@@ -66,15 +66,9 @@ public class EducationsController {
 		return ResponseEntity.ok(this.educationService.getAll());
 	}
 
-	@GetMapping("/getAllByCandidateIdOrderByEndDescd")
-	public ResponseEntity<?> getAllByJobseekerIdOrderByEndedDateDesc(@RequestParam int id) {
-		return ResponseEntity.ok(this.educationService.getAllByJobseekerIdOrderByEndedDateDesc(id));
-	}
+	
 
-	@GetMapping("/getAllByCandidateId")
-	public ResponseEntity<?>  getAllByCandidateId(@RequestParam int id) {
-		return ResponseEntity.ok(this.educationService.getAllByCandidateId(id));
-	}
+
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

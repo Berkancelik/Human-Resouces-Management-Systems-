@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -78,6 +79,10 @@ public class JobAdvertisement {
 	@ManyToOne()
 	@JoinColumn(name = "job_work_type_id")
 	private WorkType workType;
+	
+	@OneToOne(mappedBy = "jobAdvertisement", orphanRemoval = true)
+	private CandidateJobAdvertisementFavorite candidateJobAdvertisementFavorite;
+
 	
 	
 

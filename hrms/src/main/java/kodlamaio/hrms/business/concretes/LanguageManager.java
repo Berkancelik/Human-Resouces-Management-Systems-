@@ -29,7 +29,7 @@ public class LanguageManager implements LanguageService {
 	public Result add(LanguageForCandidateAddDto languageForCandidateAddDto) {
 		Language language = new Language();
 		language.setId(0);
-		language.setResumes(
+		language.setResume(
 				this.resumeDao.getById(languageForCandidateAddDto.getId()));
 		language.setLanguageName(languageForCandidateAddDto.getLanguageName());
 		language.setLevel(languageForCandidateAddDto.getLevel());

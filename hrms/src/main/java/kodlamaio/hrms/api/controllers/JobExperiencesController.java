@@ -59,14 +59,10 @@ public class JobExperiencesController {
 	public ResponseEntity<?> getAll() {
 		return ResponseEntity.ok(this.jobExperienceService.getAll());
 	}
-	
 
 	
 
-	@GetMapping("/getallbycandidateidOrderbydesc")
-	public ResponseEntity<?> getAllByCandidateIdOrderByDesc(@RequestParam int id) {
-		return ResponseEntity.ok(this.jobExperienceService.getAllByCandidateIdOrderByDesc(id));
-	}
+	
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

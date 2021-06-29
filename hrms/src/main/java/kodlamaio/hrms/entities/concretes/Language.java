@@ -57,6 +57,6 @@ public class Language     {
 	
 	@JoinColumn(name = "resume_id")
 	@ManyToOne()
-	private Resume resumes;
+	private Resume resume;
 
 }

@@ -22,7 +22,7 @@ public class CandidateJobAdvertisementFavorite {
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
-    @ManyToOne()
+    @OneToOne()
     @JoinColumn(name = "job_advertisement_id")
     private JobAdvertisement jobAdvertisement;
 }

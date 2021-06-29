@@ -11,8 +11,6 @@ import kodlamaio.hrms.entities.dtos.EducationForCandidateAddDto;
 public interface EducationDao extends JpaRepository<Education, Integer> {
 	  
 	Education getById(int id);
-	List<Education> getAllByCandidate_idOrderByEndedDateDesc(int id);
-	List<Education> getAllByCandidate_id(int id);
 
 }
  

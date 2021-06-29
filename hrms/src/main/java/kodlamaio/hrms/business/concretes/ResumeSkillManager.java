@@ -31,7 +31,7 @@ public class ResumeSkillManager implements ResumeSkillService {
 	@Override
 	public Result add(ResumeSkillDto resumeSkillDto) {
 		ResumeSkill resumeSkill = new ResumeSkill();
-		resumeSkill.setResumes(
+		resumeSkill.setResume(
 				this.resumeDao.getById(resumeSkillDto.getResumeId()));
 		resumeSkill.setSkillName(resumeSkillDto.getSkillName());
 		this.resumeSkillDao.save(resumeSkill);

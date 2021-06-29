@@ -15,6 +15,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="resume_educations")
 @EqualsAndHashCode(callSuper = false) 
-@PrimaryKeyJoinColumn(name="user_id")
+
 public class Education   {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,8 +58,8 @@ public class Education   {
 	private LocalDate endedDate;
 	
 	
-	@JoinColumn(name = "resume_id")
 	@ManyToOne()
-	private Resume resumes;
+	@JoinColumn(name = "resume_id")
+	private Resume resume;
 
 }

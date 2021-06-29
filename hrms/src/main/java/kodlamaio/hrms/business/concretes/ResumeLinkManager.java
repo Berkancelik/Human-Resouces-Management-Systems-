@@ -28,7 +28,7 @@ public class ResumeLinkManager implements ResumeLinkService {
 	public Result add(ResumeLinkForCandidateDto resumeLinkForCandidateDto) {
 		ResumeLink resumeLink = new ResumeLink();
 
-		resumeLink.setResumes(this.resumeDao.getById(resumeLinkForCandidateDto.getResumeId()));
+		resumeLink.setResume(this.resumeDao.getById(resumeLinkForCandidateDto.getResumeId()));
 		resumeLink.setLinkedin(resumeLinkForCandidateDto.getLinkedin());
 		resumeLink.setGithub(resumeLinkForCandidateDto.getGithub());
 

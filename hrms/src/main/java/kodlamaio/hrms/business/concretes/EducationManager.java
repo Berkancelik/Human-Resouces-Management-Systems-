@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -33,7 +34,7 @@ public class EducationManager implements EducationService {
 	public Result add(EducationForCandidateAddDto educationForCandidateAddDto) {
 		Education education = new Education();
 		education.setId(0);
-		education.setResumes(
+		education.setResume(
 				this.resumeDao.getById(educationForCandidateAddDto.getResumeId()));
 		education.setSchoolName(educationForCandidateAddDto.getSchoolName());
 		education.setDepartment(educationForCandidateAddDto.getDepartment());
@@ -68,16 +69,15 @@ public class EducationManager implements EducationService {
 
 	}
 
-	@Override
-	public DataResult<List<Education>> getAllByJobseekerIdOrderByEndedDateDesc(int id) {
-		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidate_idOrderByEndedDateDesc(id));
-
-	}
 
 	@Override
-	public DataResult<List<Education>> getAllByCandidateId(int id) {
-		return new SuccessDataResult<List<Education>>(this.educationDao.getAllByCandidate_id(id));
-
+	public DataResult<List<Education>> sortByEndYearOfEducation() {
+		Sort sort = Sort.by(Sort.Direction.DESC, "endYearOfEducation");
+		return new SuccessDataResult<List<Education>>(this.educationDao.findAll(sort));
 	}
+
+
+
+
 
 }

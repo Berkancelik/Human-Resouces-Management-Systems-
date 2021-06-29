@@ -18,6 +18,7 @@ import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.Language;
 import kodlamaio.hrms.entities.dtos.JobExperienceForCandidateDto;
+import org.springframework.data.domain.Sort;
 
 @Service
 public class JobExperienceManager implements JobExperienceService {
@@ -37,10 +38,10 @@ public class JobExperienceManager implements JobExperienceService {
 	public Result add(JobExperienceForCandidateDto jobExperienceForCandidateDto) {
 		JobExperience jobExperience = new JobExperience();
 		jobExperience.setId(0);
-		jobExperience.setResumes(
+		jobExperience.setResume(
 				this.resumeDao.getById(jobExperienceForCandidateDto.getId()));
 		jobExperience.setCompnayName(jobExperienceForCandidateDto.getCompanyName());
-		jobExperience.setJobTitles(this.jobTitleDao.getById(jobExperienceForCandidateDto.getResumeId()));
+		jobExperience.setJobTitle(this.jobTitleDao.getById(jobExperienceForCandidateDto.getResumeId()));
 		jobExperience.setStartedDate(jobExperienceForCandidateDto.getStartedDate());
 		jobExperience.setEndedDate(jobExperienceForCandidateDto.getStartedDate());
 		this.jobExperienceDao.save(jobExperience);
@@ -53,7 +54,7 @@ public class JobExperienceManager implements JobExperienceService {
 				.getById(jobExperienceForCandidateDto.getId());
 		jobExperienceUpdate.setCompnayName(jobExperienceForCandidateDto.getCompanyName());
 		jobExperienceUpdate
-				.setJobTitles(this.jobTitleDao.getById(jobExperienceForCandidateDto.getResumeId()));
+				.setJobTitle(this.jobTitleDao.getById(jobExperienceForCandidateDto.getResumeId()));
 		jobExperienceUpdate.setStartedDate(jobExperienceForCandidateDto.getStartedDate());
 		jobExperienceUpdate.setEndedDate(jobExperienceForCandidateDto.getEndedDate());
 		this.jobExperienceDao.save(jobExperienceUpdate);
@@ -76,9 +77,9 @@ public class JobExperienceManager implements JobExperienceService {
 	
 
 	@Override
-	public DataResult<List<JobExperience>> getAllByCandidateIdOrderByDesc(int id) {
-		return new SuccessDataResult<List<JobExperience>>(
-				this.jobExperienceDao.getAllByCandidate_idOrderByEndedDateDesc(id));
+	public DataResult<List<JobExperience>> sortByJobEndYear() {
+		Sort sort = Sort.by(Sort.Direction.DESC, "endYearOfJob");
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAll(sort));
 	}
 
 

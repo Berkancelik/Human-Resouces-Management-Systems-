@@ -47,5 +47,5 @@ public class ResumeSkill   {
 	
 	@JoinColumn(name = "resume_id")
 	@ManyToOne()
-	private Resume resumes;
+	private Resume resume;
 }
