@@ -16,7 +16,7 @@ public class JobExperienceForCandidateDto {
 
 	private String companyName;
 
-	private String position;
+	private int jobTitleId;
 
 	private LocalDate startedDate;
 

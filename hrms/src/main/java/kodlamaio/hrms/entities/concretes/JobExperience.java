@@ -51,9 +51,7 @@ public class JobExperience   {
 	private String compnayName;
 	
 	
-	@Column(name= "position")
-	private String position;
-	
+
 	@JoinColumn(name = "job_title_id")
 	@ManyToOne()
 	private JobTitle jobTitle;

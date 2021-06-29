@@ -12,6 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id")
 @EqualsAndHashCode(callSuper = false)
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "resumes", "candidateJobAdvertisementFavorites" })
 
 public class Candidate extends User {
 
@@ -51,14 +53,16 @@ public class Candidate extends User {
 	@Column(name = "is_verified")
 	private boolean isVerified = false;
 
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")
-	private List<Resume> candidate;
+	private List<Resume> resumes;
 	
 	@JsonIgnore
 	@OneToOne(mappedBy = "candidate")
 	private ResumeImage image;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "candidate", orphanRemoval = true)
 	private List<CandidateJobAdvertisementFavorite> candidateJobAdvertisementFavorites;
 

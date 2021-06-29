@@ -11,12 +11,10 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobExperienceDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobTitleDao;
 import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.entities.concretes.JobExperience;
-import kodlamaio.hrms.entities.concretes.Language;
 import kodlamaio.hrms.entities.dtos.JobExperienceForCandidateDto;
 import org.springframework.data.domain.Sort;
 
@@ -27,7 +25,7 @@ public class JobExperienceManager implements JobExperienceService {
 	JobTitleDao jobTitleDao;
 
 	@Autowired
-	public JobExperienceManager(JobExperienceDao jobExperienceDao, CandidateDao candidateDao,ResumeDao resumeDao) {
+	public JobExperienceManager(JobExperienceDao jobExperienceDao, JobTitleDao jobTitleDao,ResumeDao resumeDao) {
 		super();
 		this.jobExperienceDao = jobExperienceDao;
 		this.resumeDao = resumeDao;
