@@ -45,8 +45,7 @@ public class ResumeSkill   {
 	@Column(name = "skill_name")
 	private String skillName;
 	
-	@ManyToOne
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
-
+	@JoinColumn(name = "resume_id")
+	@ManyToOne()
+	private Resume resumes;
 }

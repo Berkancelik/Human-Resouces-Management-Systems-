@@ -2,10 +2,12 @@ package kodlamaio.hrms.business.abstracts;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.concretes.ResumeImage;
 import kodlamaio.hrms.entities.dtos.CandidateResumeDto;
 
 public interface CandidateService {
@@ -15,9 +17,6 @@ public interface CandidateService {
 	DataResult<Candidate> getById(int id);	
 	DataResult<List<Candidate>> getAll();
 	DataResult<Candidate> getCandidateByNationalId(String nationalId);
-	DataResult<CandidateResumeDto> getCandidateCVById(int id);
-	Result likeJobAdvertisement(int candidateId, int jobAdvertisementId);
-	boolean existsCandidateByEmail(String email);	
-	DataResult<List<Candidate>> getAllByFavouriteJobAdvertisementsId(int id);
+
 	
 }

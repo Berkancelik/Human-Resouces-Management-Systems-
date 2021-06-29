@@ -55,8 +55,8 @@ public class Language     {
 	@Column(name="language_name")
 	private String languageName;
 	
-	@ManyToOne
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
+	@JoinColumn(name = "resume_id")
+	@ManyToOne()
+	private Resume resumes;
 
 }

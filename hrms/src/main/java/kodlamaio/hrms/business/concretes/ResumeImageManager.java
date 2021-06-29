@@ -59,11 +59,7 @@ public class ResumeImageManager implements ResumeImageService {
 		return new SuccessDataResult<List<ResumeImage>>(this.resumeImageDao.findAll());		
 	}
 
-	@Override
-	public DataResult<ResumeImage>getByCandidateId(int id) {
-		return new SuccessDataResult<ResumeImage>(this.resumeImageDao.getByCandidate_id(id));
-		
-	}
+
 
 
 

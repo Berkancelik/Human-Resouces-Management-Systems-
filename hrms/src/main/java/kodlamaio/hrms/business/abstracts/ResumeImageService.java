@@ -14,6 +14,6 @@ public interface ResumeImageService {
 	Result delete(int id);
 	DataResult<ResumeImage> getById(int id);	
 	DataResult<List<ResumeImage>> getAll();
-	DataResult<ResumeImage> getByCandidateId(int id);
+
 
 }

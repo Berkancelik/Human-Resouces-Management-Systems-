@@ -48,8 +48,7 @@ public class ResumeLink   {
 	@Column(name = "linkedin")
 	private String linkedin;
 
+	@JoinColumn(name = "resume_id")
 	@ManyToOne()
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
-
+	private Resume resumes;
 }

@@ -50,6 +50,9 @@ public class JobTitle   {
 	@OneToMany(mappedBy = "jobTitle")
 	private List<JobAdvertisement> jobAdvertisements;
 	
+	@OneToMany(mappedBy = "jobTitle")
+	private List<JobExperience> jobExperiences;
+	
 
 	
 

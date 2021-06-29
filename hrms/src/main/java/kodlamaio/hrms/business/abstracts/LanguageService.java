@@ -9,12 +9,13 @@ import kodlamaio.hrms.entities.concretes.Language;
 import kodlamaio.hrms.entities.dtos.LanguageForCandidateAddDto;
 
 public interface LanguageService {
-	Result add(LanguageForCandidateAddDto languageCandidateAddDto);
-	Result update(Language Language);
+	Result add(LanguageForCandidateAddDto languageForCandidateAddDto);
+
+	Result update(LanguageForCandidateAddDto languageForCandidateAddDto);
+
 	Result delete(int id);
-	DataResult<Language>getById(int id);
-	DataResult<List<Language>>  getAll();
-	DataResult<List<Language>>  getAllByCandidateId(int id);
+
+	DataResult<List<Language>> getAll();
 
 }
  

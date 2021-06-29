@@ -70,17 +70,7 @@ public class CandidatesController {
 		return ResponseEntity.ok(this.candidateService.getById(id));
 	}
 	
-	@PutMapping("/likejobadvertisement")
-	public ResponseEntity<?> likeJobAdvertisement(@RequestParam int candidateId,
-			@RequestParam(name = "jobAdvertisementId") int jobAdvertisementId) {
-		return ResponseEntity.ok(this.candidateService.likeJobAdvertisement(candidateId, jobAdvertisementId));
-	}
-
 	
-	@GetMapping("/getcandidatecvbyid")
-	public ResponseEntity<?> getCandidateCVById(@RequestParam int id){
-		return ResponseEntity.ok(this.candidateService.getCandidateCVById(id));
-	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

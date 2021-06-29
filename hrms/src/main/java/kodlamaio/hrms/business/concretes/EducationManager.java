@@ -13,43 +13,35 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
+import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.dtos.EducationForCandidateAddDto;
 
 @Service
 public class EducationManager implements EducationService {
 	private EducationDao educationDao;
-	private CandidateDao candidateDao;
+	private ResumeDao resumeDao;
 
 	@Autowired
-	public EducationManager(EducationDao educationDao, CandidateDao candidateDao) {
+	public EducationManager(EducationDao educationDao, ResumeDao resumeDao) {
 		super();
 		this.educationDao = educationDao;
-		this.candidateDao = candidateDao;
+		this.resumeDao = resumeDao;
 	}
 
 	@Override
 	public Result add(EducationForCandidateAddDto educationForCandidateAddDto) {
-
-		if (!this.candidateDao.existsById(educationForCandidateAddDto.getCandidateId())) {
-			return new ErrorResult("Böyle bir kullanıcı  yok");
-		} else if (educationForCandidateAddDto.getSchoolName().length() <= 2) {
-			return new ErrorResult("Okul adı 2 karakterden uzun olmalıdır");
-		} else if (educationForCandidateAddDto.getDepartment().length() <= 2) {
-			return new ErrorResult("Bölüm adı 2 karakterden uzun olmalıdır");
-		} else if (educationForCandidateAddDto.getStartedDate() == null) {
-			return new ErrorResult("Başlangıç tarihi boş birakılamaz");
-		}
-
 		Education education = new Education();
-		education.setCandidate(this.candidateDao.getById(educationForCandidateAddDto.getCandidateId()));
+		education.setId(0);
+		education.setResumes(
+				this.resumeDao.getById(educationForCandidateAddDto.getResumeId()));
 		education.setSchoolName(educationForCandidateAddDto.getSchoolName());
 		education.setDepartment(educationForCandidateAddDto.getDepartment());
 		education.setStartedDate(educationForCandidateAddDto.getStartedDate());
 		education.setEndedDate(educationForCandidateAddDto.getEndedDate());
 
 		this.educationDao.save(education);
-		return new SuccessResult("Okul eklendi");
+		return new SuccessResult("Eğitim durumu eklendi");
 	}
 
 	@Override

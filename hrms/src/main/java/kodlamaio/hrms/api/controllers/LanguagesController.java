@@ -48,8 +48,8 @@ public class LanguagesController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<?> update(@Valid @RequestBody Language language) {
-		return ResponseEntity.ok(this.languageService.update(language));
+	public ResponseEntity<?> update(@Valid @RequestBody LanguageForCandidateAddDto languageForCandidateAddDto) {
+		return ResponseEntity.ok(this.languageService.update(languageForCandidateAddDto));
 	}
 
 	@DeleteMapping("/delete")
@@ -62,15 +62,7 @@ public class LanguagesController {
 		return ResponseEntity.ok(this.languageService.getAll());
 	}
 
-	@GetMapping("/getAllByCandidateId")
-	public ResponseEntity<?> getAllByCandidateId(@RequestParam int id) {
-		return ResponseEntity.ok(this.languageService.getAllByCandidateId(id));
-	}
-
-	@GetMapping("/getById")
-	public ResponseEntity<?> getById(@RequestParam int id) {
-		return ResponseEntity.ok(this.languageService.getById(id));
-	}
+	
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

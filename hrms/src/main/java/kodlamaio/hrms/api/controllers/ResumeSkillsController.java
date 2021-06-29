@@ -23,11 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.ResumeSkillService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.ResumeSkill;
-import kodlamaio.hrms.entities.dtos.ResumeSkillForCandidateDto;
+import kodlamaio.hrms.entities.dtos.ResumeSkillDto;
+
 
 @RestController
 @RequestMapping("/api/skills")
@@ -42,13 +40,13 @@ public class ResumeSkillsController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<?> add(@Valid @RequestBody ResumeSkillForCandidateDto resumeSkillForCandidateDto) {
-		return ResponseEntity.ok(this.resumeSkillService.add(resumeSkillForCandidateDto));
+	public ResponseEntity<?> add(@Valid @RequestBody ResumeSkillDto resumeSkillDto) {
+		return ResponseEntity.ok(this.resumeSkillService.add(resumeSkillDto));
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<?> update(@Valid @RequestBody ResumeSkill resumeSkill) {
-		return ResponseEntity.ok(this.resumeSkillService.update(resumeSkill));
+	public ResponseEntity<?> update(@Valid @RequestBody ResumeSkillDto resumeSkillDto) {
+		return ResponseEntity.ok(this.resumeSkillService.update(resumeSkillDto));
 	}
 
 	@DeleteMapping("/delete")
@@ -61,16 +59,8 @@ public class ResumeSkillsController {
 		return ResponseEntity.ok(this.resumeSkillService.getAll());
 	}
 
-	@GetMapping("/getAllByCandidateId")
-	public ResponseEntity<?> getAllByCandidateId(@RequestParam int id) {
-		return ResponseEntity.ok(this.resumeSkillService.getAllByCandidateId(id));
-	}
 
-	@GetMapping("/getById")
-	public ResponseEntity<?> getById(@RequestParam int id) {
-		return ResponseEntity.ok(this.resumeSkillService.getById(id));
-	}
-
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions) {

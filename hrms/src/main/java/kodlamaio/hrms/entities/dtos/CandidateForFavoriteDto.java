@@ -1,20 +1,15 @@
 package kodlamaio.hrms.entities.dtos;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class ResumeLinkForCandidateDto {
+@NoArgsConstructor
+public class CandidateForFavoriteDto {
 	
 	private int id;
-	
-	private int resumeId;	
-	
-	private String linkedin;
-	
-	private String github;
+	private int candidateId;
+	private int jobAdvertisementId;
 
 }

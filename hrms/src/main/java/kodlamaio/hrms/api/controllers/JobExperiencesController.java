@@ -46,8 +46,8 @@ public class JobExperiencesController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<?> update(@Valid @RequestBody JobExperience jobExperience) {
-		return ResponseEntity.ok(this.jobExperienceService.update(jobExperience));
+	public ResponseEntity<?> update(@Valid @RequestBody JobExperienceForCandidateDto jobExperienceForCandidateDto) {
+		return ResponseEntity.ok(this.jobExperienceService.update(jobExperienceForCandidateDto));
 	}
 
 	@DeleteMapping("/delete")
@@ -59,16 +59,9 @@ public class JobExperiencesController {
 	public ResponseEntity<?> getAll() {
 		return ResponseEntity.ok(this.jobExperienceService.getAll());
 	}
+	
 
-	@GetMapping("/getallbycandidateid")
-	public ResponseEntity<?> getAllByCandidateId(@RequestParam int id) {
-		return ResponseEntity.ok(this.jobExperienceService.getAllByCandidateId(id));
-	}
-
-	@GetMapping("/getbyid")
-	public ResponseEntity<?> getById(@RequestParam int id) {
-		return ResponseEntity.ok(this.jobExperienceService.getById(id));
-	}
+	
 
 	@GetMapping("/getallbycandidateidOrderbydesc")
 	public ResponseEntity<?> getAllByCandidateIdOrderByDesc(@RequestParam int id) {

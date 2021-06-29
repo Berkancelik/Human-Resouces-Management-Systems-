@@ -1,18 +1,13 @@
 package kodlamaio.hrms.business.abstracts;
 
-import java.util.List;
 
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.ResumeLink;
+import kodlamaio.hrms.entities.dtos.ResumeLinkForCandidateDto;
 
 public interface ResumeLinkService {
-	Result add(ResumeLink resumeLink);
-	Result update(ResumeLink resumeLink);
-	Result delete(int id);
-	DataResult<ResumeLink> getById(int id);	
-	DataResult<List<ResumeLink>> getAllByCandidateId(int id);
-	DataResult<List<ResumeLink>> getAll();
-	
+	Result add(ResumeLinkForCandidateDto resumeLinkForCandidateDto);
 
+	Result update(ResumeLinkForCandidateDto resumeLinkForCandidateDto);
+
+	Result delete(int accountId);
 }

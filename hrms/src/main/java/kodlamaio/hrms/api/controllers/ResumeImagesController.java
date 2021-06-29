@@ -1,7 +1,6 @@
 package kodlamaio.hrms.api.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -24,12 +23,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.ResumeImageService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.ResumeImage;
 
 @RestController
@@ -38,22 +34,20 @@ import kodlamaio.hrms.entities.concretes.ResumeImage;
 public class ResumeImagesController {
 	
 	private ResumeImageService resumeImageService;
-	private CandidateService candidateService;
 	
 	@Autowired
-	public ResumeImagesController(ResumeImageService resumeImageService,CandidateService candidateService) {
+	public ResumeImagesController(ResumeImageService resumeImageService) {
 		super();
 		this.resumeImageService = resumeImageService;
-		this.candidateService = candidateService;
 	}
 
 	@PostMapping(value = "/add")
-	public  ResponseEntity<?>  add(@RequestParam(value = "id") int id, @RequestParam(value = "imageFile") MultipartFile imageFile){
-		Candidate candidate = this.candidateService.getById(id).getData();
+	public Result add(@RequestParam(value = "id") int id, @RequestParam(value = "imageFile") MultipartFile imageFile)
+	{
 		ResumeImage resumeImage = new ResumeImage();
-		resumeImage.setCandidate(candidate);
-		return ResponseEntity.ok(this.resumeImageService.add(resumeImage, imageFile));
+		return this.resumeImageService.add(resumeImage, imageFile);
 	}
+	
 	@PutMapping("/update")
 	public ResponseEntity<?> update(@Valid @RequestBody ResumeImage resumeImage) {
 		return ResponseEntity.ok(this.resumeImageService.update(resumeImage));
@@ -70,10 +64,7 @@ public class ResumeImagesController {
 		return ResponseEntity.ok(this.resumeImageService.getAll());
 	}
 	
-	@GetMapping("/getAllByCandidateId")
-	public ResponseEntity<?>getByCandidateId(@RequestParam int id){
-		return ResponseEntity.ok(this.resumeImageService.getByCandidateId(id));
-	}
+	
 	@GetMapping("/getById")
 	public ResponseEntity<?> getById(@RequestParam int id){
 		return ResponseEntity.ok(this.resumeImageService.getById(id));

@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class EducationForCandidateAddDto {
-	private int candidateId;
+	
+	private int id;
+	private int resumeId;
     private String schoolName;
     private String department;
     private LocalDate startedDate;

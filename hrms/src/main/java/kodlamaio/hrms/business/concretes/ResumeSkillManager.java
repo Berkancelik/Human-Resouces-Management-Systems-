@@ -7,72 +7,55 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.ResumeSkillService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
+import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.dataAccess.abstracts.ResumeSkillDao;
 import kodlamaio.hrms.entities.concretes.ResumeSkill;
-import kodlamaio.hrms.entities.dtos.ResumeSkillForCandidateDto;
+import kodlamaio.hrms.entities.dtos.ResumeSkillDto;
+
+
 @Service
 public class ResumeSkillManager implements ResumeSkillService {
+	private ResumeDao resumeDao;
 	private ResumeSkillDao resumeSkillDao;
-	private CandidateDao candidateDao;
-	
+
 	@Autowired
-	public ResumeSkillManager(ResumeSkillDao resumeSkillDao, CandidateDao candidateDao) {
+	public ResumeSkillManager(ResumeSkillDao resumeSkillDao, ResumeDao resumeDao) {
 		super();
+		this.resumeDao = resumeDao;
 		this.resumeSkillDao = resumeSkillDao;
-		this.candidateDao = candidateDao;
 	}
 
 	@Override
-	public Result add(ResumeSkillForCandidateDto resumeSkillForCandidateDto) {
-		 if(!this.candidateDao.existsById(resumeSkillForCandidateDto.getCandidateId())){
-	            return new ErrorResult("Böyle bir kullanıcı yok");
-	        }else if(resumeSkillForCandidateDto.getSkillName().length()<=2){
-	            return new ErrorResult("Yetenek adı 2 karekterden kısa olamaz");
-	        }
-
-	        ResumeSkill resumeSkill=new ResumeSkill();
-	        resumeSkill.setCandidate(this.candidateDao.getById(resumeSkillForCandidateDto.getCandidateId()));
-	        resumeSkill.setSkillName(resumeSkillForCandidateDto.getSkillName());
-
-	        this.resumeSkillDao.save(resumeSkill);
-	        return new SuccessResult("Eklendi");
-	    }
-	@Override
-	public Result update(ResumeSkill resumeSkill) {
+	public Result add(ResumeSkillDto resumeSkillDto) {
+		ResumeSkill resumeSkill = new ResumeSkill();
+		resumeSkill.setResumes(
+				this.resumeDao.getById(resumeSkillDto.getResumeId()));
+		resumeSkill.setSkillName(resumeSkillDto.getSkillName());
 		this.resumeSkillDao.save(resumeSkill);
-		return new SuccessResult("Yetenek güncellendi!");
+		return new SuccessResult("Teknoloji eklendi");
 	}
 
 	@Override
-	public Result delete(int id) {
-	     if(!this.resumeSkillDao.existsById(id)){
-	            return new ErrorResult("Böyle bir yetenek yok");
-	        }
-	        this.resumeSkillDao.deleteById(id);
-	        return new SuccessResult("Silindi");
-	    }
+	public Result update(ResumeSkillDto resumeSkillDto) {
+		ResumeSkill resumeSkillUpdate = this.resumeSkillDao.getById(resumeSkillDto.getId());
+		resumeSkillUpdate.setSkillName(resumeSkillDto.getSkillName());
+
+		this.resumeSkillDao.save(resumeSkillUpdate);
+		return new SuccessResult("Yetenekler Güncellendi");
+	}
 
 	@Override
-	public DataResult<ResumeSkill> getById(int id) {
-		return new SuccessDataResult<ResumeSkill>(this.resumeSkillDao.getById(id));
-		
+	public Result delete(int technologyId) {
+		this.resumeSkillDao.deleteById(technologyId);
+		return new SuccessResult("Yetenekler Silindi");
 	}
 
 	@Override
 	public DataResult<List<ResumeSkill>> getAll() {
-		return new SuccessDataResult<List<ResumeSkill>>(this.resumeSkillDao.findAll());
-
+		return new SuccessDataResult<List<ResumeSkill>>(this.resumeSkillDao.findAll(), "Yetenekler listelendi");
 	}
-
-	@Override
-	public DataResult<List<ResumeSkill>> getAllByCandidateId(int id) {
-		return new SuccessDataResult<List<ResumeSkill>>(this.resumeSkillDao.getAllByCandidate_id(id));
-		
-	}
-
+	
 }

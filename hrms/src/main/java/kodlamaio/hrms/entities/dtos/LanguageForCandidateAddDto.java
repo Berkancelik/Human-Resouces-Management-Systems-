@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LanguageForCandidateAddDto {
 	
-	public int candidteId ;
+	private int id;	
+	public int resumeId ;
 	public String languageName;
 	public String level;
 	

@@ -7,12 +7,15 @@ import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.dtos.JobExperienceForCandidateDto;
 
 public interface JobExperienceService {
+	
 	Result add(JobExperienceForCandidateDto jobExperienceForCandidateDto);
-	Result update(JobExperience jobExperience);
+
+	Result update(JobExperienceForCandidateDto jobExperienceForCandidateDto);
+
 	Result delete(int id);
-	DataResult<JobExperience>getById(int id);
-	DataResult<List<JobExperience>>  getAll();
-	DataResult<List<JobExperience>>  getAllByCandidateId(int id);
+
+	DataResult<List<JobExperience>> getAll();
+
 	DataResult<List<JobExperience>>  getAllByCandidateIdOrderByDesc(int id);
 
 	
