@@ -46,9 +46,9 @@ public class CandidateJobAdvertisementFavoritesController {
 	        return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.delete(id));
 	    }
 
-	    @GetMapping("/getall")
-	    private ResponseEntity<?> getAll(@RequestParam int id){
-	        return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.getByCandidateId(id));
+	    @GetMapping("/getbycandidateid")
+	    private ResponseEntity<?> getByCandidateId(@RequestParam int candidateId){
+	        return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.getByCandidateId(candidateId));
 	    }
 	    
 	    @ExceptionHandler(MethodArgumentNotValidException.class)

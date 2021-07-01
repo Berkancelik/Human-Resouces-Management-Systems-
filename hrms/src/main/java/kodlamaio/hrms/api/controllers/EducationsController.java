@@ -52,10 +52,7 @@ public class EducationsController {
 		return ResponseEntity.ok(this.educationService.update(education));
 	}
 
-	@DeleteMapping("/delete")
-	public ResponseEntity<?> delete(@RequestParam(name = "id") int id) {
-		return ResponseEntity.ok(this.educationService.delete(id));
-	}
+
 	@GetMapping("/getbyid")
 	public  ResponseEntity<?>getById(@RequestParam int id) {
 		return ResponseEntity.ok(this.educationService.getById(id));

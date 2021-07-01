@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
@@ -48,6 +49,10 @@ public class User   {
 	
 	@Column(name= "password")
 	private String password;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "user")
+	private ResumeImage image;
 	
 
 	

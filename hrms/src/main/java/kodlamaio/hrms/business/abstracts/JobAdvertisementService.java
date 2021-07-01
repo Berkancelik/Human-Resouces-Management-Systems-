@@ -6,6 +6,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 public interface JobAdvertisementService {	
 
@@ -19,13 +20,14 @@ public interface JobAdvertisementService {
 
 	DataResult<List<JobAdvertisement>> getByIsConfirm(boolean isConfirm);
 
-	DataResult<List<JobAdvertisement>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive);
-
+	DataResult<List<JobAdvertisement>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive, int pageNo,int pageSize);
 	DataResult<List<JobAdvertisement>> sortByReleaseDate();
 
 	DataResult<List<JobAdvertisement>> getByCompanyName(String companyName);
 	
 	DataResult<JobAdvertisement> getById(int id);
+
+	DataResult<List<JobAdvertisement>> getByFilter(JobAdvertisementFilter jobAdvertisementFilter, int pageNo, int pageSize);
 
 
 	

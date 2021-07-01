@@ -20,6 +20,10 @@ import kodlamaio.hrms.dataAccess.abstracts.WorkHourDao;
 import kodlamaio.hrms.dataAccess.abstracts.WorkTypeDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 @Service
@@ -33,8 +37,7 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 
 	@Autowired
 	public JobAdvertisementsManager(JobAdvertisementDao jobAdvertisementDao, CityDao cityDao, EmployerDao employerDao,
-			JobTitleDao jobTitleDao, WorkTypeDao workTypeDao, WorkHourDao workHourDao
-			 ) {
+			JobTitleDao jobTitleDao, WorkTypeDao workTypeDao, WorkHourDao workHourDao) {
 		super();
 		this.jobAdvertisementDao = jobAdvertisementDao;
 		this.cityDao = cityDao;
@@ -54,7 +57,7 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 		jobAdvertisement.setOpenTitleCount(jobAdvertisementDto.getOpenTitleCount());
 		jobAdvertisement.setPublishedAt(LocalDate.now());
 
-		jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadline());	
+		jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadline());
 		jobAdvertisement.setActive(true);
 		jobAdvertisement.setConfirm(false);
 		jobAdvertisement.setEmployer(this.employerDao.getById(jobAdvertisementDto.getEmployerId()));
@@ -70,17 +73,20 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 	@Override
 	public DataResult<List<JobAdvertisement>> sortByReleaseDate() {
 		Sort sort = Sort.by(Sort.Direction.ASC, "releaseDate");
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort),"Yayın tarihine göre artan olarak listelendi");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort),
+				"Yayın tarihine göre artan olarak listelendi");
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getByCompanyName(String companyName) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_CompanyName(companyName),"Şirket adına göre iş ilanları listelendi");
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.getByEmployer_CompanyName(companyName),
+				"Şirket adına göre iş ilanları listelendi");
 	}
 
 	@Override
 	public Result updateIsActive(boolean isActive, int userId, int id) {
-		this.jobAdvertisementDao.updateIsActive(isActive,  id);
+		this.jobAdvertisementDao.updateIsActive(isActive, id);
 		return new SuccessResult("İş ilanı aktiflik durumu güncellendi");
 	}
 
@@ -90,11 +96,13 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive) {
+	public DataResult<List<JobAdvertisement>> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive, int pageNo,
+			int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
 		return new SuccessDataResult<List<JobAdvertisement>>(
-				this.jobAdvertisementDao.getByIsConfirmAndIsActive(isConfirm, isActive));
+				this.jobAdvertisementDao.getByIsConfirmAndIsActive(isConfirm, isActive, pageable).getContent(),
+				this.jobAdvertisementDao.getByIsConfirmAndIsActive(isConfirm, isActive, pageable).getTotalPages() + "");
 	}
-
 	@Override
 	public Result updateIsConfirm(boolean isConfirm, int id) {
 		this.jobAdvertisementDao.updateIsConfirm(isConfirm, id);
@@ -108,7 +116,17 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(), "İş ilanları listelendi");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(),
+				"İş ilanları listelendi");
+	}
+
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByFilter(JobAdvertisementFilter jobAdvertisementFilter, int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.getByFilter(jobAdvertisementFilter, pageable).getContent(),
+				this.jobAdvertisementDao.getByFilter(jobAdvertisementFilter, pageable).getTotalPages() + "");
 	}
 
 }

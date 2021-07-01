@@ -36,7 +36,7 @@ public class ResumeImageManager implements ResumeImageService {
 		return new SuccessResult("Fotoğraf eklendi!");
 	}
 
-	@Override
+	@Override 
 	public Result update(ResumeImage resumeImage) {
 		this.resumeImageDao.save(resumeImage);
 		return new SuccessResult("Fotoğraf güncellendi!");

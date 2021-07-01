@@ -43,7 +43,7 @@ public class ResumeController {
 	}
 	
 	@GetMapping("/getbycandidateid")
-	public ResponseEntity<?> getByJobseekerId(@RequestParam int id) {
+	public ResponseEntity<?> getByCandidateId(@RequestParam int id) {
 		return ResponseEntity.ok(this.resumeService.getByCandidateId(id));
 	}
 
@@ -64,7 +64,7 @@ public class ResumeController {
 
 	
 
-
+ 
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -44,9 +44,9 @@ public class ResumeImage   {
 	@Column(name = "url_address")
 	private String urlAddress;
 	
+	@JoinColumn(name = "user_id")
 	@OneToOne()
-    @JoinColumn(name = "candidate_id", referencedColumnName = "user_id")
-    private Candidate candidate;
+	private User user;
 	
 
 }
