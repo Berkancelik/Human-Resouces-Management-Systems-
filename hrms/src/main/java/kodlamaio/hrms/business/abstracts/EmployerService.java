@@ -6,14 +6,17 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Employer;
 
 public interface EmployerService {
-	DataResult<List<Employer>> getAll();
-	DataResult<Employer> getById(int id);
+DataResult<List<Employer>> getAll();
 	
 	Result add(Employer employer);
-	Result delete(int id);
-	Result update(Employer employer);
 	
-	boolean existsEmployerByEmail(String email);
+	DataResult<Employer> getById(int id);
+	
+	Result updateWaiting(Employer employer);
+	
+	Result updateConfirmStatus(int employerId);
+	
+	DataResult<List<Employer>>getByConfirmStatusFalse();
 
 
 }

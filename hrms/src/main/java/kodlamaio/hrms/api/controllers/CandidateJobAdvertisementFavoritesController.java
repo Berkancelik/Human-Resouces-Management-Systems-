@@ -37,19 +37,20 @@ public class CandidateJobAdvertisementFavoritesController {
 	    }
 
 	    @PostMapping("/add")
-	    private ResponseEntity<?> save(@RequestBody CandidateForFavoriteDto candidateForFavoriteDto){
-	        return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.add(candidateForFavoriteDto));
-	    }
-
-	    @DeleteMapping("/delete")
-	    private ResponseEntity<?> delete(@RequestParam int id  ){
-	        return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.delete(id));
-	    }
-
-	    @GetMapping("/getbycandidateid")
-	    private ResponseEntity<?> getByCandidateId(@RequestParam int candidateId){
-	        return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.getByCandidateId(candidateId));
-	    }
+		public ResponseEntity<?> add(@RequestBody CandidateJobAdvertisementFavorite candidateJobAdvertisementFavorite){
+			return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.add(candidateJobAdvertisementFavorite));			
+		}
+		
+		@DeleteMapping("/deleteById")
+		public ResponseEntity<?> delete(@RequestParam  int id ){
+			return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.delete(id));			
+		}
+		
+		 
+		@GetMapping("getByCandidate_Id")
+		public ResponseEntity<?> getByCandidate_Id(@RequestParam int id){
+			return ResponseEntity.ok(this.candidateJobAdvertisementFavoriteService.getByCandidate_Id(id)) ;
+		}
 	    
 	    @ExceptionHandler(MethodArgumentNotValidException.class)
 		@ResponseStatus(HttpStatus.BAD_REQUEST)

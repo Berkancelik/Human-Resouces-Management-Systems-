@@ -1,9 +1,10 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.ThreadUtils.ThreadIdPredicate;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
 
@@ -20,10 +21,13 @@ import kodlamaio.hrms.entities.concretes.Employer;
 public class EmployerManager implements EmployerService {
 
 	private EmployerDao employerDao;
+	private ObjectMapper objectMapper;
 	
 	@Autowired
-	 public EmployerManager(EmployerDao employerDao) {
+	 public EmployerManager(EmployerDao employerDao,ObjectMapper objectMapper) {
 		this.employerDao = employerDao;
+		this.objectMapper=objectMapper;
+
 	}
 
 	@Override
@@ -38,29 +42,37 @@ public class EmployerManager implements EmployerService {
 		return new SuccessResult("işveren başarılı şekilde eklendi!");
 	}
 
+
 	@Override
 	public DataResult<Employer> getById(int id) {
-		return new SuccessDataResult<Employer>(this.employerDao.getById(id));
-
+		return new SuccessDataResult<Employer>(this.employerDao.findById(id).get());
 	}
 
 	@Override
-	public Result delete(int id) {	
-		this.employerDao.deleteById(id);
-		return new SuccessResult("Employer deleted successfully.");
+	public Result updateWaiting(Employer employer) {
+		Employer employerToConfirmUpdate = this.getById(employer.getId()).getData();
+		Employer tempEmployer = this.objectMapper.convertValue(employerToConfirmUpdate.getEmployerUpdate(), Employer.class);
+		tempEmployer.setEmployerUpdate(null);
+		this.employerDao.save(tempEmployer);
+		return new SuccessResult("Employer confirmed");
 	}
 
 	@Override
-	public Result update(Employer employer) {		
-			this.employerDao.save(employer);
-			return new SuccessResult("Employer updated successfully.");
-		
+	public Result updateConfirmStatus(int employerId) {
+		Employer employerToConfirmUpdate = this.getById(employerId).getData();
+		Employer tempEmployer = this.objectMapper.convertValue(employerToConfirmUpdate.getEmployerUpdate(), Employer.class);
+		tempEmployer.setEmployerUpdate(null);
+		this.employerDao.save(tempEmployer);
+		return new SuccessResult("Employer confirmed");
 	}
 
 	@Override
-	public boolean existsEmployerByEmail(String email) {
-		return this.employerDao.existsEmployerByEmail(email);
+	public DataResult<List<Employer>> getByConfirmStatusFalse() {
+		return new SuccessDataResult<List<Employer>>(employerDao.getByConfirmStatusFalse());
+
 	}
+
+
 	
 	
 

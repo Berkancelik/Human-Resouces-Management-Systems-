@@ -27,31 +27,23 @@ public class LetterOfAcceptanceManager implements LetterOfAcceptanceService {
 	@Override
 	public Result add(LetterOfAcceptance letterOfAcceptance) {
 		this.letterOfAcceptanceDao.save(letterOfAcceptance);
-		return new SuccessResult("Kapak mektubu eklendi!.");
+		return new SuccessResult("Ön yazı eklendi");
 	}
 
 	@Override
-	public Result update(LetterOfAcceptance letterOfAcceptance) {
-		this.letterOfAcceptanceDao.save(letterOfAcceptance);
-		return new SuccessResult("Kapak mektubu güncellendi!.");
-	}
-
-	@Override
-	public Result delete(int id) {
-		this.letterOfAcceptanceDao.deleteById(id);
-		return new SuccessResult("Kapak mektubu silindi!.");
-	}
-
-	@Override
-	public DataResult<LetterOfAcceptance> getById(int id) {
-		return new SuccessDataResult<LetterOfAcceptance>(this.letterOfAcceptanceDao.findById(id).get());
-		
+	public DataResult<List<LetterOfAcceptance>> getAllByCandidateId(int candidateId) {
+		return new SuccessDataResult<List<LetterOfAcceptance>>(letterOfAcceptanceDao.getAllByCandidateId(candidateId));
 	}
 
 	@Override
 	public DataResult<List<LetterOfAcceptance>> getAll() {
-		return new SuccessDataResult<List<LetterOfAcceptance>>(this.letterOfAcceptanceDao.findAll());
-		
+		return new SuccessDataResult<List<LetterOfAcceptance>>(letterOfAcceptanceDao.findAll(),"Ön yazı listelendi");
+	}
+
+	@Override
+	public Result update(LetterOfAcceptance coverLetter) {
+	this.letterOfAcceptanceDao.save(coverLetter);
+	return new SuccessResult("Ön yazı güncellendi.");
 	}
 
 

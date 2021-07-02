@@ -31,10 +31,9 @@ public class JobAdvertisement {
 	@Column(name = "created_date", columnDefinition = "Date defult CURRENT_DATE")
 	private LocalDate createdDate = LocalDate.now();
 
-	@JsonIgnore
-	@Column(name = "is_active")
-	private boolean isActive = true;
-
+	@Column(name = "is_active",columnDefinition="boolean default true")
+	private boolean isActive=true;
+	
 	@Column(name = "description")
 	private String description;
 
@@ -44,9 +43,9 @@ public class JobAdvertisement {
 	@Column(name = "deadline")
 	private LocalDate deadline;
 
-	@Column(name = "is_confirm")
-	private boolean isConfirm;
-
+	@Column(name = "confirm_status",columnDefinition="boolean default false")
+	private boolean confirmStatus=false;
+	
 
 	@Column(name = "salary_min")
 	private int salaryMin;

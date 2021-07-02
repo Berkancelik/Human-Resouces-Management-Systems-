@@ -28,7 +28,6 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Education;
-import kodlamaio.hrms.entities.dtos.EducationForCandidateAddDto;
 
 @RestController
 @RequestMapping("/api/educations")
@@ -43,26 +42,29 @@ public class EducationsController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<?> add(@Valid @RequestBody EducationForCandidateAddDto educationForCandidateAddDto) {
-		return ResponseEntity.ok(this.educationService.add(educationForCandidateAddDto));
+	public ResponseEntity<?> add(@Valid @RequestBody Education education){
+		return ResponseEntity.ok(educationService.add(education));
 	}
-
-	@PutMapping("/update")
-	public ResponseEntity<?> update(@Valid @RequestBody Education education) {
-		return ResponseEntity.ok(this.educationService.update(education));
-	}
-
-
-	@GetMapping("/getbyid")
-	public  ResponseEntity<?>getById(@RequestParam int id) {
-		return ResponseEntity.ok(this.educationService.getById(id));
-	}
-
+	
 	@GetMapping("/getall")
-	public ResponseEntity<?> getAll() {
+	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(this.educationService.getAll());
 	}
-
+	
+	@GetMapping("/getbycandidateidorderbyendeddatedesc")
+	public ResponseEntity<?>  getByCandidateIdOrderByEndedDateDesc(@RequestParam int candidateId){
+		return ResponseEntity.ok(this.educationService.getByCandidateIdOrderByEndedDateDesc(candidateId));
+	}
+	
+	@GetMapping("/getAllByCandidateId")
+	public ResponseEntity<?> getAllByCandidateId(int candidateId){
+		return ResponseEntity.ok(this.educationService.getAllByCandidateId(candidateId));	
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<?> update(@RequestBody Education education){
+		return ResponseEntity.ok(this.educationService.update(education));
+	}
 	
 
 

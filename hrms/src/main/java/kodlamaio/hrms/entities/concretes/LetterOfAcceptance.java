@@ -45,13 +45,13 @@ public class LetterOfAcceptance  {
 	private boolean isActive = true;
 	
 	@Column(name = "content")
-	private String content;
-	
+	private String content;	
 	
 
-	@OneToOne()
-	@JoinColumn(name = "resume_id")
-	private Resume resume;
+	@JoinColumn(name = "candidate_id")
+	@ManyToOne()
+	private Candidate candidate;
+
 	
 }
 	

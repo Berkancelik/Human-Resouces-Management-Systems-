@@ -5,17 +5,14 @@ import java.util.List;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.ResumeSkill;
-import kodlamaio.hrms.entities.dtos.ResumeSkillDto;
 
 public interface ResumeSkillService {
 	
-	Result add(ResumeSkillDto resumeSkillDto);
-
-	Result update(ResumeSkillDto resumeSkillDto);
-
-	Result delete(int id);
-
+	Result add(ResumeSkill resumeSkill);
+	Result update(ResumeSkill resumeSkill);
 	DataResult<List<ResumeSkill>> getAll();
+	Result addAll(List<ResumeSkill> resumeSkill);
+    DataResult<List<ResumeSkill>> getAllByCandidateId(int candidateId);
 
 
 }

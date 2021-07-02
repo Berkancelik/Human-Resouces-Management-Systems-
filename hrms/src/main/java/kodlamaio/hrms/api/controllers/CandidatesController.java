@@ -25,11 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.CandidateService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
-import kodlamaio.hrms.entities.dtos.CandidateResumeDto;
 
 @RestController
 @RequestMapping("/api/candidates")
@@ -65,10 +62,6 @@ public class CandidatesController {
 		return ResponseEntity.ok(this.candidateService.add(candidate));
 	}
 	
-	@GetMapping("/getbyid")
-	public ResponseEntity<?> get(@RequestParam int id) {
-		return ResponseEntity.ok(this.candidateService.getById(id));
-	}
 	
 	
 	

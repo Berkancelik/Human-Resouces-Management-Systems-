@@ -48,17 +48,17 @@ public class ResumeImageManager implements ResumeImageService {
 		return new SuccessResult("Fotoğraf eklendi!");
 	}
 
-	@Override
-	public DataResult<ResumeImage> getById(int id) {
-		return new SuccessDataResult<ResumeImage>(this.resumeImageDao.getById(id));
-		
-	}
 
 	@Override
 	public DataResult<List<ResumeImage>> getAll() {
 		return new SuccessDataResult<List<ResumeImage>>(this.resumeImageDao.findAll());		
 	}
 
+
+	@Override
+	public DataResult<List<ResumeImage>> getAllByCandidateId(int candidateId) {
+		return new SuccessDataResult<List<ResumeImage>>(this.resumeImageDao.getAllByCandidateId(candidateId));
+	}
 
 
 

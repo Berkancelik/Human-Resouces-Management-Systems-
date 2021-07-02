@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import kodlamaio.hrms.entities.concretes.CandidateJobAdvertisementFavorite;
 
 public interface CandidateJobAdvertisementFavoriteDao extends JpaRepository<CandidateJobAdvertisementFavorite,Integer> {
-    List<CandidateJobAdvertisementFavorite> getAllByCandidate_Id(int candidateId);
+    List<CandidateJobAdvertisementFavorite> getByCandidate_Id(int candidateId);
  
 
 }

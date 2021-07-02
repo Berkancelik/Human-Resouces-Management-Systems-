@@ -46,7 +46,12 @@ public class ResumeImage   {
 	
 	@JoinColumn(name = "user_id")
 	@OneToOne()
-	private User user;
+	private User user;	
+
+	@ManyToOne()
+	@JsonIgnore()
+	@JoinColumn(name = "candidate_id")
+	private Candidate candidate;
 	
 
 }

@@ -10,55 +10,44 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.LanguageService;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.LanguageDao;
-import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.entities.concretes.Language;
-import kodlamaio.hrms.entities.dtos.LanguageForCandidateAddDto;
 @Service
 public class LanguageManager implements LanguageService {
 	private LanguageDao languageDao;
-	private ResumeDao resumeDao;
 	
 	@Autowired
-	public LanguageManager(LanguageDao languageDao, ResumeDao resumeDao) {
+	public LanguageManager(LanguageDao languageDao) {
 		super();
 		this.languageDao = languageDao;
-		this.resumeDao = resumeDao;
-	}
+
+	}	
 
 	@Override
-	public Result add(LanguageForCandidateAddDto languageForCandidateAddDto) {
-		Language language = new Language();
-		language.setId(0);
-		language.setResume(
-				this.resumeDao.getById(languageForCandidateAddDto.getId()));
-		language.setLanguageName(languageForCandidateAddDto.getLanguageName());
-		language.setLevel(languageForCandidateAddDto.getLevel());
-
-		this.languageDao.save(language);
-		return new SuccessResult("Yabancı dil eklendi");
-	}
-
-	@Override
-	public Result update(LanguageForCandidateAddDto languageForCandidateAddDto) {
-		Language languageUpdate = this.languageDao
-				.getById(languageForCandidateAddDto.getId());
-		languageUpdate.setLanguageName(languageForCandidateAddDto.getLanguageName());
-		languageUpdate.setLevel(languageForCandidateAddDto.getLevel());
-
-		this.languageDao.save(languageUpdate);
-		return new SuccessResult("Yabancı Dil Güncellendi");
-	}
-
-	@Override
-	public Result delete(int id) {
-		this.languageDao.deleteById(id);
-		return new SuccessResult("Yabancı Dil Silindi");
+	public Result add(Language language) {
+		languageDao.save(language);
+		return new SuccessResult("Language added");
 	}
 
 	@Override
 	public DataResult<List<Language>> getAll() {
-		return new SuccessDataResult<List<Language>>(this.languageDao.findAll(),
-				"Yabancı diller listelendi");
+		return new SuccessDataResult<List<Language>>(languageDao.findAll(),"Language listed");
+	}
+
+	@Override
+	public DataResult<List<Language>> getAllByCandidateId(int language) {
+		return new SuccessDataResult<List<Language>>(languageDao.getAllByCandidateId(language),"Language listed");
+	}
+
+	@Override
+	public Result addAll(List<Language> language) {
+		this.languageDao.saveAll(language);
+		return new SuccessResult();
+	}
+
+	@Override
+	public Result update(Language language) {
+		this.languageDao.save(language);
+		return new SuccessResult("Language updated");
 	}
 
 	 
