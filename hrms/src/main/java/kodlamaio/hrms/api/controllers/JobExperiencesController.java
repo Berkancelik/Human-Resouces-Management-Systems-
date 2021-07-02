@@ -26,7 +26,7 @@ import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/jobexperiences")
 public class JobExperiencesController {
 	private JobExperienceService jobExperienceService;
 

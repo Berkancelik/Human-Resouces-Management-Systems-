@@ -100,11 +100,11 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 		
 	}
 
-	@Override
-	public DataResult<List<JobAdvertisementDto>> getAdvertisementWithEmployerDetails() {
-		return new SuccessDataResult<List<JobAdvertisementDto>>(this.jobAdvertisementDao.getJobAdvertisementWithEmployerDetails());
-	}
-	
+//	@Override
+//	public DataResult<List<JobAdvertisementDto>> getAdvertisementWithEmployerDetails() {
+//		return new SuccessDataResult<List<JobAdvertisementDto>>(this.jobAdvertisementDao.getJobAdvertisementWithEmployerDetails());
+//	}
+//	
 	@Override
 	public Result updateisActive(int jobAdvertisementId, int employerId) {
 		this.jobAdvertisementDao.updateisActive(jobAdvertisementId,employerId);
@@ -120,10 +120,9 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 
 	@Override
 	public Result updateconfirmStatus(int jobAdvertisementId) {
-		this.jobAdvertisementDao.updateConfirmStatus(jobAdvertisementId);
-		return new SuccessResult("İş İlanı başarılı şekilde onaylandı.");
+		this.jobAdvertisementDao.updateconfirmStatus(jobAdvertisementId);
+		return new SuccessResult("iş İlanı oanylandı.");
 	}
-
 	
 	@Override
 	public Result setPassive(int jobAdvertisementId) {
@@ -142,7 +141,7 @@ public class JobAdvertisementsManager implements JobAdvertisementService {
 
 	
 	@Override
-	public Result insert(JobAdvertisement jobAdvertisement) {
+	public Result add(JobAdvertisement jobAdvertisement) {
 
 	Result result=BusinessRules.run(minMaxControl(jobAdvertisement),
 			checfIfEmployerExist(jobAdvertisement.getEmployer().getId()),checkIfCityExist(jobAdvertisement.getCity().getId()));

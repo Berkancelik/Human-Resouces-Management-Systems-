@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,10 +53,10 @@ public class JobAdvertisementsController {
 	
 	@PostMapping("/add")
 	public ResponseEntity<?> add(@Valid @RequestBody JobAdvertisement jobAdvertisement) {
-		return ResponseEntity.ok(jobAdvertisementService.insert(jobAdvertisement));
+		return ResponseEntity.ok(jobAdvertisementService.add(jobAdvertisement));
 	}
 	
-	@PostMapping("/delete")
+	@DeleteMapping("/delete")
 	public ResponseEntity<?> Delete(int jobAdvertisementId) {
 		return ResponseEntity.ok(jobAdvertisementService.delete(jobAdvertisementId));
 	}
@@ -65,11 +66,11 @@ public class JobAdvertisementsController {
 		return ResponseEntity.ok(this.jobAdvertisementService.getAllSorted());
 	}
 	
-	@GetMapping("/getjobadvertisementwithemployerdetails")
-	public ResponseEntity<?> getAdvertisementWithEmployerDetails() {
-		return ResponseEntity.ok(this.jobAdvertisementService.getAdvertisementWithEmployerDetails());
-	}
-	
+//	@GetMapping("/getjobadvertisementwithemployerdetails")
+//	public ResponseEntity<?> getAdvertisementWithEmployerDetails() {
+//		return ResponseEntity.ok(this.jobAdvertisementService.getAdvertisementWithEmployerDetails());
+//	}
+//	
 	@GetMapping("/getallbyisactivetrue")
 	public ResponseEntity<?> getAllByIsActiveTrue(){
 		return ResponseEntity.ok(this.jobAdvertisementService.getAllByIsActiveTrue());
@@ -122,11 +123,11 @@ public class JobAdvertisementsController {
 	}
 	
 	@GetMapping("/getByPage")
-	public ResponseEntity<?> getByisActiveTrueAndConfirmStatusTrue( @RequestParam int pageNo,@RequestParam int pageSize){
+	public ResponseEntity<?> getbyisactivetrueandconfirmstatustrue( @RequestParam int pageNo,@RequestParam int pageSize){
 		return   ResponseEntity.ok(this.jobAdvertisementService.getByisActiveTrueAndConfirmStatusTrue(pageNo, pageSize));
 	}
 	
-	  @PostMapping("/getByisActiveTrueAndConfirmStatusTrueAndFilter")
+	  @PostMapping("/getbyisactivetrueandconfirmstatustrueandfilter")
 	    public Result getByisActiveTrueAndConfirmStatusTrueAndFilter(@RequestParam int pageNo,@RequestParam int pageSize,@RequestBody JobAdvertisementFilter jobAdvertisementFilter){
 	        return jobAdvertisementService.getByisActiveTrueAndConfirmStatusTrueAndFilter(pageNo,pageSize,jobAdvertisementFilter);
 	    }

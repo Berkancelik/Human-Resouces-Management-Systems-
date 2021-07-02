@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
-
 @Data
 @Entity
 @NoArgsConstructor
@@ -22,7 +20,7 @@ public class CandidateJobAdvertisementFavorite {
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
-    @OneToOne()
-    @JoinColumn(name = "job_advertisement_id")
-    private JobAdvertisement jobAdvertisement;
+	@ManyToOne
+	@JoinColumn(name = "job_advertisement_id",insertable = false, updatable = false)
+	private JobAdvertisement jobAdvertisement;
 }

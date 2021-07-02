@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -56,10 +58,10 @@ public class JobAdvertisement {
 	@Column(name = "published_at")
 	private LocalDate publishedAt;
 
-	@ManyToOne
-	@JoinColumn(name = "employer_id", referencedColumnName = "user_id")
+	@ManyToOne()
+	@JoinColumn(name = "employer_id")
 	private Employer employer;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
@@ -76,9 +78,8 @@ public class JobAdvertisement {
 	@JoinColumn(name = "job_work_type_id")
 	private WorkType workType;
 	
-	@OneToOne(mappedBy = "jobAdvertisement", orphanRemoval = true)
-	private CandidateJobAdvertisementFavorite candidateJobAdvertisementFavorite;
-
+	@OneToMany(mappedBy = "candidate")
+	private List<CandidateJobAdvertisementFavorite> CandidateJobAdvertisementFavorites;
 	
 	
 

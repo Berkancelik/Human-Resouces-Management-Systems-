@@ -30,7 +30,7 @@ public class City {
 	private int id;
 
 	@Column(name = "name")
-	private String name;
+	private String cityName;
 
 	@OneToMany(mappedBy = "city")
 	private List<JobAdvertisement> jobAdvertisements;

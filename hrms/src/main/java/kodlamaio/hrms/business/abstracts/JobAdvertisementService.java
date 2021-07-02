@@ -26,7 +26,7 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisement>> getByisActiveTrueAndEmployer_Id(int employerId);
 	
-	DataResult<List<JobAdvertisementDto>>getAdvertisementWithEmployerDetails();
+//	DataResult<List<JobAdvertisementDto>>getAdvertisementWithEmployerDetails();
 	
 	DataResult<JobAdvertisement> getById(int id);
 	
@@ -34,11 +34,11 @@ public interface JobAdvertisementService {
 	
 	Result setPassive(int jobAdvertisementId);
 	
-	Result updateconfirmStatus(int jobAdvertisementId);
+	Result updateconfirmStatus(int jobAdvertisementId);	
 	
 	Result updateisActive(int jobAdvertisementId, int employerId);
 	
-	Result insert(JobAdvertisement jobAdvertisement);
+	Result add(JobAdvertisement jobAdvertisement);
 	
 	Result delete(int jobAdvertisementId);
 	
