@@ -1,7 +1,6 @@
 package kodlamaio.hrms.api.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -37,24 +36,33 @@ public class LetterOfAcceptancesController {
 	
 
 	@PostMapping("/add")
-	public ResponseEntity<?> add(@RequestBody LetterOfAcceptance letterOfAcceptance){
-		return ResponseEntity.ok(letterOfAcceptanceService.add(letterOfAcceptance));
-	}
-	
-	@GetMapping("/getall")
-	public ResponseEntity<?> getAll(){
-		return ResponseEntity.ok(letterOfAcceptanceService.getAll());
-	}
-	
-	@GetMapping("/getallbycandidateid")
-	public ResponseEntity<?> getAllByCandidateId(int candidateId){
-		return ResponseEntity.ok(letterOfAcceptanceService.getAllByCandidateId(candidateId));
+	public ResponseEntity<?> add(@Valid @RequestBody LetterOfAcceptance letterOfAcceptance) {
+		return ResponseEntity.ok(this.letterOfAcceptanceService.add(letterOfAcceptance));
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<?> update(@RequestBody LetterOfAcceptance letterOfAcceptance){
-		return ResponseEntity.ok(letterOfAcceptanceService.update(letterOfAcceptance));
+	public ResponseEntity<?>update(@Valid @RequestBody LetterOfAcceptance letterOfAcceptance){
+		return ResponseEntity.ok(this.letterOfAcceptanceService.update(letterOfAcceptance));
+		
 	}
+	
+	@DeleteMapping("/delete")
+	public ResponseEntity<?> delete(@RequestParam int id) {
+		return ResponseEntity.ok(this.letterOfAcceptanceService.delete(id));
+	}
+
+	
+	@GetMapping("/getall")
+	public ResponseEntity<?> getAll(){
+		return ResponseEntity.ok(this.letterOfAcceptanceService.getAll());
+	}
+	
+
+	@GetMapping("/getById")
+	public ResponseEntity<?>getById(@RequestParam int id){
+		return ResponseEntity.ok(this.letterOfAcceptanceService.getById(id));
+	}
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorDataResult<Object> handleValidationException

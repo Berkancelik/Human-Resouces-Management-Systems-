@@ -1,12 +1,10 @@
 package kodlamaio.hrms.api.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,6 +60,10 @@ public class CandidatesController {
 		return ResponseEntity.ok(this.candidateService.add(candidate));
 	}
 	
+	@GetMapping("/getbyid")
+	public ResponseEntity<?> get(@RequestParam int id) {
+		return ResponseEntity.ok(this.candidateService.getById(id));
+	}
 	
 	
 	

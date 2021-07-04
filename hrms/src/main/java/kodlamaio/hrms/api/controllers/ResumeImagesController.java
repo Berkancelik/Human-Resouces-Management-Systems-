@@ -15,15 +15,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import kodlamaio.hrms.business.abstracts.ResumeImageService;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
-import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.ResumeImage;
 
 @RestController
@@ -39,24 +41,33 @@ public class ResumeImagesController {
 		this.resumeImageService = resumeImageService;
 	}
 
-	@PostMapping("/add")
-	public ResponseEntity<?> add(@RequestBody MultipartFile multipartFile,@RequestParam int candidateId){
-		ResumeImage image=new ResumeImage();
-		Candidate candidate=new Candidate();
-		candidate.setId(candidateId);
-		image.setCandidate(candidate);
-		return ResponseEntity.ok(this.resumeImageService.add(image,multipartFile));
+	@PostMapping(value = "/add")
+	public Result add(@RequestParam(value = "id") int id, @RequestParam(value = "imageFile") MultipartFile imageFile)
+	{
+		ResumeImage resumeImage = new ResumeImage();
+		return this.resumeImageService.add(resumeImage, imageFile);
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<?> update(@Valid @RequestBody ResumeImage resumeImage) {
+		return ResponseEntity.ok(this.resumeImageService.update(resumeImage));
+	}
+	
+	@DeleteMapping("/delete")
+	public  ResponseEntity<?> delete( @RequestParam int  id){
+		return ResponseEntity.ok(this.resumeImageService.delete(id));
+		
 	}
 	
 	@GetMapping("/getall")
-	public ResponseEntity<?> getAll(){
+	public ResponseEntity<?>getAll(){
 		return ResponseEntity.ok(this.resumeImageService.getAll());
-				
 	}
 	
-	@GetMapping("/getallbycandidateid")
-	public ResponseEntity<?> getAllByCandidateId(int candidateId){
-		return ResponseEntity.ok(this.resumeImageService.getAllByCandidateId(candidateId));	
+	
+	@GetMapping("/getById")
+	public ResponseEntity<?> getById(@RequestParam int id){
+		return ResponseEntity.ok(this.resumeImageService.getById(id));
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
