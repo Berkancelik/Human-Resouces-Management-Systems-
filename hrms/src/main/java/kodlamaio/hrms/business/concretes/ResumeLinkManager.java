@@ -1,56 +1,58 @@
 package kodlamaio.hrms.business.concretes;
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.ResumeLinkService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.dataAccess.abstracts.ResumeLinkDao;
 import kodlamaio.hrms.entities.concretes.ResumeLink;
+import kodlamaio.hrms.entities.dtos.ResumeLinkForCandidateDto;
 @Service
 public class ResumeLinkManager implements ResumeLinkService {
 	
 	private ResumeLinkDao resumeLinkDao;
+	private ResumeDao resumeDao;
 
 	@Autowired
-	public ResumeLinkManager(ResumeLinkDao resumeLinkDao) {
+	public ResumeLinkManager(ResumeDao resumeDao, ResumeLinkDao resumeLinkDao) {
 		super();
 		this.resumeLinkDao = resumeLinkDao;
+		this.resumeDao = resumeDao;
 	}
 
 	@Override
-	public Result add(ResumeLink resumeLink) {
+	public Result add(ResumeLinkForCandidateDto resumeLinkForCandidateDto) {
+		ResumeLink resumeLink = new ResumeLink();
+
+		resumeLink.setResume(this.resumeDao.getById(resumeLinkForCandidateDto.getResumeId()));
+		resumeLink.setLinkedin(resumeLinkForCandidateDto.getLinkedin());
+		resumeLink.setGithub(resumeLinkForCandidateDto.getGithub());
+
 		this.resumeLinkDao.save(resumeLink);
-		return new SuccessResult("Link eklendi");
+		return new SuccessResult("Hesaplar Eklendi");
 	}
 
 	@Override
-	public DataResult<List<ResumeLink>> getAll() {
-		return new SuccessDataResult<List<ResumeLink>>(resumeLinkDao.findAll(),"Yetenekler listelendi");
+	public Result update(ResumeLinkForCandidateDto resumeLinkForCandidateDto) {
+		ResumeLink resumeLinkUpdate = this.resumeLinkDao.getById(resumeLinkForCandidateDto.getId());
+
+		resumeLinkUpdate.setLinkedin(resumeLinkForCandidateDto.getLinkedin());
+		resumeLinkUpdate.setGithub(resumeLinkForCandidateDto.getGithub());
+
+		this.resumeLinkDao.save(resumeLinkUpdate);
+		return new SuccessResult("Hesaplar Güncellendi");
 	}
 
 	@Override
-	public Result addAll(List<ResumeLink> resumeLink) {
-		this.resumeLinkDao.saveAll(resumeLink);
-		return new SuccessResult();
+	public Result delete(int accountId) {
+		this.resumeLinkDao.deleteById(accountId);
+		return new SuccessResult("Hesaplar Silindi");
 	}
 
-	@Override
-	public DataResult<List<ResumeLink>> getAllByCandidateId(int candidateId) {
-		return new SuccessDataResult<List<ResumeLink>>(resumeLinkDao.getAllByCandidateId(candidateId));
-	}
-
-	@Override
-	public Result update(ResumeLink resumeLink) {
-	this.resumeLinkDao.save(resumeLink);
-	return new SuccessResult("Yetenekler güncellendi");
-	}
 	
 
 }

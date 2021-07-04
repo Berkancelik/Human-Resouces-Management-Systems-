@@ -42,8 +42,7 @@ public class ResumeSkill   {
 	@Column(name = "skill_name")
 	private String skillName;
 	
-	@JoinColumn(name = "candidate_id")
+	@JoinColumn(name = "resume_id")
 	@ManyToOne()
-	private Candidate candidate;
-
+	private Resume resume;
 }
