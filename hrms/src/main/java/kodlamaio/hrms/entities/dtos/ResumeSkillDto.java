@@ -1,3 +1,4 @@
+
 package kodlamaio.hrms.entities.dtos;
 
 import lombok.AllArgsConstructor;
@@ -7,6 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResumeDto {
-	private int candidateId;
+public class ResumeSkillDto {
+
+	private int id;
+	private int resumeId;
+	private String skillName;
+
 }

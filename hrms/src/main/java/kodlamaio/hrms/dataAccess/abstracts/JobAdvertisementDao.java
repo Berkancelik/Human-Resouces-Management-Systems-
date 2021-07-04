@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
-import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
@@ -40,6 +39,10 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 			+ " and j.isActive=true")
 	public Page<JobAdvertisement> getByFilter(@Param("filter") JobAdvertisementFilter jobAdvertisementFilter,
 			Pageable pageable);
+	
+//	@Query("select new kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto(e.companyName,t.jobTitle,j.openTitleCount, c.cityName,j.createdDate,j.deadline,j.description) " +
+//			"from JobAdvertisement j inner join j.employer e inner join j.jobTitle t inner join j.city c")
+//	List<JobAdvertisementDetailsDto> getAdvertisementWithEmployerDetails();
 
 	@Modifying
 	@Query("update JobAdvertisement set isActive=false where id=:id and employer.id=:employerId")

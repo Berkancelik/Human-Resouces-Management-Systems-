@@ -16,7 +16,7 @@ import kodlamaio.hrms.dataAccess.abstracts.CityDao;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
-import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 import org.springframework.data.domain.PageRequest;

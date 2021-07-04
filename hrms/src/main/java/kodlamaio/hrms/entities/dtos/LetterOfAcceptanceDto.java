@@ -7,6 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResumeDto {
-	private int candidateId;
+public class LetterOfAcceptanceDto {
+	
+	
+	private int id;
+	private int resumeId;	
+	private String content;
+
 }

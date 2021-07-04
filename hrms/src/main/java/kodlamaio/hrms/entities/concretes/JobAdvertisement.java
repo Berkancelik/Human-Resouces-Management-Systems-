@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,9 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,9 +28,8 @@ public class JobAdvertisement {
 	@Column(name = "id")
 	private int id;
 
-	@JsonIgnore
-	@Column(name = "created_date", columnDefinition = "Date defult CURRENT_DATE")
-	private LocalDate createdDate = LocalDate.now();
+	@Column(name = "created_date")
+	private LocalDateTime createdDate=LocalDateTime.now();
 
 	@Column(name = "is_active",columnDefinition="boolean default true")
 	private boolean isActive=true;
