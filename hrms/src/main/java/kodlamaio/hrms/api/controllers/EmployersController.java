@@ -23,6 +23,7 @@ import kodlamaio.hrms.entities.concretes.Employer;
 @CrossOrigin
 public class EmployersController {
 	
+	
 	private EmployerService employerService;
 	
 	@Autowired
