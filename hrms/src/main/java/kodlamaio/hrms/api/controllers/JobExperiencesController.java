@@ -27,8 +27,7 @@ import kodlamaio.hrms.entities.dtos.JobExperienceForCandidateDto;
 @RestController
 @RequestMapping
 public class JobExperiencesController {
-	private JobExperienceService jobExperienceService;
-	
+	private JobExperienceService jobExperienceService;	
 
 	@Autowired
 	public JobExperiencesController(JobExperienceService jobExperienceService) {
