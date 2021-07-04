@@ -4,17 +4,21 @@ import java.util.List;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobExperience;
+import kodlamaio.hrms.entities.dtos.JobExperienceForCandidateDto;
 
 public interface JobExperienceService {
 	
-	Result add(JobExperience jobExperience);
-	Result update(JobExperience jobExperience);
-	Result addAll(List<JobExperience> jobExperience);
+	Result add(JobExperienceForCandidateDto jobExperienceForCandidateDto);
+
+	Result update(JobExperienceForCandidateDto jobExperienceForCandidateDto);
+
+	Result delete(int id);
+
 	DataResult<List<JobExperience>> getAll();
-	DataResult<List<JobExperience>> getByCandidateOrderByEndedDateAsc(int candidateId);
-	DataResult<List<JobExperience>> getAllByCandidateId(int candidateId);
+
+	DataResult<List<JobExperience>>  sortByJobEndYear();
+
 
 	
 
 }
- 
