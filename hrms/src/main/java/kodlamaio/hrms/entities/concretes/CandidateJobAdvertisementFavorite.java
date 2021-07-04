@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class CandidateJobAdvertisementFavorite {
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 
-	@ManyToOne
-	@JoinColumn(name = "job_advertisement_id",insertable = false, updatable = false)
-	private JobAdvertisement jobAdvertisement;
+    @OneToOne()
+    @JoinColumn(name = "job_advertisement_id")
+    private JobAdvertisement jobAdvertisement;
 }

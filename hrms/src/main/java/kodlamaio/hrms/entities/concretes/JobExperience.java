@@ -56,10 +56,8 @@ public class JobExperience   {
 	@ManyToOne()
 	private JobTitle jobTitle;
 	
-	@JoinColumn(name = "candidate_id")
+	@JoinColumn(name = "resume_id")
 	@ManyToOne()
-	private Candidate candidate;
-
+	private Resume resume;
 	
 }
- 

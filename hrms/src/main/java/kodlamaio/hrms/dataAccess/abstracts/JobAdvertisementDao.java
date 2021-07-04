@@ -2,6 +2,7 @@ package kodlamaio.hrms.dataAccess.abstracts;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,41 +15,29 @@ import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
 
-	List<JobAdvertisement> getByisActiveTrue();
+	List<JobAdvertisement> getByEmployer_CompanyName(String companyName);
 
-	List<JobAdvertisement> getByisActiveTrueAndConfirmStatusTrue();
+	List<JobAdvertisement> getByIsConfirm(boolean isConfirm);
 
-	List<JobAdvertisement> getByisActiveTrueOrderByDeadlineDesc();
-
-	List<JobAdvertisement> getByisActiveTrueAndEmployer_Id(int employerId);
-
+	Page<JobAdvertisement> getByIsConfirmAndIsActive(boolean isConfirm, boolean isActive, Pageable pageable);
+	
 	JobAdvertisement getById(int id);
 
-	JobAdvertisement getByIdAndEmployer_Id(int id, int employerId);
+	@Modifying
+	@Transactional
+	@Query("update JobAdvertisement u set u.isConfirm=:isConfirm where u.id=:id ")
+	void updateIsConfirm(boolean isConfirm, int id);
 
-	List<JobAdvertisement> getByEmployer_Id(int employerid);
-
-	List<JobAdvertisement> getByConfirmStatusFalse();
-
-
-
-	@Query("Select j from kodlamaio.hrms.entities.concretes.JobAdvertisement j where ((:#{#filter.cityId}) IS NULL OR j.city.id IN (:#{#filter.cityId}))"
-			+ " and ((:#{#filter.jobTitleId}) IS NULL OR j.jobTitle.id IN (:#{#filter.jobTitleId}))"
-			+ " and ((:#{#filter.workTypeId}) IS NULL OR j.workType.id IN (:#{#filter.workTypeId}))"
-			+ " and ((:#{#filter.workHourId}) IS NULL OR j.workHour.id IN (:#{#filter.workHourId}))"
-			+ " and j.isActive=true")
-	public Page<JobAdvertisement> getByFilter(@Param("filter") JobAdvertisementFilter jobAdvertisementFilter,
-			Pageable pageable);
+	@Modifying
+	@Transactional
+	@Query("update JobAdvertisement u set u.isActive=:isActive where u.employer.id=:id and u.id=:id ")
+	void updateIsActive(boolean isActive,  int id);
 	
-//	@Query("select new kodlamaio.hrms.entities.dtos.JobAdvertisementDetailsDto(e.companyName,t.jobTitle,j.openTitleCount, c.cityName,j.createdDate,j.deadline,j.description) " +
-//			"from JobAdvertisement j inner join j.employer e inner join j.jobTitle t inner join j.city c")
-//	List<JobAdvertisementDetailsDto> getAdvertisementWithEmployerDetails();
-
-	@Modifying
-	@Query("update JobAdvertisement set isActive=false where id=:id and employer.id=:employerId")
-	int updateisActive(@Param("id") int jobAdvertisementId, @Param("employerId") int employerId);
-
-	@Modifying
-	@Query("update JobAdvertisement set confirmStatus=true where id=:id")
-	int updateconfirmStatus(@Param("id") int id);
+	@Query("Select j from kodlamaio.hrms.entities.concretes.JobAdvertisement j where "
+			+ "((:#{#filter.jobTitleId}) IS NULL OR j.jobTitle.id IN (:#{#filter.jobTitleId})) "
+			+ "and ((:#{#filter.cityId}) IS NULL OR j.city.id IN (:#{#filter.cityId})) "
+			+ "and ((:#{#filter.workTypeId}) IS NULL OR j.workType.id IN (:#{#filter.workTypeId})) "
+			+ "and ((:#{#filter.workHourId}) IS NULL OR j.workHour.id IN (:#{#filter.workHourId})) "
+			+ "and j.isActive = true " + "and j.isConfirm = true")
+	Page<JobAdvertisement> getByFilter(@Param("filter") JobAdvertisementFilter jobAdvertisementFilter, Pageable pageable);
 }

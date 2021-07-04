@@ -1,6 +1,5 @@
 package kodlamaio.hrms.dataAccess.abstracts;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -14,4 +13,3 @@ public interface CandidateDao extends JpaRepository<Candidate, Integer> {
 
 
 }
- 

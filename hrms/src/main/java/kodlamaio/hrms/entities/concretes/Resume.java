@@ -1,4 +1,4 @@
-package kodlamaio.hrms.business.abstracts;
+package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
 
@@ -15,13 +15,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import kodlamaio.hrms.entities.concretes.Candidate;
-import kodlamaio.hrms.entities.concretes.Education;
-import kodlamaio.hrms.entities.concretes.JobExperience;
-import kodlamaio.hrms.entities.concretes.Language;
-import kodlamaio.hrms.entities.concretes.LetterOfAcceptance;
-import kodlamaio.hrms.entities.concretes.ResumeLink;
-import kodlamaio.hrms.entities.concretes.ResumeSkill;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

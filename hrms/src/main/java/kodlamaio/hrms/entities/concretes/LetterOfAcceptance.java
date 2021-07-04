@@ -1,3 +1,4 @@
+  
 package kodlamaio.hrms.entities.concretes;
 
 
@@ -9,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -45,13 +45,12 @@ public class LetterOfAcceptance  {
 	private boolean isActive = true;
 	
 	@Column(name = "content")
-	private String content;	
+	private String content;
+	
 	
 
-	@JoinColumn(name = "candidate_id")
-	@ManyToOne()
-	private Candidate candidate;
-
+	@OneToOne()
+	@JoinColumn(name = "resume_id")
+	private Resume resume;
 	
 }
-	

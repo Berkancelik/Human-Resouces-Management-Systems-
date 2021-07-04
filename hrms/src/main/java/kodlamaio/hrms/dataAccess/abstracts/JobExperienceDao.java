@@ -7,10 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 
 public interface JobExperienceDao extends JpaRepository<JobExperience, Integer>{
-	List<JobExperience> getAllByCandidateId(int candidateId);
-	List<JobExperience> getByCandidateIdOrderByEndedDateAsc(int candidateId);
+	JobExperience getById(int id);
 
 
 
 }
- 
