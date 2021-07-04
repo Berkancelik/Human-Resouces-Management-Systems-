@@ -28,6 +28,7 @@ import kodlamaio.hrms.entities.dtos.CandidateForFavoriteDto;
 @CrossOrigin
 public class CandidateJobAdvertisementFavoritesController {
 	
+	
 	 private CandidateJobAdvertisementFavoriteService candidateJobAdvertisementFavoriteService;
 
 	    @Autowired
