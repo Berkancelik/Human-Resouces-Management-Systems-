@@ -43,7 +43,7 @@ public class ResumesController {
 	}
 	
 	@GetMapping("/getbycandidateid")
-	public ResponseEntity<?> getByJobseekerId(@RequestParam int id) {
+	public ResponseEntity<?> getByCandidateId(@RequestParam int id) {
 		return ResponseEntity.ok(this.resumeService.getByCandidateId(id));
 	}
 
